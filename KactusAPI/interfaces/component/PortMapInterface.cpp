@@ -1132,7 +1132,7 @@ QSharedPointer<PortMap> PortMapInterface::getPortMap(int const& portMapIndex) co
 }
 
 //-----------------------------------------------------------------------------
-// Function: PortMapInterface::mapPorts()
+// Function: PortMapInterface::connectPorts()
 //-----------------------------------------------------------------------------
 bool PortMapInterface::connectPorts(std::string const& logicalPortName, std::string const& physicalPortName)
 {

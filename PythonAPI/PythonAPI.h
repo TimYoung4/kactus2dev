@@ -35,6 +35,8 @@
 #include <KactusAPI/include/ParametersInterface.h>
 
 #include <IPXACTmodels/Component/validators/PortValidator.h>
+#include <IPXACTmodels/BusDefinition/BusDefinition.h>
+#include <IPXACTmodels/AbstractionDefinition/AbstractionDefinition.h>
 
 class MessageMediator;
 
@@ -58,6 +60,8 @@ class ParameterValidator;
 class MemoryMapValidator;
 
 class Design;
+
+class AbstractionDefinition;
 
 
 //-----------------------------------------------------------------------------
@@ -255,6 +259,54 @@ public:
         std::string const& version) const;
 
     /*!
+     *  Create a new busDefinition with the selected VLNV. Defaults to IP-XACT 2022.
+     *
+     *    @param [in] vendor      Vendor of the selected VLNV.
+     *    @param [in] library     Library of the selected VLNV.
+     *    @param [in] name        Name of the selected VLNV.
+     *    @param [in] version     Version of the selected VLNV.
+     *    @param [in] revision    IP-XACT standard revision to use.
+     *
+     *    @return True, if the busDefinition was created successfully, false otherwise.
+     */
+    bool createBusDefinition(std::string const& vendor, std::string const& library, std::string const& name,
+        std::string const& version, StdRev revision = StdRev::Std22);
+
+    /*!
+     *  Create a new abstractDefinition with the selected VLNV. Defaults to IP-XACT 2022.
+     *
+     *    @param [in] vendor      Vendor of the selected VLNV.
+     *    @param [in] library     Library of the selected VLNV.
+     *    @param [in] name        Name of the selected VLNV.
+     *    @param [in] version     Version of the selected VLNV.
+     *    @param [in] busDefinitionVLNV VLNV of the bus definition to reference in the new abstract definition.
+     *    @param [in] revision    IP-XACT standard revision to use.
+     *
+     *    @return True, if the abstractDefinition was created successfully, false otherwise.
+     */
+    bool createAbstractionDefinition(std::string const& vendor, std::string const& library, std::string const& name,
+        std::string const& version, std::string const& busDefinitionVLNV, StdRev revision = StdRev::Std22);
+
+    /*!
+     *  Set the selected component as active component.
+     *
+     *    @param [in] absdefVLNV   VLNV of the selected abstraction definition.
+     *
+     *    @return True, if the abstraction definition exists, false otherwise.
+     */
+    bool openAbstractionDefinition(std::string const& vlnvString);
+
+    /*!
+    *  Save the active abstraction definition to the library.
+    */
+    void saveAbstractionDefinition();
+
+    /*!
+    *  Close the active abstraction definition.
+    */
+    void closeOpenAbstractionDefinition();
+
+    /*!
      *  Create a new component with the selected VLNV. Defaults to IP-XACT 2022.
      *
      *    @param [in] vendor      Vendor of the selected VLNV.
@@ -422,6 +474,22 @@ public:
      *    @return True, if successful, false otherwise.
      */
     bool addComponentInstance(std::string const& vlnvString, std::string const& instanceName);
+
+    /*!
+     *  List the component instances in the active design.
+     *
+     *    @return List of the component instance names in the active design.
+     */
+    std::vector<std::string> listComponentsInDesign() const;
+
+    /*!
+    *  Get the component VLNV referenced by a component instance in the active design.
+    *
+    *    @param [in] instanceName Name of the component instance.
+    *
+    *    @return Component VLNV as "Vendor:Library:Name:Version". Empty string if not found / no open design.
+    */
+    std::string getInstanceComponentVLNV(std::string const& instanceName) const;
 
     /*!
      *  Remove the selected component instance from the active design.
@@ -797,6 +865,9 @@ private:
     //! Currently active design.
     QSharedPointer<Design> activeDesign_{ nullptr };
 
+    //! Currently active abstraction definition.
+    QSharedPointer<AbstractionDefinition> activeAbsDef_{ nullptr };
+
     //! Validator for ports.
     QSharedPointer<PortValidator> portValidator_{ new PortValidator(expressionParser_,
         QSharedPointer<QList<QSharedPointer<View> > >()) };
@@ -842,7 +913,7 @@ private:
     //! Interface for accessing component instances.
     ComponentInstanceInterface* instanceInterface_{ new ComponentInstanceInterface(connectionInterface_, 
         adhocConnectionInterface_) };
-
+    
 };
 
 #endif // !PYTHON_API_H

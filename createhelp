@@ -1,4 +1,5 @@
 #!/bin/sh
+PATH="/usr/lib/qt6/libexec:$PATH"
 
 # Change this to your Qt binaries directory.
 QTBIN_PATH=""
@@ -26,6 +27,8 @@ if [ ! -f Help/Kactus2Help.qch ] || [ ! -f Help/Kactus2Help.qhc ]; then
         # QT6 put qhelpgenerator at QTLIBEXEC_PATH
         "${QTLIBEXEC_PATH}qhelpgenerator" Help/kactus2help.qhcp -o Help/Kactus2Help.qhc
         "${QTLIBEXEC_PATH}qhelpgenerator" Help/kactus2help.qhp -o Help/Kactus2Help.qch
+        # "/usr/lib/qt6/libexec/qhelpgenerator" ../Help/kactus2help.qhp -o ../Help/Kactus2Help.qch
+	    # "/usr/lib/qt6/libexec/qhelpgenerator" ../Help/kactus2help.qhcp -o ../Help/Kactus2Help.qhc
     else
         echo "Qhelpgenerator not found. Please set variable QTBIN_PATH to Qt binary files."
     fi
@@ -33,5 +36,5 @@ fi
 
 rm -R -f executable/Help
 mkdir executable/Help
-cp -f Help/Kactus2Help.qhc executable/Help/Kactus2Help.qhc
-cp -f Help/Kactus2Help.qch executable/Help/Kactus2Help.qch
+cp -f ../Help/Kactus2Help.qhc executable/Help/Kactus2Help.qhc
+cp -f ../Help/Kactus2Help.qch executable/Help/Kactus2Help.qch

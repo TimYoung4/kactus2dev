@@ -762,6 +762,14 @@ public:
      */
     void addTransactionalPort(std::string const& newPortName = std::string("")) final;
 
+    /*! yangjun
+     *  Add a wire signal with the selected interface mode to the selected port abstraction.
+     *
+     *    @param [in] portName    Name of the selected port abstraction.
+     *    @param [in] newModeString     The selected interface mode.
+     */
+    void addModeSpecificWireSignal(std::string const& portName, std::string const& newModeString);
+
     /*!
      *  Add a wire signal with the selected interface mode to the selected port abstraction.
      *

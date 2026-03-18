@@ -106,7 +106,7 @@ void AbstractionDefinition::setBusType(VLNV const& targetBus)
 }
 
 //-----------------------------------------------------------------------------
-// Function: AbstractionDefinition::setBusType()
+// Function: AbstractionDefinition::getBusType()
 //-----------------------------------------------------------------------------
 VLNV AbstractionDefinition::getBusType() const
 {

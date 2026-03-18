@@ -65,8 +65,9 @@
 #include <IPXACTmodels/Design/ActiveInterface.h>
 #include <IPXACTmodels/Design/Design.h>
 
-
 #include <IPXACTmodels/DesignConfiguration/DesignConfiguration.h>
+
+#include <IPXACTmodels/AbstractionDefinition/AbstractionDefinition.h>
 
 //-----------------------------------------------------------------------------
 // Function: PythonAPI::PythonAPI()
@@ -343,6 +344,184 @@ bool PythonAPI::vlnvExistsInLibrary(std::string const& vendor, std::string const
         QString::fromStdString(library),
         QString::fromStdString(name),
         QString::fromStdString(version)));
+}
+
+//-----------------------------------------------------------------------------
+// Function: PythonAPI::createBusDefinition()
+//-----------------------------------------------------------------------------
+bool PythonAPI::createBusDefinition(std::string const& vendor, std::string const& library, std::string const& name,
+    std::string const& version, StdRev revision /*= StdRev::Std22*/)
+{
+    if (vendor.empty() || library.empty() || name.empty() || version.empty())
+    {
+        messager_->showError("Error in given VLNV.");
+        return false;
+    }
+
+    VLNV newBusDefinitionVLNV;
+    newBusDefinitionVLNV.setVendor(QString::fromStdString(vendor));
+    newBusDefinitionVLNV.setLibrary(QString::fromStdString(library));
+    newBusDefinitionVLNV.setName(QString::fromStdString(name));
+    newBusDefinitionVLNV.setVersion(QString::fromStdString(version));
+    newBusDefinitionVLNV.setType(VLNV::BUSDEFINITION);
+
+    if (library_->contains(newBusDefinitionVLNV))
+    {
+        return false;
+    }
+
+    Document::Revision docRevision = revision == PythonAPI::StdRev::Std22 
+        ? Document::Revision::Std22 : Document::Revision::Std14;
+
+    QSharedPointer<BusDefinition> busdef = QSharedPointer<BusDefinition>(new BusDefinition(newBusDefinitionVLNV, docRevision));
+
+    QString directory = KactusAPI::getDefaultLibraryPath();
+    QString vlnvDir = "/" + newBusDefinitionVLNV.getVendor() + "/" + newBusDefinitionVLNV.getLibrary() + "/" +
+        newBusDefinitionVLNV.getName() + "/" + newBusDefinitionVLNV.getVersion();
+
+    directory += vlnvDir;
+
+    if (!library_->writeModelToFile(directory, busdef))
+    {
+        messager_->showError("Error saving file to disk.");
+        return false;
+    }
+
+    return true;
+}
+
+//-----------------------------------------------------------------------------
+// Function: PythonAPI::createAbstractionDefinition()
+//-----------------------------------------------------------------------------
+bool PythonAPI::createAbstractionDefinition(std::string const& vendor, std::string const& library, std::string const& name,
+    std::string const& version, std::string const& busDefinitionVLNV, StdRev revision /*= StdRev::Std22*/)
+{
+    if (vendor.empty() || library.empty() || name.empty() || version.empty())
+    {
+        messager_->showError("Error in given VLNV.");
+        return false;
+    }
+
+    VLNV newAbstractionDefinitionVLNV;
+    newAbstractionDefinitionVLNV.setVendor(QString::fromStdString(vendor));
+    newAbstractionDefinitionVLNV.setLibrary(QString::fromStdString(library));
+    newAbstractionDefinitionVLNV.setName(QString::fromStdString(name));
+    newAbstractionDefinitionVLNV.setVersion(QString::fromStdString(version));
+    newAbstractionDefinitionVLNV.setType(VLNV::ABSTRACTIONDEFINITION);
+
+    if (library_->contains(newAbstractionDefinitionVLNV))
+    {
+        return false;
+    }
+
+    Document::Revision docRevision = revision == PythonAPI::StdRev::Std22 
+        ? Document::Revision::Std22 : Document::Revision::Std14;
+
+    QSharedPointer<AbstractionDefinition> absdef = QSharedPointer<AbstractionDefinition>(new AbstractionDefinition(newAbstractionDefinitionVLNV, docRevision));
+
+    VLNV busDefVLNV(VLNV::BUSDEFINITION, QString::fromStdString(busDefinitionVLNV),":");
+    if (!library_->contains(busDefVLNV))
+    {
+        messager_->showError("The given bus definition VLNV does not exist in the library.");
+        return false;
+    }
+
+    absdef->setBusType(busDefVLNV);
+
+    QString directory = KactusAPI::getDefaultLibraryPath();
+    QString vlnvDir = "/" + newAbstractionDefinitionVLNV.getVendor() + "/" + newAbstractionDefinitionVLNV.getLibrary() + "/" +
+        newAbstractionDefinitionVLNV.getName() + "/" + newAbstractionDefinitionVLNV.getVersion();
+
+    directory += vlnvDir;
+
+    if (!library_->writeModelToFile(directory, absdef))
+    {
+        messager_->showError("Error saving file to disk.");
+        return false;
+    }
+
+    return true;
+}
+
+//-----------------------------------------------------------------------------
+// Function: PythonAPI::openAbstractionDefinition()
+//-----------------------------------------------------------------------------
+bool PythonAPI::openAbstractionDefinition(std::string const& vlnvString)
+{
+    QString absdefVLNV = QString::fromStdString(vlnvString);
+    QSharedPointer<Document> absdefDocument = getDocument(absdefVLNV);
+    if (absdefDocument)
+    {
+        QSharedPointer<AbstractionDefinition> absdef = absdefDocument.dynamicCast<AbstractionDefinition>();
+        if (absdef)
+        {
+            activeAbsDef_ = absdef;
+            PortAbstractionInterface* logicalPortIf = busInterface_->getAbstractionTypeInterface()->getPortMapInterface()->getLogicalPortInterface();
+            logicalPortIf -> setAbsDef(activeAbsDef_);
+            messager_->showMessage(QString("Abstraction definition %1 is open").arg(absdefVLNV));
+            return true;
+        }
+        else
+        {
+            messager_->showError(QString("Document %1 is not an abstractionDefinition").arg(absdefVLNV));
+            return false;
+        }
+    }
+    else
+    {
+        messager_->showError(QString("Could not find document %1").arg(absdefVLNV));
+        return false;
+    }
+}
+
+//-----------------------------------------------------------------------------
+// Function: PythonAPI::saveAbstractionDefinition()
+//-----------------------------------------------------------------------------
+void PythonAPI::saveAbstractionDefinition()
+{
+    if (activeAbsDef_)
+    {
+        // Save the attributes of each logical port
+        messager_->showMessage(QString("Saving attributes of logical ports ..."));
+
+        if (busInterface_ && busInterface_->getAbstractionTypeInterface() &&
+            busInterface_->getAbstractionTypeInterface()->getPortMapInterface() &&
+            busInterface_->getAbstractionTypeInterface()->getPortMapInterface()->getLogicalPortInterface())
+        {
+            busInterface_->getAbstractionTypeInterface()
+                ->getPortMapInterface()
+                ->getLogicalPortInterface()
+                ->save();
+        }
+        else
+        {
+            messager_->showError("Could not save abstraction definition, because the logical port interface is not available.");
+        }
+
+        messager_->showMessage(QString("Saving abstraction definition %1 ...").arg(activeAbsDef_->getVlnv().toString()));
+
+        if (library_->writeModelToFile(activeAbsDef_))
+        {
+            messager_->showMessage(QString("Save complete"));
+        }
+        else
+        {
+            messager_->showError(QString("Could not save abstraction definition %1").arg(activeAbsDef_->getVlnv().toString()));
+        }
+    }
+}
+
+//-----------------------------------------------------------------------------
+// Function: PythonAPI::closeOpenAbstractionDefinition()
+//-----------------------------------------------------------------------------
+void PythonAPI::closeOpenAbstractionDefinition()
+{
+    if (activeAbsDef_)
+    {
+        messager_->showMessage(QString("Abstraction definition %1 is closed").arg(activeAbsDef_->getVlnv().toString()));
+    }
+
+    activeAbsDef_ = QSharedPointer<AbstractionDefinition>();
 }
 
 //-----------------------------------------------------------------------------
@@ -1149,6 +1328,48 @@ bool PythonAPI::addComponentInstance(std::string const& vlnvString, std::string 
 
     instanceInterface_->addComponentInstance(instanceName);
     return instanceInterface_->setComponentReference(instanceName, newVendor, newLibrary, newName, newVersion);
+}
+
+//-----------------------------------------------------------------------------
+// Function: PythonAPI::listComponentsInDesign()
+//-----------------------------------------------------------------------------
+std::vector<std::string> PythonAPI::listComponentsInDesign() const
+{
+    if (!activeDesign_)
+    {
+        messager_->showMessage(QString("No open design"));
+        return {};
+    }
+
+    return instanceInterface_->getItemNames();
+}
+
+//-----------------------------------------------------------------------------
+// Function: PythonAPI::getInstanceComponentVLNV()
+//-----------------------------------------------------------------------------
+std::string PythonAPI::getInstanceComponentVLNV(std::string const& instanceName) const
+{
+    if (!activeDesign_)
+    {
+        messager_->showMessage(QString("No open design"));
+        return std::string();
+    }
+
+    QString instanceNameQ = QString::fromStdString(instanceName);
+    if (!instanceExists(instanceNameQ))
+    {
+        return std::string();
+    }
+
+    QSharedPointer<ConfigurableVLNVReference> ref = instanceInterface_->getComponentReference(instanceName);
+
+    if (!ref)
+    {
+        messager_->showMessage(QString("Component instance %1 does not have a component reference").arg(instanceNameQ));
+        return std::string();
+    }
+
+    return ref->toString().toStdString();
 }
 
 //-----------------------------------------------------------------------------

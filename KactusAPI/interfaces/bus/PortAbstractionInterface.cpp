@@ -1715,6 +1715,59 @@ void PortAbstractionInterface::addTransactionalPort(std::string const& newPortNa
     ports_->append(newPort->abstraction_);
 }
 
+// yangjun
+//-----------------------------------------------------------------------------
+// Function: PortAbstractionInterface::addModeSpecificWireSignal()
+//-----------------------------------------------------------------------------
+void PortAbstractionInterface::addModeSpecificWireSignal(std::string const& portName, std::string const& newModeString)
+{
+    General::InterfaceMode newMode =
+        General::str2Interfacemode(QString::fromStdString(newModeString), General::INTERFACE_MODE_COUNT);
+    if (newMode == General::SYSTEM || !modeExistsForPort(newMode, QString::fromStdString(portName)))
+    {
+        QSharedPointer<PortAbstraction> selectedPort = getPort(portName);
+        QSharedPointer<PortAbstractionInterface::SignalRow> newSignal;
+        if (selectedPort.isNull())
+        {
+            addWirePort(portName);
+            selectedPort = ports_->last();
+            newSignal = signals_.last();
+        }
+        else
+        {
+            newSignal = constructCopySignal(selectedPort, true, false);
+            signals_.append(newSignal);
+        }
+
+        newSignal->mode_ = newMode;
+        newSignal->wire_->setSystemGroup("");
+
+        if (newMode != General::SYSTEM)
+        {
+            General::InterfaceMode opposingSignal = General::MASTER;
+            if (newMode == General::MASTER)
+            {
+                opposingSignal = General::SLAVE;
+            }
+            else if (newMode == General::INITIATOR)
+            {
+                opposingSignal = General::TARGET;
+            }
+            else if (newMode == General::TARGET)
+            {
+                opposingSignal = General::INITIATOR;
+            }
+
+            DirectionTypes::Direction mirroredDirection =
+                getMirroredDirectionForSignal(selectedPort->getLogicalName(), opposingSignal);
+            if (mirroredDirection != DirectionTypes::DIRECTION_INVALID)
+            {
+                newSignal->wire_->setDirection(mirroredDirection);
+            }
+        }
+    }
+}
+
 //-----------------------------------------------------------------------------
 // Function: PortAbstractionInterface::addModeSpecificWireSignal()
 //-----------------------------------------------------------------------------
