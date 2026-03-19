@@ -4,7 +4,7 @@
 
 TEMPLATE = lib
 TARGET = PythonAPI
-DESTDIR = .
+DESTDIR = ../executable
 CONFIG += c++11 dll
 DEFINES += PYTHONAPI_LIB
 QT += core gui widgets xml
@@ -52,11 +52,11 @@ swig.path = .
 QMAKE_EXTRA_TARGETS += swig
 
 # Rename shared library for SWIG wrapper.
-CONFIG(debug, debug|release) {
-    unix:QMAKE_POST_LINK = ln -s -f libPythonAPId.so.1.0.0 _pythonAPId.so
-} else {
-    unix:QMAKE_POST_LINK = ln -s -f libPythonAPI.so.1.0.0 _pythonAPI.so
-}
+# CONFIG(debug, debug|release) {
+#     unix:QMAKE_POST_LINK = ln -s -f libPythonAPId.so.1.0.0 _pythonAPId.so
+# } else {
+#     unix:QMAKE_POST_LINK = ln -s -f libPythonAPI.so.1.0.0 _pythonAPI.so
+# }
 
 # Install target
 target.path = $$lib_path
