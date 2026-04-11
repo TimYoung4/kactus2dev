@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipxact:design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2022" xmlns:kactus2="http://kactus2.cs.tut.fi" xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2022 http://www.accellera.org/XMLSchema/IPXACT/1685-2022/index.xsd">
+	<ipxact:vendor>test</ipxact:vendor>
+	<ipxact:library>design_adhoc</ipxact:library>
+	<ipxact:name>bkbk.design</ipxact:name>
+	<ipxact:version>1.0</ipxact:version>
+	<ipxact:componentInstances>
+		<ipxact:componentInstance>
+			<ipxact:instanceName>adder_bk_0</ipxact:instanceName>
+			<ipxact:componentRef vendor="test" library="from_mod" name="adder_bk" version="1.0"/>
+			<ipxact:vendorExtensions>
+				<kactus2:uuid>{af8e0984-8870-4906-a1ff-a694e10694e6}</kactus2:uuid>
+				<kactus2:position x="280" y="60"/>
+				<kactus2:adHocVisibilities>
+					<kactus2:adHocVisible portName="rst" x="-110" y="130"/>
+					<kactus2:adHocVisible portName="S_vec" x="110" y="110"/>
+					<kactus2:adHocVisible portName="clk" x="-110" y="150"/>
+					<kactus2:adHocVisible portName="B_vec" x="-110" y="80"/>
+					<kactus2:adHocVisible portName="A_vec" x="-110" y="50"/>
+					<kactus2:adHocVisible portName="C_out" x="110" y="40"/>
+				</kactus2:adHocVisibilities>
+			</ipxact:vendorExtensions>
+		</ipxact:componentInstance>
+		<ipxact:componentInstance>
+			<ipxact:instanceName>adder_bk_1</ipxact:instanceName>
+			<ipxact:componentRef vendor="test" library="from_mod" name="adder_bk" version="1.0"/>
+			<ipxact:vendorExtensions>
+				<kactus2:uuid>{9e36a967-84be-422b-b5f6-2af6d3011d12}</kactus2:uuid>
+				<kactus2:position x="280" y="260"/>
+				<kactus2:adHocVisibilities>
+					<kactus2:adHocVisible portName="A_vec" x="-110" y="40"/>
+					<kactus2:adHocVisible portName="B_vec" x="-110" y="70"/>
+					<kactus2:adHocVisible portName="C_out" x="110" y="90"/>
+					<kactus2:adHocVisible portName="S_vec" x="110" y="50"/>
+					<kactus2:adHocVisible portName="clk" x="-110" y="140"/>
+					<kactus2:adHocVisible portName="rst" x="-110" y="120"/>
+				</kactus2:adHocVisibilities>
+			</ipxact:vendorExtensions>
+		</ipxact:componentInstance>
+		<ipxact:componentInstance>
+			<ipxact:instanceName>adder_bk_2</ipxact:instanceName>
+			<ipxact:componentRef vendor="test" library="from_mod" name="adder_bk" version="1.0"/>
+			<ipxact:vendorExtensions>
+				<kactus2:uuid>{ff32ff7c-ce81-4d36-8b58-d5cad03964a2}</kactus2:uuid>
+				<kactus2:position x="600" y="60"/>
+				<kactus2:adHocVisibilities>
+					<kactus2:adHocVisible portName="A_vec" x="-110" y="50"/>
+					<kactus2:adHocVisible portName="B_vec" x="-110" y="70"/>
+					<kactus2:adHocVisible portName="C_out" x="110" y="70"/>
+					<kactus2:adHocVisible portName="S_vec" x="110" y="100"/>
+					<kactus2:adHocVisible portName="clk" x="-110" y="110"/>
+					<kactus2:adHocVisible portName="rst" x="-110" y="90"/>
+				</kactus2:adHocVisibilities>
+			</ipxact:vendorExtensions>
+		</ipxact:componentInstance>
+	</ipxact:componentInstances>
+	<ipxact:adHocConnections>
+		<ipxact:adHocConnection>
+			<ipxact:name>adder_bk_0_C_out_to_outc0</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentInstanceRef="adder_bk_0" portRef="C_out"/>
+				<ipxact:externalPortReference portRef="outc0"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>adder_bk_1_C_out_to_outc1</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentInstanceRef="adder_bk_1" portRef="C_out"/>
+				<ipxact:externalPortReference portRef="outc1"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>adder_bk_2_C_out_to_outc2</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentInstanceRef="adder_bk_2" portRef="C_out"/>
+				<ipxact:externalPortReference portRef="outc2"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>adder_bk_1_A_vec_to_in2</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentInstanceRef="adder_bk_1" portRef="A_vec"/>
+				<ipxact:externalPortReference portRef="in2"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>adder_bk_1_B_vec_to_in2</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentInstanceRef="adder_bk_1" portRef="B_vec"/>
+				<ipxact:externalPortReference portRef="in2"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>adder_bk_0_B_vec_to_in1</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentInstanceRef="adder_bk_0" portRef="B_vec"/>
+				<ipxact:externalPortReference portRef="in1"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>adder_bk_0_A_vec_to_in2</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentInstanceRef="adder_bk_0" portRef="A_vec"/>
+				<ipxact:externalPortReference portRef="in2"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>adder_bk_0_rst_to_rst</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentInstanceRef="adder_bk_0" portRef="rst"/>
+				<ipxact:externalPortReference portRef="rst"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>adder_bk_0_clk_to_clk</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentInstanceRef="adder_bk_0" portRef="clk"/>
+				<ipxact:externalPortReference portRef="clk"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>adder_bk_2_rst_to_rst</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentInstanceRef="adder_bk_2" portRef="rst"/>
+				<ipxact:externalPortReference portRef="rst"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>adder_bk_1_rst_to_rst</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentInstanceRef="adder_bk_1" portRef="rst"/>
+				<ipxact:externalPortReference portRef="rst"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>adder_bk_1_clk_to_clk</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentInstanceRef="adder_bk_1" portRef="clk"/>
+				<ipxact:externalPortReference portRef="clk"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>adder_bk_2_clk_to_clk</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentInstanceRef="adder_bk_2" portRef="clk"/>
+				<ipxact:externalPortReference portRef="clk"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>adder_bk_0_S_vec_to_adder_bk_2_B_vec</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentInstanceRef="adder_bk_0" portRef="S_vec"/>
+				<ipxact:internalPortReference componentInstanceRef="adder_bk_2" portRef="B_vec"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>adder_bk_1_S_vec_to_adder_bk_2_A_vec</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentInstanceRef="adder_bk_1" portRef="S_vec"/>
+				<ipxact:internalPortReference componentInstanceRef="adder_bk_2" portRef="A_vec"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+	</ipxact:adHocConnections>
+	<ipxact:vendorExtensions>
+		<kactus2:kts_attributes>
+			<kactus2:kts_implementation>HW</kactus2:kts_implementation>
+		</kactus2:kts_attributes>
+		<kactus2:version>3,14,0,0</kactus2:version>
+		<kactus2:columnLayout>
+			<kactus2:column name="IO" contentType="0" allowedItems="1" minWidth="119" width="119" x="0"/>
+			<kactus2:column name="comp" contentType="2" allowedItems="2" minWidth="319" width="319" x="120"/>
+			<kactus2:column name="Components" contentType="2" allowedItems="2" minWidth="319" width="319" x="440"/>
+			<kactus2:column name="IO" contentType="0" allowedItems="1" minWidth="119" width="119" x="760"/>
+		</kactus2:columnLayout>
+		<kactus2:adHocVisibilities>
+			<kactus2:adHocVisible portName="clk" x="60" y="330"/>
+			<kactus2:adHocVisible portName="rst" x="60" y="250"/>
+			<kactus2:adHocVisible portName="in1" x="60" y="190"/>
+			<kactus2:adHocVisible portName="in2" x="60" y="110"/>
+			<kactus2:adHocVisible portName="out" x="820" y="360"/>
+			<kactus2:adHocVisible portName="outc1" x="820" y="160"/>
+			<kactus2:adHocVisible portName="outc2" x="820" y="260"/>
+			<kactus2:adHocVisible portName="outc0" x="820" y="80"/>
+		</kactus2:adHocVisibilities>
+		<kactus2:routes>
+			<kactus2:route kactus2:connRef="adder_bk_0_C_out_to_outc0" kactus2:offPage="false">
+				<kactus2:position x="390" y="100"/>
+				<kactus2:position x="800" y="100"/>
+				<kactus2:position x="800" y="80"/>
+				<kactus2:position x="820" y="80"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="adder_bk_1_C_out_to_outc1" kactus2:offPage="false">
+				<kactus2:position x="390" y="350"/>
+				<kactus2:position x="800" y="350"/>
+				<kactus2:position x="800" y="160"/>
+				<kactus2:position x="820" y="160"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="adder_bk_2_C_out_to_outc2" kactus2:offPage="false">
+				<kactus2:position x="710" y="130"/>
+				<kactus2:position x="790" y="130"/>
+				<kactus2:position x="790" y="260"/>
+				<kactus2:position x="820" y="260"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="adder_bk_1_A_vec_to_in2" kactus2:offPage="false">
+				<kactus2:position x="170" y="300"/>
+				<kactus2:position x="150" y="300"/>
+				<kactus2:position x="150" y="110"/>
+				<kactus2:position x="60" y="110"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="adder_bk_1_B_vec_to_in2" kactus2:offPage="false">
+				<kactus2:position x="170" y="330"/>
+				<kactus2:position x="150" y="330"/>
+				<kactus2:position x="150" y="110"/>
+				<kactus2:position x="60" y="110"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="adder_bk_0_B_vec_to_in1" kactus2:offPage="false">
+				<kactus2:position x="170" y="140"/>
+				<kactus2:position x="140" y="140"/>
+				<kactus2:position x="140" y="190"/>
+				<kactus2:position x="60" y="190"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="adder_bk_0_A_vec_to_in2" kactus2:offPage="false">
+				<kactus2:position x="170" y="110"/>
+				<kactus2:position x="60" y="110"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="adder_bk_0_rst_to_rst" kactus2:offPage="false">
+				<kactus2:position x="170" y="190"/>
+				<kactus2:position x="130" y="190"/>
+				<kactus2:position x="130" y="250"/>
+				<kactus2:position x="60" y="250"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="adder_bk_0_clk_to_clk" kactus2:offPage="false">
+				<kactus2:position x="170" y="210"/>
+				<kactus2:position x="140" y="210"/>
+				<kactus2:position x="140" y="330"/>
+				<kactus2:position x="60" y="330"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="adder_bk_2_rst_to_rst" kactus2:offPage="false">
+				<kactus2:position x="490" y="150"/>
+				<kactus2:position x="470" y="150"/>
+				<kactus2:position x="470" y="250"/>
+				<kactus2:position x="60" y="250"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="adder_bk_1_rst_to_rst" kactus2:offPage="false">
+				<kactus2:position x="170" y="380"/>
+				<kactus2:position x="130" y="380"/>
+				<kactus2:position x="130" y="250"/>
+				<kactus2:position x="60" y="250"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="adder_bk_1_clk_to_clk" kactus2:offPage="false">
+				<kactus2:position x="170" y="400"/>
+				<kactus2:position x="140" y="400"/>
+				<kactus2:position x="140" y="330"/>
+				<kactus2:position x="60" y="330"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="adder_bk_2_clk_to_clk" kactus2:offPage="false">
+				<kactus2:position x="490" y="170"/>
+				<kactus2:position x="460" y="170"/>
+				<kactus2:position x="460" y="330"/>
+				<kactus2:position x="60" y="330"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="adder_bk_0_S_vec_to_adder_bk_2_B_vec" kactus2:offPage="false">
+				<kactus2:position x="390" y="170"/>
+				<kactus2:position x="450" y="170"/>
+				<kactus2:position x="450" y="130"/>
+				<kactus2:position x="490" y="130"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="adder_bk_1_S_vec_to_adder_bk_2_A_vec" kactus2:offPage="false">
+				<kactus2:position x="390" y="310"/>
+				<kactus2:position x="440" y="310"/>
+				<kactus2:position x="440" y="110"/>
+				<kactus2:position x="490" y="110"/>
+			</kactus2:route>
+		</kactus2:routes>
+	</ipxact:vendorExtensions>
+</ipxact:design>

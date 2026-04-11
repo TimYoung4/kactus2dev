@@ -1,0 +1,185 @@
+//-----------------------------------------------------------------------------
+// File: localmemorymapeditor.cpp
+//-----------------------------------------------------------------------------
+// Project: Kactus2
+// Author: Antti Kamppi
+// Date: 13.10.2012
+//
+// Description:
+// LocalMemoryMapEditor is used to edit a local memory map of an address space.
+//-----------------------------------------------------------------------------
+
+#include "localmemorymapeditor.h"
+
+#include <common/widgets/summaryLabel/summarylabel.h>
+#include <common/widgets/nameGroupEditor/namegroupeditor.h>
+#include <common/views/EditableTableView/editabletableview.h>
+
+#include <KactusAPI/include/IPXactSystemVerilogParser.h>
+
+#include <editors/ComponentEditor/memoryMaps/MemoryMapColumns.h>
+#include <editors/ComponentEditor/memoryMaps/memorymapdelegate.h>
+#include <editors/ComponentEditor/memoryMaps/memorymapmodel.h>
+#include <editors/ComponentEditor/memoryMaps/ExpressionProxyModel.h>
+#include <KactusAPI/include/AddressBlockInterface.h>
+
+#include <editors/ComponentEditor/parameters/ComponentParameterModel.h>
+
+#include <KactusAPI/include/LibraryInterface.h>
+
+#include <IPXACTmodels/Component/AddressSpace.h>
+#include <IPXACTmodels/Component/Component.h>
+#include <IPXACTmodels/Component/MemoryMapBase.h>
+
+#include <QCompleter>
+#include <QVBoxLayout>
+
+//-----------------------------------------------------------------------------
+// Function: LocalMemoryMapEditor::LocalMemoryMapEditor()
+//-----------------------------------------------------------------------------
+LocalMemoryMapEditor::LocalMemoryMapEditor(QSharedPointer<AddressSpace> addressSpace,
+    QSharedPointer<Component> component, LibraryInterface* handler,
+    QSharedPointer<ParameterFinder> parameterFinder, AddressBlockInterface* blockInterface, QWidget *parent):
+QGroupBox(tr("Local memory map"), parent),
+addressSpace_(addressSpace),
+localMemoryMap_(0),
+nameEditor_(0),
+view_(new EditableTableView(this)),
+model_(0),
+component_(component),
+handler_(handler)
+{
+    bool hasLocalMemoryMap = !addressSpace->getLocalMemoryMap().isNull();
+
+    localMemoryMap_ = addressSpace->getLocalMemoryMap();
+    if (!hasLocalMemoryMap)
+    {
+        localMemoryMap_ = QSharedPointer<MemoryMapBase>(new MemoryMapBase());
+    }
+
+    blockInterface->setMemoryBlocks(localMemoryMap_->getMemoryBlocks());
+
+    nameEditor_ = (new NameGroupEditor(localMemoryMap_, component->getRevision(), this));
+
+    setCheckable(true);
+    setChecked(hasLocalMemoryMap);
+
+    nameEditor_->setTitle(tr("Memory map name and description"));
+
+    QSharedPointer<IPXactSystemVerilogParser> expressionParser(new IPXactSystemVerilogParser(parameterFinder));
+
+    model_ = new MemoryMapModel(blockInterface, expressionParser, parameterFinder, component->getRevision(), this);
+
+    ComponentParameterModel* componentParameterModel = new ComponentParameterModel(parameterFinder, this);
+    componentParameterModel->setExpressionParser(expressionParser);
+
+
+    ExpressionProxyModel* proxy = new ExpressionProxyModel(expressionParser, this);
+    proxy->setColumnToAcceptExpressions(MemoryMapColumns::BASE_COLUMN);
+    proxy->setColumnToAcceptExpressions(MemoryMapColumns::RANGE_COLUMN);
+
+	proxy->setSourceModel(model_);
+	view_->setModel(proxy);
+
+	// display a label on top the table
+	SummaryLabel* summaryLabel = new SummaryLabel(tr("Address blocks"), this);
+
+	proxy->setSourceModel(model_);
+	view_->setModel(proxy);
+
+	const QString compPath = handler_->getDirectoryPath(component_->getVlnv());
+	QString defPath = QString("%1/localAddrBlockList.csv").arg(compPath);
+	view_->setDefaultImportExportPath(defPath);
+	view_->setAllowImportExport(true);
+
+	// items can not be dragged
+	view_->setItemsDraggable(false);
+    view_->setItemDelegate(new MemoryMapDelegate(componentParameterModel, parameterFinder, this));
+	view_->setSortingEnabled(true);
+    view_->setAllowElementCopying(true);
+
+	view_->sortByColumn(MemoryMapColumns::BASE_COLUMN, Qt::AscendingOrder);
+
+    // Is present only for 2014 std.
+    if (component->getRevision() == Document::Revision::Std22)
+    {
+        view_->hideColumn(MemoryMapColumns::IS_PRESENT);
+    }
+
+    connect(this, SIGNAL(toggled(bool)), this, SLOT(onCheckStateChanged()), Qt::UniqueConnection);
+
+	connect(nameEditor_, SIGNAL(contentChanged()), this, SIGNAL(contentChanged()), Qt::UniqueConnection);
+    
+	connect(model_, SIGNAL(contentChanged()), this, SIGNAL(contentChanged()), Qt::UniqueConnection);
+	connect(model_, SIGNAL(itemAdded(int)), this, SIGNAL(itemAdded(int)), Qt::UniqueConnection);
+	connect(model_, SIGNAL(itemRemoved(int)), this, SIGNAL(itemRemoved(int)), Qt::UniqueConnection);
+    connect(model_, SIGNAL(childAddressingChanged(int)),
+        this, SIGNAL(childAddressingChanged(int)), Qt::UniqueConnection);
+
+    connect(model_, SIGNAL(graphicsChanged(int)), this, SIGNAL(childGraphicsChanged(int)), Qt::UniqueConnection);
+    connect(model_, SIGNAL(itemAdded(int)), this, SIGNAL(graphicsChanged()), Qt::UniqueConnection);
+    connect(model_, SIGNAL(itemRemoved(int)), this, SIGNAL(graphicsChanged()), Qt::UniqueConnection);
+
+	// connect view to model
+	connect(view_, SIGNAL(addItem(const QModelIndex&)),
+        model_, SLOT(onAddItem(const QModelIndex&)), Qt::UniqueConnection);
+	connect(view_, SIGNAL(removeItem(const QModelIndex&)),
+		model_, SLOT(onRemoveItem(const QModelIndex&)), Qt::UniqueConnection);
+
+    connect(view_->itemDelegate(), SIGNAL(increaseReferences(QString)),
+        this, SIGNAL(increaseReferences(QString)), Qt::UniqueConnection);
+    connect(view_->itemDelegate(), SIGNAL(decreaseReferences(QString)),
+        this, SIGNAL(decreaseReferences(QString)), Qt::UniqueConnection);
+
+    connect(model_, SIGNAL(decreaseReferences(QString)),
+        this, SIGNAL(decreaseReferences(QString)), Qt::UniqueConnection);
+    connect(model_, SIGNAL(increaseReferences(QString)),
+        this, SIGNAL(increaseReferences(QString)), Qt::UniqueConnection);
+
+    connect(view_, SIGNAL(copyRows(QModelIndexList)),
+        model_, SLOT(onCopyRows(QModelIndexList)), Qt::UniqueConnection);
+    connect(view_, SIGNAL(pasteRows()), model_, SLOT(onPasteRows()), Qt::UniqueConnection);
+
+    connect(this, SIGNAL(assignNewAddressUnitBits(QString const&)),
+        model_, SLOT(addressUnitBitsUpdated(QString const&)), Qt::UniqueConnection);
+
+	QVBoxLayout* layout = new QVBoxLayout(this);
+	layout->addWidget(nameEditor_);
+	layout->addWidget(summaryLabel, 0, Qt::AlignCenter);
+	layout->addWidget(view_);
+}
+
+//-----------------------------------------------------------------------------
+// Function: LocalMemoryMapEditor::refresh()
+//-----------------------------------------------------------------------------
+void LocalMemoryMapEditor::refresh()
+{
+	nameEditor_->refresh();
+	view_->update();
+    
+    onCheckStateChanged();
+}
+
+//-----------------------------------------------------------------------------
+// Function: LocalMemoryMapEditor::onCheckStateChanged()
+//-----------------------------------------------------------------------------
+void LocalMemoryMapEditor::onCheckStateChanged()
+{
+    /*if (!isChecked() && !localMemoryMap_->getMemoryBlocks()->isEmpty())
+    {
+        setChecked(true);
+        emit errorMessage("Cannot unselect local memory map since all fields are not empty.");        
+    }
+    */
+
+    if (isChecked())
+    {
+        addressSpace_->setLocalMemoryMap(localMemoryMap_);
+    }
+    else
+    {
+        addressSpace_->setLocalMemoryMap(QSharedPointer<MemoryMapBase>(nullptr));
+    }
+
+    emit contentChanged();
+}

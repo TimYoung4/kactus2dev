@@ -1,0 +1,189 @@
+//-----------------------------------------------------------------------------
+// File: addressspaceeditor.cpp
+//-----------------------------------------------------------------------------
+// Project: Kactus2
+// Author: Antti Kamppi
+// Date: 21.2.2012
+//
+// Description:
+// Editor to edit and save settings of an address space within component editor.
+//-----------------------------------------------------------------------------
+
+#include "addressspaceeditor.h"
+
+#include <KactusAPI/include/LibraryInterface.h>
+
+#include <IPXACTmodels/Component/Component.h>
+#include <IPXACTmodels/Component/AddressSpace.h>
+
+#include <QVBoxLayout>
+#include <QGridLayout>
+#include <QScrollArea>
+#include <QSplitter>
+#include <QWidget>
+
+//-----------------------------------------------------------------------------
+// Function: AddressSpaceEditor::AddressSpaceEditor()
+//-----------------------------------------------------------------------------
+AddressSpaceEditor::AddressSpaceEditor(QSharedPointer<Component> component, LibraryInterface* handler,
+    QSharedPointer<AddressSpace> addrSpace, QSharedPointer<ParameterFinder> parameterFinder,
+    QSharedPointer<ExpressionFormatter> expressionFormatter, QSharedPointer<ExpressionParser> expressionParser,
+    AddressBlockInterface* blockInterface, QWidget* parent):
+ItemEditor(component, handler, parent),
+addrSpace_(addrSpace),
+nameEditor_(addrSpace, component->getRevision(), this),
+generalEditor_(addrSpace, component->getInitiatorInterfaces(addrSpace_->name()), parameterFinder, expressionParser,
+    component->getRevision(), this),
+segmentsEditor_(addrSpace, component, handler->getDirectoryPath(component->getVlnv()), parameterFinder,
+    expressionParser, expressionFormatter, this),
+localMemMapEditor_(addrSpace, component, handler, parameterFinder, blockInterface, this)
+{
+	Q_ASSERT(addrSpace_);
+
+    nameEditor_.setTitle(tr("Address space name and description"));
+    nameEditor_.setMaximumHeight(160);
+
+    connect(&nameEditor_, SIGNAL(contentChanged()),	this, SIGNAL(contentChanged()), Qt::UniqueConnection);
+
+    connect(&generalEditor_, SIGNAL(contentChanged()), this, SIGNAL(contentChanged()), Qt::UniqueConnection);
+    connect(&generalEditor_, SIGNAL(graphicsChanged()), this, SIGNAL(graphicsChanged()), Qt::UniqueConnection);
+
+    connect(&generalEditor_, SIGNAL(increaseReferences(QString)),
+        this, SIGNAL(increaseReferences(QString)), Qt::UniqueConnection);
+    connect(&generalEditor_, SIGNAL(decreaseReferences(QString)),
+        this, SIGNAL(decreaseReferences(QString)), Qt::UniqueConnection);
+
+    connect(&segmentsEditor_, SIGNAL(contentChanged()), this, SIGNAL(contentChanged()), Qt::UniqueConnection);
+    connect(&segmentsEditor_, SIGNAL(contentChanged()), this, SIGNAL(graphicsChanged()), Qt::UniqueConnection);
+
+    connect(&segmentsEditor_, SIGNAL(errorMessage(const QString&)),
+        this, SIGNAL(errorMessage(const QString&)), Qt::UniqueConnection);
+    connect(&segmentsEditor_, SIGNAL(noticeMessage(const QString&)),
+        this, SIGNAL(noticeMessage(const QString&)), Qt::UniqueConnection);
+
+    connect(&segmentsEditor_, SIGNAL(increaseReferences(QString)),
+        this, SIGNAL(increaseReferences(QString)), Qt::UniqueConnection);
+    connect(&segmentsEditor_, SIGNAL(decreaseReferences(QString)),
+        this, SIGNAL(decreaseReferences(QString)), Qt::UniqueConnection);
+
+	connect(&localMemMapEditor_, SIGNAL(contentChanged()), this, SIGNAL(contentChanged()), Qt::UniqueConnection);
+    connect(&localMemMapEditor_, SIGNAL(graphicsChanged()), this, SIGNAL(graphicsChanged()), Qt::UniqueConnection);
+    connect(&localMemMapEditor_, SIGNAL(childGraphicsChanged(int)), this, SIGNAL(childGraphicsChanged(int)), Qt::UniqueConnection);
+    connect(&localMemMapEditor_, SIGNAL(errorMessage(const QString&)),
+        this, SIGNAL(errorMessage(const QString&)), Qt::UniqueConnection);
+	connect(&localMemMapEditor_, SIGNAL(itemAdded(int)), this, SIGNAL(childAdded(int)), Qt::UniqueConnection);
+	connect(&localMemMapEditor_, SIGNAL(itemRemoved(int)), this, SIGNAL(childRemoved(int)), Qt::UniqueConnection);
+
+    connect(&localMemMapEditor_, SIGNAL(increaseReferences(QString)),
+        this, SIGNAL(increaseReferences(QString)), Qt::UniqueConnection);
+    connect(&localMemMapEditor_, SIGNAL(decreaseReferences(QString)),
+        this, SIGNAL(decreaseReferences(QString)), Qt::UniqueConnection);
+
+    connect(&localMemMapEditor_, SIGNAL(addressingChanged()),
+        this, SIGNAL(addressingChanged()), Qt::UniqueConnection);
+    connect(&localMemMapEditor_, SIGNAL(childAddressingChanged(int)),
+        this, SIGNAL(childAddressingChanged(int)), Qt::UniqueConnection); 
+
+    connect(&generalEditor_, SIGNAL(assignNewAddressUnitBits(QString const&)),
+        &localMemMapEditor_, SIGNAL(assignNewAddressUnitBits(QString const&)), Qt::UniqueConnection);
+
+    connect(this, SIGNAL(assignNewAddressUnitBits(QString const&)),
+        &localMemMapEditor_, SIGNAL(assignNewAddressUnitBits(QString const&)), Qt::UniqueConnection);
+
+    connect(&generalEditor_, SIGNAL(assignNewAddressUnitBits(QString const&)),
+        this, SIGNAL(newAddressUnitBitsForAddressSpaceChildItems()), Qt::UniqueConnection);
+
+    setupLayout();
+
+	refresh();
+}
+
+//-----------------------------------------------------------------------------
+// Function: AddressSpaceEditor::refresh()
+//-----------------------------------------------------------------------------
+void AddressSpaceEditor::refresh()
+{
+    QStringList masterInterfaceList = component()->getInitiatorInterfaces(addrSpace_->name());
+
+    // Block signals from here for the duration of refreshing editors.
+    blockSignals(true);
+
+    nameEditor_.refresh();
+	generalEditor_.refresh(masterInterfaceList);
+	segmentsEditor_.refresh();
+	localMemMapEditor_.refresh();
+
+    blockSignals(false);
+}
+
+//-----------------------------------------------------------------------------
+// Function: AddressSpaceEditor::showEvent()
+//-----------------------------------------------------------------------------
+void AddressSpaceEditor::showEvent( QShowEvent* event )
+{
+	QWidget::showEvent(event);
+
+    if (component()->getRevision() == Document::Revision::Std22)
+    {
+        emit helpUrlRequested("componenteditor/addressspace2022.html");
+    }
+    else
+    {
+        emit helpUrlRequested("componenteditor/addressspace.html");
+    }
+}
+
+//-----------------------------------------------------------------------------
+// Function: AddressSpaceEditor::setupLayout()
+//-----------------------------------------------------------------------------
+void AddressSpaceEditor::setupLayout()
+{
+    QScrollArea* scrollArea = new QScrollArea(this);
+    scrollArea->setWidgetResizable(true);
+    scrollArea->setFrameShape(QFrame::NoFrame);
+
+    QVBoxLayout* scrollLayout = new QVBoxLayout(this);
+    scrollLayout->addWidget(scrollArea);
+    scrollLayout->setContentsMargins(0, 0, 0, 0);
+
+    QWidget* topWidget = new QWidget(scrollArea);
+    topWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+
+    QGridLayout* topLayout = new QGridLayout(topWidget);
+    
+    topLayout->addWidget(&nameEditor_, 0, 0, 1, 1, Qt::AlignTop);
+    topLayout->addWidget(&generalEditor_, 0, 1, 1, 1);
+    topLayout->addWidget(&segmentsEditor_, 1, 0, 1, 2);
+    topLayout->setColumnStretch(0, 1);
+    topLayout->setColumnStretch(1, 1);
+    topLayout->setContentsMargins(0, 0, 0, 0);
+
+    QWidget* bottomWidget = new QWidget(scrollArea);
+    bottomWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+
+    QVBoxLayout* bottomLayout = new QVBoxLayout(bottomWidget);
+    bottomLayout->addWidget(&localMemMapEditor_);
+    bottomLayout->setContentsMargins(0, 0, 0, 0);
+
+    QSplitter* verticalSplitter = new QSplitter(Qt::Vertical, scrollArea);
+    verticalSplitter->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    verticalSplitter->addWidget(topWidget);
+    verticalSplitter->addWidget(bottomWidget);
+    verticalSplitter->setStretchFactor(1, 1);
+
+    QSplitterHandle* handle = verticalSplitter->handle(1);
+    QVBoxLayout* handleLayout = new QVBoxLayout(handle);
+    handleLayout->setSpacing(0);
+    handleLayout->setContentsMargins(0, 0, 0, 0);
+
+    QFrame* line = new QFrame(handle);
+    line->setLineWidth(2);
+    line->setMidLineWidth(2);
+    line->setFrameShape(QFrame::HLine);
+    line->setFrameShadow(QFrame::Sunken);
+    handleLayout->addWidget(line);
+
+    verticalSplitter->setHandleWidth(10);
+
+    scrollArea->setWidget(verticalSplitter);
+}

@@ -1,0 +1,66 @@
+#!/bin/sh
+
+# Change this to your Qt binaries directory.
+# IFX: the QT is already added to PATH with 'module load qt/6.5.3', no need to configure the QTBIN_PATH manually.
+QTBIN_PATH=""
+
+echo "Configuring Kactus2..."
+echo ""
+
+
+print_success() {
+    if [ -f "Makefile" ];
+    then
+        echo ""
+        echo "Kactus2 has now been configured. Please enter the ./build and run make to start the build."
+        echo "To install, run make install after the build has completed."
+    else
+       echo ""
+       echo "The makefile was not created."
+    fi
+}
+
+# Auto search QTBIN_PATH when empty and qmake already installed.
+if [ -z "${QTBIN_PATH}" ]; then
+    if command -v qmake6 >/dev/null 2>&1; then
+        # Default to qmake6, which will exist on some linux distributions.
+        QTBIN_PATH="$(qmake6 -query QT_INSTALL_BINS)/"
+        QTLIBEXEC_PATH="$(qmake6 -query QT_INSTALL_LIBEXECS)/"
+    elif command -v qmake >/dev/null 2>&1; then
+        # qmake exists on the vast majority of linux distributions.
+        QTBIN_PATH="$(qmake -query QT_INSTALL_BINS)/"
+        QTLIBEXEC_PATH="$(qmake -query QT_INSTALL_LIBEXECS)/"
+    fi
+fi
+
+# >>> the help files generation will be done with 'make'(by calling createhelp)
+# # Generate compressed help files.
+# echo "Generating compressed help files..."
+# if command -v ${QTBIN_PATH}qhelpgenerator >/dev/null 2>&1; then
+#     "${QTBIN_PATH}qhelpgenerator" Help/kactus2help.qhcp -o Help/Kactus2Help.qhc
+# elif command -v ${QTLIBEXEC_PATH}qhelpgenerator >/dev/null 2>&1; then
+#     # QT6 put qhelpgenerator at QTLIBEXEC_PATH
+#     "${QTLIBEXEC_PATH}qhelpgenerator" Help/kactus2help.qhcp -o Help/Kactus2Help.qhc
+# else
+#     echo "Qhelpgenerator not found. Please set variable QTBIN_PATH to Qt binary files."
+# fi
+
+cd ./build
+    make clean
+    make distclean
+    cd ..
+rm -rf build
+mkdir -p ./build
+cd build
+    ln -s ../createhelp ./createhelp
+    cp ../run.sh ./run.sh
+    cp ../reset_pythonAPI.sh ./reset_pythonAPI.sh
+    chmod +x ./run.sh ./reset_pythonAPI.sh
+
+    if command -v ${QTBIN_PATH}qmake6 >/dev/null 2>&1; then
+    echo "Running qmake6..."
+    "${QTBIN_PATH}qmake6" ../Kactus2_Solution.pro
+    print_success
+    else
+        echo "Qmake not found. Please set variable QTBIN_PATH to Qt binary files."
+    fi

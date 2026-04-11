@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipxact:design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014" xmlns:kactus2="http://kactus2.cs.tut.fi" xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+	<ipxact:vendor>ifx</ipxact:vendor>
+	<ipxact:library>from_mod</ipxact:library>
+	<ipxact:name>metartl_i2s_ToD.design</ipxact:name>
+	<ipxact:version>1.0</ipxact:version>
+	<ipxact:componentInstances>
+		<ipxact:componentInstance>
+			<ipxact:instanceName>comp_i2s</ipxact:instanceName>
+			<ipxact:componentRef vendor="ifx" library="from_mod" name="comp_i2s" version="1.0"/>
+			<ipxact:vendorExtensions>
+				<kactus2:uuid>{5f308f92-2918-4052-b5f7-0478ac370685}</kactus2:uuid>
+				<kactus2:position x="600" y="210"/>
+			</ipxact:vendorExtensions>
+		</ipxact:componentInstance>
+		<ipxact:componentInstance>
+			<ipxact:instanceName>comp_Top_CSC</ipxact:instanceName>
+			<ipxact:componentRef vendor="ifx" library="from_mod" name="comp_Top_CSC" version="1.0"/>
+			<ipxact:vendorExtensions>
+				<kactus2:uuid>{1dbe4ea9-643c-486a-b0c0-bf42f57a88b1}</kactus2:uuid>
+				<kactus2:position x="600" y="60"/>
+			</ipxact:vendorExtensions>
+		</ipxact:componentInstance>
+	</ipxact:componentInstances>
+	<ipxact:interconnections>
+		<ipxact:interconnection>
+			<ipxact:name>comp_i2s_bus_metartl_i2s_ToD_N_i2s_to_bus_metartl_i2s_ToD_N_i2s</ipxact:name>
+			<ipxact:activeInterface componentRef="comp_i2s" busRef="bus_metartl_i2s_ToD_N_i2s"/>
+			<ipxact:hierInterface busRef="bus_metartl_i2s_ToD_N_i2s"/>
+		</ipxact:interconnection>
+		<ipxact:interconnection>
+			<ipxact:name>comp_i2s_bus_i2s_N_metartl_i2s_ToD_to_bus_i2s_N_metartl_i2s_ToD</ipxact:name>
+			<ipxact:activeInterface componentRef="comp_i2s" busRef="bus_i2s_N_metartl_i2s_ToD"/>
+			<ipxact:hierInterface busRef="bus_i2s_N_metartl_i2s_ToD"/>
+		</ipxact:interconnection>
+		<ipxact:interconnection>
+			<ipxact:name>comp_Top_CSC_bus_metartl_i2s_ToD_N_Top_CSC_to_bus_metartl_i2s_ToD_N_Top_CSC</ipxact:name>
+			<ipxact:activeInterface componentRef="comp_Top_CSC" busRef="bus_metartl_i2s_ToD_N_Top_CSC"/>
+			<ipxact:hierInterface busRef="bus_metartl_i2s_ToD_N_Top_CSC"/>
+		</ipxact:interconnection>
+		<ipxact:interconnection>
+			<ipxact:name>comp_Top_CSC_bus_Top_CSC_N_metartl_i2s_ToD_to_bus_Top_CSC_N_metartl_i2s_ToD</ipxact:name>
+			<ipxact:activeInterface componentRef="comp_Top_CSC" busRef="bus_Top_CSC_N_metartl_i2s_ToD"/>
+			<ipxact:hierInterface busRef="bus_Top_CSC_N_metartl_i2s_ToD"/>
+		</ipxact:interconnection>
+		<ipxact:interconnection>
+			<ipxact:name>comp_i2s_bus_clk_rst_to_bus_clk_rst</ipxact:name>
+			<ipxact:activeInterface componentRef="comp_i2s" busRef="bus_clk_rst"/>
+			<ipxact:hierInterface busRef="bus_clk_rst"/>
+		</ipxact:interconnection>
+		<ipxact:interconnection>
+			<ipxact:name>comp_Top_CSC_bus_clk_rst_to_bus_clk_rst</ipxact:name>
+			<ipxact:activeInterface componentRef="comp_Top_CSC" busRef="bus_clk_rst"/>
+			<ipxact:hierInterface busRef="bus_clk_rst"/>
+		</ipxact:interconnection>
+		<ipxact:interconnection>
+			<ipxact:name>comp_Top_CSC_bus_Top_CSC_N_i2s_to_comp_i2s_bus_Top_CSC_N_i2s</ipxact:name>
+			<ipxact:activeInterface componentRef="comp_Top_CSC" busRef="bus_Top_CSC_N_i2s"/>
+			<ipxact:activeInterface componentRef="comp_i2s" busRef="bus_Top_CSC_N_i2s"/>
+		</ipxact:interconnection>
+	</ipxact:interconnections>
+	<ipxact:vendorExtensions>
+		<kactus2:version>3,14,0,0</kactus2:version>
+		<kactus2:kts_attributes>
+			<kactus2:kts_implementation>HW</kactus2:kts_implementation>
+		</kactus2:kts_attributes>
+		<kactus2:columnLayout>
+			<kactus2:column name="IO" contentType="0" allowedItems="1" minWidth="119" width="119" x="0"/>
+			<kactus2:column name="Buses" contentType="1" allowedItems="12" minWidth="319" width="319" x="120"/>
+			<kactus2:column name="Components" contentType="2" allowedItems="2" minWidth="319" width="319" x="440"/>
+			<kactus2:column name="IO" contentType="0" allowedItems="1" minWidth="119" width="119" x="760"/>
+		</kactus2:columnLayout>
+		<kactus2:interfaceGraphics>
+			<kactus2:name>bus_metartl_i2s_ToD_N_i2s</kactus2:name>
+			<kactus2:position x="60" y="230"/>
+			<kactus2:direction x="1" y="0"/>
+		</kactus2:interfaceGraphics>
+		<kactus2:interfaceGraphics>
+			<kactus2:name>bus_i2s_N_metartl_i2s_ToD</kactus2:name>
+			<kactus2:position x="60" y="190"/>
+			<kactus2:direction x="1" y="0"/>
+		</kactus2:interfaceGraphics>
+		<kactus2:interfaceGraphics>
+			<kactus2:name>bus_metartl_i2s_ToD_N_Top_CSC</kactus2:name>
+			<kactus2:position x="60" y="150"/>
+			<kactus2:direction x="1" y="0"/>
+		</kactus2:interfaceGraphics>
+		<kactus2:interfaceGraphics>
+			<kactus2:name>bus_Top_CSC_N_metartl_i2s_ToD</kactus2:name>
+			<kactus2:position x="60" y="110"/>
+			<kactus2:direction x="1" y="0"/>
+		</kactus2:interfaceGraphics>
+		<kactus2:interfaceGraphics>
+			<kactus2:name>bus_clk_rst</kactus2:name>
+			<kactus2:position x="60" y="70"/>
+			<kactus2:direction x="1" y="0"/>
+		</kactus2:interfaceGraphics>
+		<kactus2:routes>
+			<kactus2:route kactus2:connRef="comp_i2s_bus_metartl_i2s_ToD_N_i2s_to_bus_metartl_i2s_ToD_N_i2s" kactus2:offPage="false">
+				<kactus2:position x="710" y="280"/>
+				<kactus2:position x="730" y="280"/>
+				<kactus2:position x="730" y="230"/>
+				<kactus2:position x="60" y="230"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="comp_i2s_bus_i2s_N_metartl_i2s_ToD_to_bus_i2s_N_metartl_i2s_ToD" kactus2:offPage="false">
+				<kactus2:position x="490" y="280"/>
+				<kactus2:position x="80" y="280"/>
+				<kactus2:position x="80" y="190"/>
+				<kactus2:position x="60" y="190"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="comp_Top_CSC_bus_metartl_i2s_ToD_N_Top_CSC_to_bus_metartl_i2s_ToD_N_Top_CSC" kactus2:offPage="false">
+				<kactus2:position x="710" y="130"/>
+				<kactus2:position x="730" y="130"/>
+				<kactus2:position x="730" y="150"/>
+				<kactus2:position x="60" y="150"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="comp_Top_CSC_bus_Top_CSC_N_metartl_i2s_ToD_to_bus_Top_CSC_N_metartl_i2s_ToD" kactus2:offPage="false">
+				<kactus2:position x="490" y="130"/>
+				<kactus2:position x="80" y="130"/>
+				<kactus2:position x="80" y="110"/>
+				<kactus2:position x="60" y="110"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="comp_i2s_bus_clk_rst_to_bus_clk_rst" kactus2:offPage="false">
+				<kactus2:position x="710" y="310"/>
+				<kactus2:position x="730" y="310"/>
+				<kactus2:position x="730" y="70"/>
+				<kactus2:position x="60" y="70"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="comp_Top_CSC_bus_clk_rst_to_bus_clk_rst" kactus2:offPage="false">
+				<kactus2:position x="710" y="160"/>
+				<kactus2:position x="730" y="160"/>
+				<kactus2:position x="730" y="70"/>
+				<kactus2:position x="60" y="70"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="comp_Top_CSC_bus_Top_CSC_N_i2s_to_comp_i2s_bus_Top_CSC_N_i2s" kactus2:offPage="false">
+				<kactus2:position x="710" y="100"/>
+				<kactus2:position x="730" y="100"/>
+				<kactus2:position x="730" y="250"/>
+				<kactus2:position x="710" y="250"/>
+			</kactus2:route>
+		</kactus2:routes>
+		<kactus2:adHocVisibilities/>
+	</ipxact:vendorExtensions>
+</ipxact:design>

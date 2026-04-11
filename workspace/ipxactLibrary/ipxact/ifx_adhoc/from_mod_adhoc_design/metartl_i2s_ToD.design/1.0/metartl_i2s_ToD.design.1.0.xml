@@ -1,0 +1,1784 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipxact:design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014" xmlns:kactus2="http://kactus2.cs.tut.fi" xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+	<ipxact:vendor>ifx_adhoc</ipxact:vendor>
+	<ipxact:library>from_mod_adhoc_design</ipxact:library>
+	<ipxact:name>metartl_i2s_ToD.design</ipxact:name>
+	<ipxact:version>1.0</ipxact:version>
+	<ipxact:componentInstances>
+		<ipxact:componentInstance>
+			<ipxact:instanceName>i2s</ipxact:instanceName>
+			<ipxact:componentRef vendor="ifx_adhoc" library="from_mod_adhoc_component" name="i2s" version="1.0"/>
+			<ipxact:vendorExtensions>
+				<kactus2:uuid>{310e0c82-e15c-4703-81c8-e7ce551d7947}</kactus2:uuid>
+				<kactus2:position x="600" y="1740"/>
+			</ipxact:vendorExtensions>
+		</ipxact:componentInstance>
+		<ipxact:componentInstance>
+			<ipxact:instanceName>Top_CSC</ipxact:instanceName>
+			<ipxact:componentRef vendor="ifx_adhoc" library="from_mod_adhoc_component" name="Top_CSC" version="1.0"/>
+			<ipxact:vendorExtensions>
+				<kactus2:uuid>{d26d4ebf-ffb1-496c-ada4-f6c4bc3884d1}</kactus2:uuid>
+				<kactus2:position x="600" y="60"/>
+			</ipxact:vendorExtensions>
+		</ipxact:componentInstance>
+	</ipxact:componentInstances>
+	<ipxact:adHocConnections>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_rd_data_L_Slave1_flipflop_in_to_i2s_rd_data_L_Slave1_flipflop_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rd_data_L_Slave1_flipflop_in"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rd_data_L_Slave1_flipflop_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_rd_data_L_Slave1_flipflop_en_to_i2s_rd_data_L_Slave1_flipflop_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rd_data_L_Slave1_flipflop_en"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rd_data_L_Slave1_flipflop_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rd_data_L_Slave1_flipflop_out_to_Top_CSC_csc_i2s_BF_rd_data_L_Slave1_flipflop_out</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rd_data_L_Slave1_flipflop_out"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rd_data_L_Slave1_flipflop_out"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_rd_data_L_Slave1_out_to_i2s_rd_data_L_Slave1_out</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rd_data_L_Slave1_out"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rd_data_L_Slave1_out"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_enable_Slave1_out_to_i2s_enable_Slave1_out</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_enable_Slave1_out"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="enable_Slave1_out"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_byteNr_Slave1_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_byteNr_Slave1_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="byteNr_Slave1_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_byteNr_Slave1_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_byteNr_Slave1_in_to_Top_CSC_csc_i2s_BF_byteNr_Slave1_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="byteNr_Slave1_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_byteNr_Slave1_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_targetSlot_Slave1_out_to_i2s_targetSlot_Slave1_out</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_targetSlot_Slave1_out"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="targetSlot_Slave1_out"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_start_Slave1_out_to_i2s_start_Slave1_out</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_start_Slave1_out"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="start_Slave1_out"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_busy_Slave1_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_busy_Slave1_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="busy_Slave1_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_busy_Slave1_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_busy_Slave1_in_to_Top_CSC_csc_i2s_BF_busy_Slave1_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="busy_Slave1_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_busy_Slave1_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_buf_overflow_Slave1_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_buf_overflow_Slave1_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="buf_overflow_Slave1_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_buf_overflow_Slave1_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_buf_overflow_Slave1_in_to_Top_CSC_csc_i2s_BF_buf_overflow_Slave1_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="buf_overflow_Slave1_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_buf_overflow_Slave1_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_frame_error_Slave1_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_frame_error_Slave1_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="frame_error_Slave1_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_frame_error_Slave1_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_frame_error_Slave1_in_to_Top_CSC_csc_i2s_BF_frame_error_Slave1_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="frame_error_Slave1_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_frame_error_Slave1_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rxFull_L_Slave1_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_rxFull_L_Slave1_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rxFull_L_Slave1_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rxFull_L_Slave1_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rxFull_L_Slave1_in_to_Top_CSC_csc_i2s_BF_rxFull_L_Slave1_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rxFull_L_Slave1_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rxFull_L_Slave1_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rxEmpty_L_Slave1_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_rxEmpty_L_Slave1_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rxEmpty_L_Slave1_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rxEmpty_L_Slave1_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rxEmpty_L_Slave1_in_to_Top_CSC_csc_i2s_BF_rxEmpty_L_Slave1_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rxEmpty_L_Slave1_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rxEmpty_L_Slave1_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rxFull_R_Slave1_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_rxFull_R_Slave1_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rxFull_R_Slave1_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rxFull_R_Slave1_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rxFull_R_Slave1_in_to_Top_CSC_csc_i2s_BF_rxFull_R_Slave1_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rxFull_R_Slave1_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rxFull_R_Slave1_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rxEmpty_R_Slave1_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_rxEmpty_R_Slave1_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rxEmpty_R_Slave1_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rxEmpty_R_Slave1_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rxEmpty_R_Slave1_in_to_Top_CSC_csc_i2s_BF_rxEmpty_R_Slave1_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rxEmpty_R_Slave1_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rxEmpty_R_Slave1_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_enable_SystemMaster_out_to_i2s_enable_SystemMaster_out</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_enable_SystemMaster_out"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="enable_SystemMaster_out"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_byteNr_SystemMaster_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_byteNr_SystemMaster_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="byteNr_SystemMaster_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_byteNr_SystemMaster_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_byteNr_SystemMaster_in_to_Top_CSC_csc_i2s_BF_byteNr_SystemMaster_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="byteNr_SystemMaster_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_byteNr_SystemMaster_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_targetSlot_SystemMaster_out_to_i2s_targetSlot_SystemMaster_out</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_targetSlot_SystemMaster_out"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="targetSlot_SystemMaster_out"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_start_SystemMaster_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_start_SystemMaster_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="start_SystemMaster_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_start_SystemMaster_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_start_SystemMaster_out_to_i2s_start_SystemMaster_out</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_start_SystemMaster_out"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="start_SystemMaster_out"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_start_SystemMaster_in_to_Top_CSC_csc_i2s_BF_start_SystemMaster_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="start_SystemMaster_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_start_SystemMaster_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_abort_SystemMaster_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_abort_SystemMaster_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="abort_SystemMaster_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_abort_SystemMaster_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_abort_SystemMaster_out_to_i2s_abort_SystemMaster_out</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_abort_SystemMaster_out"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="abort_SystemMaster_out"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_abort_SystemMaster_in_to_Top_CSC_csc_i2s_BF_abort_SystemMaster_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="abort_SystemMaster_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_abort_SystemMaster_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_busy_SystemMaster_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_busy_SystemMaster_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="busy_SystemMaster_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_busy_SystemMaster_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_busy_SystemMaster_in_to_Top_CSC_csc_i2s_BF_busy_SystemMaster_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="busy_SystemMaster_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_busy_SystemMaster_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_channelWidth_SystemMaster_out_to_i2s_channelWidth_SystemMaster_out</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_channelWidth_SystemMaster_out"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="channelWidth_SystemMaster_out"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_prescaler_SystemMaster_out_to_i2s_prescaler_SystemMaster_out</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_prescaler_SystemMaster_out"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="prescaler_SystemMaster_out"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_enable_slave2_out_to_i2s_enable_slave2_out</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_enable_slave2_out"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="enable_slave2_out"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_byteNr_slave2_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_byteNr_slave2_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="byteNr_slave2_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_byteNr_slave2_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_byteNr_slave2_in_to_Top_CSC_csc_i2s_BF_byteNr_slave2_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="byteNr_slave2_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_byteNr_slave2_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_targetSlot_slave2_out_to_i2s_targetSlot_slave2_out</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_targetSlot_slave2_out"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="targetSlot_slave2_out"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_start_slave2_out_to_i2s_start_slave2_out</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_start_slave2_out"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="start_slave2_out"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_busy_slave2_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_busy_slave2_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="busy_slave2_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_busy_slave2_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_busy_slave2_in_to_Top_CSC_csc_i2s_BF_busy_slave2_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="busy_slave2_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_busy_slave2_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_buf_overflow_slave2_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_buf_overflow_slave2_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="buf_overflow_slave2_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_buf_overflow_slave2_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_buf_overflow_slave2_in_to_Top_CSC_csc_i2s_BF_buf_overflow_slave2_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="buf_overflow_slave2_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_buf_overflow_slave2_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_frame_error_slave2_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_frame_error_slave2_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="frame_error_slave2_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_frame_error_slave2_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_frame_error_slave2_in_to_Top_CSC_csc_i2s_BF_frame_error_slave2_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="frame_error_slave2_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_frame_error_slave2_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rxFull_L_slave2_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_rxFull_L_slave2_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rxFull_L_slave2_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rxFull_L_slave2_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rxFull_L_slave2_in_to_Top_CSC_csc_i2s_BF_rxFull_L_slave2_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rxFull_L_slave2_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rxFull_L_slave2_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rxEmpty_L_slave2_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_rxEmpty_L_slave2_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rxEmpty_L_slave2_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rxEmpty_L_slave2_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rxEmpty_L_slave2_in_to_Top_CSC_csc_i2s_BF_rxEmpty_L_slave2_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rxEmpty_L_slave2_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rxEmpty_L_slave2_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_data_avail_slave2_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_data_avail_slave2_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="data_avail_slave2_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_data_avail_slave2_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_data_avail_slave2_in_to_Top_CSC_csc_i2s_BF_data_avail_slave2_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="data_avail_slave2_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_data_avail_slave2_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rxFull_R_slave2_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_rxFull_R_slave2_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rxFull_R_slave2_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rxFull_R_slave2_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rxFull_R_slave2_in_to_Top_CSC_csc_i2s_BF_rxFull_R_slave2_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rxFull_R_slave2_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rxFull_R_slave2_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rxEmpty_R_slave2_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_rxEmpty_R_slave2_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rxEmpty_R_slave2_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rxEmpty_R_slave2_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rxEmpty_R_slave2_in_to_Top_CSC_csc_i2s_BF_rxEmpty_R_slave2_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rxEmpty_R_slave2_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rxEmpty_R_slave2_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_rd_data_L_slave2_flipflop_in_to_i2s_rd_data_L_slave2_flipflop_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rd_data_L_slave2_flipflop_in"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rd_data_L_slave2_flipflop_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_rd_data_L_slave2_flipflop_en_to_i2s_rd_data_L_slave2_flipflop_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rd_data_L_slave2_flipflop_en"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rd_data_L_slave2_flipflop_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rd_data_L_slave2_flipflop_out_to_Top_CSC_csc_i2s_BF_rd_data_L_slave2_flipflop_out</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rd_data_L_slave2_flipflop_out"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rd_data_L_slave2_flipflop_out"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_rd_data_L_slave2_out_to_i2s_rd_data_L_slave2_out</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rd_data_L_slave2_out"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rd_data_L_slave2_out"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_rd_data_L_Slave_flipflop_in_to_i2s_rd_data_L_Slave_flipflop_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rd_data_L_Slave_flipflop_in"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rd_data_L_Slave_flipflop_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_rd_data_L_Slave_flipflop_en_to_i2s_rd_data_L_Slave_flipflop_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rd_data_L_Slave_flipflop_en"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rd_data_L_Slave_flipflop_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rd_data_L_Slave_flipflop_out_to_Top_CSC_csc_i2s_BF_rd_data_L_Slave_flipflop_out</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rd_data_L_Slave_flipflop_out"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rd_data_L_Slave_flipflop_out"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_rd_data_L_Slave_out_to_i2s_rd_data_L_Slave_out</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rd_data_L_Slave_out"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rd_data_L_Slave_out"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_enable_Slave_out_to_i2s_enable_Slave_out</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_enable_Slave_out"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="enable_Slave_out"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_byteNr_Slave_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_byteNr_Slave_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="byteNr_Slave_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_byteNr_Slave_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_byteNr_Slave_in_to_Top_CSC_csc_i2s_BF_byteNr_Slave_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="byteNr_Slave_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_byteNr_Slave_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_targetSlot_Slave_out_to_i2s_targetSlot_Slave_out</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_targetSlot_Slave_out"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="targetSlot_Slave_out"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_start_Slave_out_to_i2s_start_Slave_out</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_start_Slave_out"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="start_Slave_out"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_busy_Slave_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_busy_Slave_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="busy_Slave_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_busy_Slave_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_busy_Slave_in_to_Top_CSC_csc_i2s_BF_busy_Slave_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="busy_Slave_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_busy_Slave_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_buf_overflow_Slave_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_buf_overflow_Slave_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="buf_overflow_Slave_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_buf_overflow_Slave_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_buf_overflow_Slave_in_to_Top_CSC_csc_i2s_BF_buf_overflow_Slave_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="buf_overflow_Slave_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_buf_overflow_Slave_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_frame_error_Slave_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_frame_error_Slave_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="frame_error_Slave_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_frame_error_Slave_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_frame_error_Slave_in_to_Top_CSC_csc_i2s_BF_frame_error_Slave_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="frame_error_Slave_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_frame_error_Slave_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rxFull_L_Slave_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_rxFull_L_Slave_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rxFull_L_Slave_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rxFull_L_Slave_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rxFull_L_Slave_in_to_Top_CSC_csc_i2s_BF_rxFull_L_Slave_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rxFull_L_Slave_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rxFull_L_Slave_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rxEmpty_L_Slave_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_rxEmpty_L_Slave_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rxEmpty_L_Slave_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rxEmpty_L_Slave_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rxEmpty_L_Slave_in_to_Top_CSC_csc_i2s_BF_rxEmpty_L_Slave_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rxEmpty_L_Slave_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rxEmpty_L_Slave_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_data_avail_Slave_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_data_avail_Slave_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="data_avail_Slave_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_data_avail_Slave_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_data_avail_Slave_in_to_Top_CSC_csc_i2s_BF_data_avail_Slave_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="data_avail_Slave_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_data_avail_Slave_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rxFull_R_Slave_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_rxFull_R_Slave_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rxFull_R_Slave_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rxFull_R_Slave_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rxFull_R_Slave_in_to_Top_CSC_csc_i2s_BF_rxFull_R_Slave_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rxFull_R_Slave_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rxFull_R_Slave_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rxEmpty_R_Slave_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_rxEmpty_R_Slave_peripheral_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rxEmpty_R_Slave_peripheral_wr_en"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rxEmpty_R_Slave_peripheral_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rxEmpty_R_Slave_in_to_Top_CSC_csc_i2s_BF_rxEmpty_R_Slave_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rxEmpty_R_Slave_in"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rxEmpty_R_Slave_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_rd_data_R_Slave1_flipflop_in_to_i2s_rd_data_R_Slave1_flipflop_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rd_data_R_Slave1_flipflop_in"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rd_data_R_Slave1_flipflop_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_rd_data_R_Slave1_flipflop_en_to_i2s_rd_data_R_Slave1_flipflop_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rd_data_R_Slave1_flipflop_en"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rd_data_R_Slave1_flipflop_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rd_data_R_Slave1_flipflop_out_to_Top_CSC_csc_i2s_BF_rd_data_R_Slave1_flipflop_out</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rd_data_R_Slave1_flipflop_out"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rd_data_R_Slave1_flipflop_out"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_rd_data_R_Slave1_out_to_i2s_rd_data_R_Slave1_out</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rd_data_R_Slave1_out"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rd_data_R_Slave1_out"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_rd_data_R_slave2_flipflop_in_to_i2s_rd_data_R_slave2_flipflop_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rd_data_R_slave2_flipflop_in"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rd_data_R_slave2_flipflop_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_rd_data_R_slave2_flipflop_en_to_i2s_rd_data_R_slave2_flipflop_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rd_data_R_slave2_flipflop_en"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rd_data_R_slave2_flipflop_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rd_data_R_slave2_flipflop_out_to_Top_CSC_csc_i2s_BF_rd_data_R_slave2_flipflop_out</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rd_data_R_slave2_flipflop_out"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rd_data_R_slave2_flipflop_out"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_rd_data_R_slave2_out_to_i2s_rd_data_R_slave2_out</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rd_data_R_slave2_out"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rd_data_R_slave2_out"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_rd_data_R_Slave_flipflop_in_to_i2s_rd_data_R_Slave_flipflop_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rd_data_R_Slave_flipflop_in"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rd_data_R_Slave_flipflop_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_rd_data_R_Slave_flipflop_en_to_i2s_rd_data_R_Slave_flipflop_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rd_data_R_Slave_flipflop_en"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rd_data_R_Slave_flipflop_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rd_data_R_Slave_flipflop_out_to_Top_CSC_csc_i2s_BF_rd_data_R_Slave_flipflop_out</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rd_data_R_Slave_flipflop_out"/>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rd_data_R_Slave_flipflop_out"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_csc_i2s_BF_rd_data_R_Slave_out_to_i2s_rd_data_R_Slave_out</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="csc_i2s_BF_rd_data_R_Slave_out"/>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rd_data_R_Slave_out"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_SCK_Slave1_to_SCK_Slave1</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="SCK_Slave1"/>
+				<ipxact:externalPortReference portRef="SCK_Slave1"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_SCK_SystemMaster_to_SCK_SystemMaster</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="SCK_SystemMaster"/>
+				<ipxact:externalPortReference portRef="SCK_SystemMaster"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_SCK_Slave_to_SCK_Slave</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="SCK_Slave"/>
+				<ipxact:externalPortReference portRef="SCK_Slave"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_data_avail_rx2_IntAck_to_data_avail_rx2_IntAck</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="data_avail_rx2_IntAck"/>
+				<ipxact:externalPortReference portRef="data_avail_rx2_IntAck"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_serial_input_Slave1_to_serial_input_Slave1</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="serial_input_Slave1"/>
+				<ipxact:externalPortReference portRef="serial_input_Slave1"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_serial_input_slave2_to_serial_input_slave2</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="serial_input_slave2"/>
+				<ipxact:externalPortReference portRef="serial_input_slave2"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_data_avail_rx2_IntOut_to_data_avail_rx2_IntOut</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="data_avail_rx2_IntOut"/>
+				<ipxact:externalPortReference portRef="data_avail_rx2_IntOut"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_WS_Slave_to_WS_Slave</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="WS_Slave"/>
+				<ipxact:externalPortReference portRef="WS_Slave"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_WS_SystemMaster_to_WS_SystemMaster</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="WS_SystemMaster"/>
+				<ipxact:externalPortReference portRef="WS_SystemMaster"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_SCK_slave2_to_SCK_slave2</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="SCK_slave2"/>
+				<ipxact:externalPortReference portRef="SCK_slave2"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_WS_slave2_to_WS_slave2</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="WS_slave2"/>
+				<ipxact:externalPortReference portRef="WS_slave2"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_WS_Slave1_to_WS_Slave1</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="WS_Slave1"/>
+				<ipxact:externalPortReference portRef="WS_Slave1"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_serial_input_Slave_to_serial_input_Slave</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="serial_input_Slave"/>
+				<ipxact:externalPortReference portRef="serial_input_Slave"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_default_interface_rd_en_to_default_interface_rd_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="default_interface_rd_en"/>
+				<ipxact:externalPortReference portRef="default_interface_rd_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_default_interface_data_in_to_default_interface_data_in</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="default_interface_data_in"/>
+				<ipxact:externalPortReference portRef="default_interface_data_in"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_default_interface_error_to_default_interface_error</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="default_interface_error"/>
+				<ipxact:externalPortReference portRef="default_interface_error"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_default_interface_addr_to_default_interface_addr</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="default_interface_addr"/>
+				<ipxact:externalPortReference portRef="default_interface_addr"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_default_interface_ready_to_default_interface_ready</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="default_interface_ready"/>
+				<ipxact:externalPortReference portRef="default_interface_ready"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_default_interface_data_out_to_default_interface_data_out</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="default_interface_data_out"/>
+				<ipxact:externalPortReference portRef="default_interface_data_out"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_default_interface_wr_en_to_default_interface_wr_en</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="default_interface_wr_en"/>
+				<ipxact:externalPortReference portRef="default_interface_wr_en"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_clk_to_clk</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="clk"/>
+				<ipxact:externalPortReference portRef="clk"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_clk_to_clk</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="clk"/>
+				<ipxact:externalPortReference portRef="clk"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>Top_CSC_rst_to_rst</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="Top_CSC" portRef="rst"/>
+				<ipxact:externalPortReference portRef="rst"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+		<ipxact:adHocConnection>
+			<ipxact:name>i2s_rst_to_rst</ipxact:name>
+			<ipxact:portReferences>
+				<ipxact:internalPortReference componentRef="i2s" portRef="rst"/>
+				<ipxact:externalPortReference portRef="rst"/>
+			</ipxact:portReferences>
+		</ipxact:adHocConnection>
+	</ipxact:adHocConnections>
+	<ipxact:vendorExtensions>
+		<kactus2:version>3,14,0,0</kactus2:version>
+		<kactus2:kts_attributes>
+			<kactus2:kts_implementation>HW</kactus2:kts_implementation>
+		</kactus2:kts_attributes>
+		<kactus2:columnLayout>
+			<kactus2:column name="IO" contentType="0" allowedItems="1" minWidth="119" width="119" x="0"/>
+			<kactus2:column name="Buses" contentType="1" allowedItems="12" minWidth="319" width="319" x="120"/>
+			<kactus2:column name="Components" contentType="2" allowedItems="2" minWidth="319" width="319" x="440"/>
+			<kactus2:column name="IO" contentType="0" allowedItems="1" minWidth="119" width="119" x="760"/>
+		</kactus2:columnLayout>
+		<kactus2:adHocVisibilities>
+			<kactus2:adHocVisible portName="SCK_Slave1" x="60" y="910"/>
+			<kactus2:adHocVisible portName="SCK_SystemMaster" x="60" y="870"/>
+			<kactus2:adHocVisible portName="SCK_Slave" x="60" y="830"/>
+			<kactus2:adHocVisible portName="data_avail_rx2_IntAck" x="60" y="790"/>
+			<kactus2:adHocVisible portName="serial_input_Slave1" x="60" y="750"/>
+			<kactus2:adHocVisible portName="serial_input_slave2" x="60" y="710"/>
+			<kactus2:adHocVisible portName="data_avail_rx2_IntOut" x="60" y="670"/>
+			<kactus2:adHocVisible portName="WS_Slave" x="60" y="630"/>
+			<kactus2:adHocVisible portName="WS_SystemMaster" x="60" y="590"/>
+			<kactus2:adHocVisible portName="SCK_slave2" x="60" y="550"/>
+			<kactus2:adHocVisible portName="WS_slave2" x="60" y="510"/>
+			<kactus2:adHocVisible portName="WS_Slave1" x="60" y="470"/>
+			<kactus2:adHocVisible portName="serial_input_Slave" x="60" y="430"/>
+			<kactus2:adHocVisible portName="default_interface_rd_en" x="60" y="390"/>
+			<kactus2:adHocVisible portName="default_interface_data_in" x="60" y="350"/>
+			<kactus2:adHocVisible portName="default_interface_error" x="60" y="310"/>
+			<kactus2:adHocVisible portName="default_interface_addr" x="60" y="270"/>
+			<kactus2:adHocVisible portName="default_interface_ready" x="60" y="230"/>
+			<kactus2:adHocVisible portName="default_interface_data_out" x="60" y="190"/>
+			<kactus2:adHocVisible portName="default_interface_wr_en" x="60" y="150"/>
+			<kactus2:adHocVisible portName="clk" x="60" y="110"/>
+			<kactus2:adHocVisible portName="rst" x="60" y="70"/>
+		</kactus2:adHocVisibilities>
+		<kactus2:routes>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_rd_data_L_Slave1_flipflop_in_to_i2s_rd_data_L_Slave1_flipflop_in" kactus2:offPage="false">
+				<kactus2:position x="490" y="190"/>
+				<kactus2:position x="470" y="190"/>
+				<kactus2:position x="470" y="1160"/>
+				<kactus2:position x="730" y="1160"/>
+				<kactus2:position x="730" y="2830"/>
+				<kactus2:position x="710" y="2830"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_rd_data_L_Slave1_flipflop_en_to_i2s_rd_data_L_Slave1_flipflop_en" kactus2:offPage="false">
+				<kactus2:position x="710" y="220"/>
+				<kactus2:position x="730" y="220"/>
+				<kactus2:position x="730" y="2800"/>
+				<kactus2:position x="710" y="2800"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rd_data_L_Slave1_flipflop_out_to_Top_CSC_csc_i2s_BF_rd_data_L_Slave1_flipflop_out" kactus2:offPage="false">
+				<kactus2:position x="490" y="2800"/>
+				<kactus2:position x="470" y="2800"/>
+				<kactus2:position x="470" y="220"/>
+				<kactus2:position x="490" y="220"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_rd_data_L_Slave1_out_to_i2s_rd_data_L_Slave1_out" kactus2:offPage="false">
+				<kactus2:position x="710" y="250"/>
+				<kactus2:position x="1250" y="250"/>
+				<kactus2:position x="1250" y="2850"/>
+				<kactus2:position x="450" y="2850"/>
+				<kactus2:position x="450" y="2830"/>
+				<kactus2:position x="490" y="2830"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_enable_Slave1_out_to_i2s_enable_Slave1_out" kactus2:offPage="false">
+				<kactus2:position x="490" y="520"/>
+				<kactus2:position x="470" y="520"/>
+				<kactus2:position x="470" y="2510"/>
+				<kactus2:position x="770" y="2510"/>
+				<kactus2:position x="770" y="2500"/>
+				<kactus2:position x="710" y="2500"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_byteNr_Slave1_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_byteNr_Slave1_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="710" y="2560"/>
+				<kactus2:position x="1240" y="2560"/>
+				<kactus2:position x="1240" y="520"/>
+				<kactus2:position x="710" y="520"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_byteNr_Slave1_in_to_Top_CSC_csc_i2s_BF_byteNr_Slave1_in" kactus2:offPage="false">
+				<kactus2:position x="490" y="2530"/>
+				<kactus2:position x="470" y="2530"/>
+				<kactus2:position x="470" y="490"/>
+				<kactus2:position x="490" y="490"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_targetSlot_Slave1_out_to_i2s_targetSlot_Slave1_out" kactus2:offPage="false">
+				<kactus2:position x="710" y="490"/>
+				<kactus2:position x="1230" y="490"/>
+				<kactus2:position x="1230" y="2570"/>
+				<kactus2:position x="450" y="2570"/>
+				<kactus2:position x="450" y="2560"/>
+				<kactus2:position x="490" y="2560"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_start_Slave1_out_to_i2s_start_Slave1_out" kactus2:offPage="false">
+				<kactus2:position x="490" y="460"/>
+				<kactus2:position x="470" y="460"/>
+				<kactus2:position x="470" y="2600"/>
+				<kactus2:position x="770" y="2600"/>
+				<kactus2:position x="770" y="2590"/>
+				<kactus2:position x="710" y="2590"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_busy_Slave1_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_busy_Slave1_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="710" y="2530"/>
+				<kactus2:position x="1220" y="2530"/>
+				<kactus2:position x="1220" y="460"/>
+				<kactus2:position x="710" y="460"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_busy_Slave1_in_to_Top_CSC_csc_i2s_BF_busy_Slave1_in" kactus2:offPage="false">
+				<kactus2:position x="490" y="2500"/>
+				<kactus2:position x="470" y="2500"/>
+				<kactus2:position x="470" y="430"/>
+				<kactus2:position x="490" y="430"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_buf_overflow_Slave1_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_buf_overflow_Slave1_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="490" y="2680"/>
+				<kactus2:position x="470" y="2680"/>
+				<kactus2:position x="470" y="420"/>
+				<kactus2:position x="760" y="420"/>
+				<kactus2:position x="760" y="430"/>
+				<kactus2:position x="710" y="430"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_buf_overflow_Slave1_in_to_Top_CSC_csc_i2s_BF_buf_overflow_Slave1_in" kactus2:offPage="false">
+				<kactus2:position x="710" y="2680"/>
+				<kactus2:position x="1210" y="2680"/>
+				<kactus2:position x="1210" y="450"/>
+				<kactus2:position x="440" y="450"/>
+				<kactus2:position x="440" y="400"/>
+				<kactus2:position x="490" y="400"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_frame_error_Slave1_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_frame_error_Slave1_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="490" y="2710"/>
+				<kactus2:position x="470" y="2710"/>
+				<kactus2:position x="470" y="440"/>
+				<kactus2:position x="750" y="440"/>
+				<kactus2:position x="750" y="400"/>
+				<kactus2:position x="710" y="400"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_frame_error_Slave1_in_to_Top_CSC_csc_i2s_BF_frame_error_Slave1_in" kactus2:offPage="false">
+				<kactus2:position x="710" y="2710"/>
+				<kactus2:position x="1200" y="2710"/>
+				<kactus2:position x="1200" y="360"/>
+				<kactus2:position x="440" y="360"/>
+				<kactus2:position x="440" y="370"/>
+				<kactus2:position x="490" y="370"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rxFull_L_Slave1_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_rxFull_L_Slave1_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="490" y="2740"/>
+				<kactus2:position x="470" y="2740"/>
+				<kactus2:position x="470" y="410"/>
+				<kactus2:position x="760" y="410"/>
+				<kactus2:position x="760" y="370"/>
+				<kactus2:position x="710" y="370"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rxFull_L_Slave1_in_to_Top_CSC_csc_i2s_BF_rxFull_L_Slave1_in" kactus2:offPage="false">
+				<kactus2:position x="710" y="2740"/>
+				<kactus2:position x="1190" y="2740"/>
+				<kactus2:position x="1190" y="330"/>
+				<kactus2:position x="440" y="330"/>
+				<kactus2:position x="440" y="340"/>
+				<kactus2:position x="490" y="340"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rxEmpty_L_Slave1_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_rxEmpty_L_Slave1_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="490" y="2770"/>
+				<kactus2:position x="470" y="2770"/>
+				<kactus2:position x="470" y="380"/>
+				<kactus2:position x="750" y="380"/>
+				<kactus2:position x="750" y="340"/>
+				<kactus2:position x="710" y="340"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rxEmpty_L_Slave1_in_to_Top_CSC_csc_i2s_BF_rxEmpty_L_Slave1_in" kactus2:offPage="false">
+				<kactus2:position x="710" y="2770"/>
+				<kactus2:position x="1180" y="2770"/>
+				<kactus2:position x="1180" y="300"/>
+				<kactus2:position x="430" y="300"/>
+				<kactus2:position x="430" y="310"/>
+				<kactus2:position x="490" y="310"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rxFull_R_Slave1_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_rxFull_R_Slave1_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="490" y="2860"/>
+				<kactus2:position x="470" y="2860"/>
+				<kactus2:position x="470" y="320"/>
+				<kactus2:position x="750" y="320"/>
+				<kactus2:position x="750" y="310"/>
+				<kactus2:position x="710" y="310"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rxFull_R_Slave1_in_to_Top_CSC_csc_i2s_BF_rxFull_R_Slave1_in" kactus2:offPage="false">
+				<kactus2:position x="710" y="2860"/>
+				<kactus2:position x="1170" y="2860"/>
+				<kactus2:position x="1170" y="290"/>
+				<kactus2:position x="430" y="290"/>
+				<kactus2:position x="430" y="280"/>
+				<kactus2:position x="490" y="280"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rxEmpty_R_Slave1_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_rxEmpty_R_Slave1_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="490" y="2890"/>
+				<kactus2:position x="470" y="2890"/>
+				<kactus2:position x="470" y="260"/>
+				<kactus2:position x="750" y="260"/>
+				<kactus2:position x="750" y="280"/>
+				<kactus2:position x="710" y="280"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rxEmpty_R_Slave1_in_to_Top_CSC_csc_i2s_BF_rxEmpty_R_Slave1_in" kactus2:offPage="false">
+				<kactus2:position x="710" y="2890"/>
+				<kactus2:position x="1160" y="2890"/>
+				<kactus2:position x="1160" y="240"/>
+				<kactus2:position x="430" y="240"/>
+				<kactus2:position x="430" y="250"/>
+				<kactus2:position x="490" y="250"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_enable_SystemMaster_out_to_i2s_enable_SystemMaster_out" kactus2:offPage="false">
+				<kactus2:position x="490" y="700"/>
+				<kactus2:position x="470" y="700"/>
+				<kactus2:position x="470" y="1790"/>
+				<kactus2:position x="800" y="1790"/>
+				<kactus2:position x="800" y="1780"/>
+				<kactus2:position x="710" y="1780"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_byteNr_SystemMaster_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_byteNr_SystemMaster_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="710" y="1840"/>
+				<kactus2:position x="1150" y="1840"/>
+				<kactus2:position x="1150" y="700"/>
+				<kactus2:position x="710" y="700"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_byteNr_SystemMaster_in_to_Top_CSC_csc_i2s_BF_byteNr_SystemMaster_in" kactus2:offPage="false">
+				<kactus2:position x="490" y="1810"/>
+				<kactus2:position x="470" y="1810"/>
+				<kactus2:position x="470" y="670"/>
+				<kactus2:position x="490" y="670"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_targetSlot_SystemMaster_out_to_i2s_targetSlot_SystemMaster_out" kactus2:offPage="false">
+				<kactus2:position x="710" y="670"/>
+				<kactus2:position x="1140" y="670"/>
+				<kactus2:position x="1140" y="1850"/>
+				<kactus2:position x="30" y="1850"/>
+				<kactus2:position x="30" y="1840"/>
+				<kactus2:position x="490" y="1840"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_start_SystemMaster_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_start_SystemMaster_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="490" y="1930"/>
+				<kactus2:position x="470" y="1930"/>
+				<kactus2:position x="470" y="620"/>
+				<kactus2:position x="790" y="620"/>
+				<kactus2:position x="790" y="640"/>
+				<kactus2:position x="710" y="640"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_start_SystemMaster_out_to_i2s_start_SystemMaster_out" kactus2:offPage="false">
+				<kactus2:position x="490" y="640"/>
+				<kactus2:position x="470" y="640"/>
+				<kactus2:position x="470" y="1880"/>
+				<kactus2:position x="800" y="1880"/>
+				<kactus2:position x="800" y="1870"/>
+				<kactus2:position x="710" y="1870"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_start_SystemMaster_in_to_Top_CSC_csc_i2s_BF_start_SystemMaster_in" kactus2:offPage="false">
+				<kactus2:position x="710" y="1960"/>
+				<kactus2:position x="1130" y="1960"/>
+				<kactus2:position x="1130" y="600"/>
+				<kactus2:position x="430" y="600"/>
+				<kactus2:position x="430" y="610"/>
+				<kactus2:position x="490" y="610"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_abort_SystemMaster_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_abort_SystemMaster_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="710" y="1990"/>
+				<kactus2:position x="1120" y="1990"/>
+				<kactus2:position x="1120" y="570"/>
+				<kactus2:position x="430" y="570"/>
+				<kactus2:position x="430" y="580"/>
+				<kactus2:position x="490" y="580"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_abort_SystemMaster_out_to_i2s_abort_SystemMaster_out" kactus2:offPage="false">
+				<kactus2:position x="710" y="610"/>
+				<kactus2:position x="1110" y="610"/>
+				<kactus2:position x="1110" y="1970"/>
+				<kactus2:position x="390" y="1970"/>
+				<kactus2:position x="390" y="1960"/>
+				<kactus2:position x="490" y="1960"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_abort_SystemMaster_in_to_Top_CSC_csc_i2s_BF_abort_SystemMaster_in" kactus2:offPage="false">
+				<kactus2:position x="490" y="1990"/>
+				<kactus2:position x="10" y="1990"/>
+				<kactus2:position x="10" y="560"/>
+				<kactus2:position x="770" y="560"/>
+				<kactus2:position x="770" y="580"/>
+				<kactus2:position x="710" y="580"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_busy_SystemMaster_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_busy_SystemMaster_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="710" y="1810"/>
+				<kactus2:position x="1100" y="1810"/>
+				<kactus2:position x="1100" y="540"/>
+				<kactus2:position x="430" y="540"/>
+				<kactus2:position x="430" y="550"/>
+				<kactus2:position x="490" y="550"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_busy_SystemMaster_in_to_Top_CSC_csc_i2s_BF_busy_SystemMaster_in" kactus2:offPage="false">
+				<kactus2:position x="490" y="1780"/>
+				<kactus2:position x="30" y="1780"/>
+				<kactus2:position x="30" y="530"/>
+				<kactus2:position x="770" y="530"/>
+				<kactus2:position x="770" y="550"/>
+				<kactus2:position x="710" y="550"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_channelWidth_SystemMaster_out_to_i2s_channelWidth_SystemMaster_out" kactus2:offPage="false">
+				<kactus2:position x="490" y="730"/>
+				<kactus2:position x="20" y="730"/>
+				<kactus2:position x="20" y="1910"/>
+				<kactus2:position x="800" y="1910"/>
+				<kactus2:position x="800" y="1900"/>
+				<kactus2:position x="710" y="1900"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_prescaler_SystemMaster_out_to_i2s_prescaler_SystemMaster_out" kactus2:offPage="false">
+				<kactus2:position x="710" y="730"/>
+				<kactus2:position x="1090" y="730"/>
+				<kactus2:position x="1090" y="1890"/>
+				<kactus2:position x="30" y="1890"/>
+				<kactus2:position x="30" y="1870"/>
+				<kactus2:position x="490" y="1870"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_enable_slave2_out_to_i2s_enable_slave2_out" kactus2:offPage="false">
+				<kactus2:position x="710" y="1060"/>
+				<kactus2:position x="1080" y="1060"/>
+				<kactus2:position x="1080" y="2980"/>
+				<kactus2:position x="710" y="2980"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_byteNr_slave2_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_byteNr_slave2_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="710" y="3040"/>
+				<kactus2:position x="1070" y="3040"/>
+				<kactus2:position x="1070" y="1020"/>
+				<kactus2:position x="370" y="1020"/>
+				<kactus2:position x="370" y="1030"/>
+				<kactus2:position x="490" y="1030"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_byteNr_slave2_in_to_Top_CSC_csc_i2s_BF_byteNr_slave2_in" kactus2:offPage="false">
+				<kactus2:position x="490" y="3010"/>
+				<kactus2:position x="40" y="3010"/>
+				<kactus2:position x="40" y="1010"/>
+				<kactus2:position x="800" y="1010"/>
+				<kactus2:position x="800" y="1030"/>
+				<kactus2:position x="710" y="1030"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_targetSlot_slave2_out_to_i2s_targetSlot_slave2_out" kactus2:offPage="false">
+				<kactus2:position x="490" y="1000"/>
+				<kactus2:position x="50" y="1000"/>
+				<kactus2:position x="50" y="3040"/>
+				<kactus2:position x="490" y="3040"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_start_slave2_out_to_i2s_start_slave2_out" kactus2:offPage="false">
+				<kactus2:position x="710" y="1000"/>
+				<kactus2:position x="1060" y="1000"/>
+				<kactus2:position x="1060" y="3070"/>
+				<kactus2:position x="710" y="3070"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_busy_slave2_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_busy_slave2_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="710" y="3010"/>
+				<kactus2:position x="1050" y="3010"/>
+				<kactus2:position x="1050" y="960"/>
+				<kactus2:position x="370" y="960"/>
+				<kactus2:position x="370" y="970"/>
+				<kactus2:position x="490" y="970"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_busy_slave2_in_to_Top_CSC_csc_i2s_BF_busy_slave2_in" kactus2:offPage="false">
+				<kactus2:position x="490" y="2980"/>
+				<kactus2:position x="60" y="2980"/>
+				<kactus2:position x="60" y="950"/>
+				<kactus2:position x="800" y="950"/>
+				<kactus2:position x="800" y="970"/>
+				<kactus2:position x="710" y="970"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_buf_overflow_slave2_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_buf_overflow_slave2_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="490" y="3130"/>
+				<kactus2:position x="70" y="3130"/>
+				<kactus2:position x="70" y="940"/>
+				<kactus2:position x="490" y="940"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_buf_overflow_slave2_in_to_Top_CSC_csc_i2s_BF_buf_overflow_slave2_in" kactus2:offPage="false">
+				<kactus2:position x="710" y="3130"/>
+				<kactus2:position x="1040" y="3130"/>
+				<kactus2:position x="1040" y="940"/>
+				<kactus2:position x="710" y="940"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_frame_error_slave2_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_frame_error_slave2_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="490" y="3160"/>
+				<kactus2:position x="80" y="3160"/>
+				<kactus2:position x="80" y="910"/>
+				<kactus2:position x="490" y="910"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_frame_error_slave2_in_to_Top_CSC_csc_i2s_BF_frame_error_slave2_in" kactus2:offPage="false">
+				<kactus2:position x="710" y="3160"/>
+				<kactus2:position x="1030" y="3160"/>
+				<kactus2:position x="1030" y="910"/>
+				<kactus2:position x="710" y="910"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rxFull_L_slave2_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_rxFull_L_slave2_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="490" y="3190"/>
+				<kactus2:position x="90" y="3190"/>
+				<kactus2:position x="90" y="880"/>
+				<kactus2:position x="490" y="880"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rxFull_L_slave2_in_to_Top_CSC_csc_i2s_BF_rxFull_L_slave2_in" kactus2:offPage="false">
+				<kactus2:position x="710" y="3190"/>
+				<kactus2:position x="1020" y="3190"/>
+				<kactus2:position x="1020" y="880"/>
+				<kactus2:position x="710" y="880"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rxEmpty_L_slave2_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_rxEmpty_L_slave2_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="490" y="3220"/>
+				<kactus2:position x="100" y="3220"/>
+				<kactus2:position x="100" y="850"/>
+				<kactus2:position x="490" y="850"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rxEmpty_L_slave2_in_to_Top_CSC_csc_i2s_BF_rxEmpty_L_slave2_in" kactus2:offPage="false">
+				<kactus2:position x="710" y="3220"/>
+				<kactus2:position x="1010" y="3220"/>
+				<kactus2:position x="1010" y="850"/>
+				<kactus2:position x="710" y="850"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_data_avail_slave2_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_data_avail_slave2_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="490" y="3310"/>
+				<kactus2:position x="110" y="3310"/>
+				<kactus2:position x="110" y="820"/>
+				<kactus2:position x="490" y="820"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_data_avail_slave2_in_to_Top_CSC_csc_i2s_BF_data_avail_slave2_in" kactus2:offPage="false">
+				<kactus2:position x="710" y="3310"/>
+				<kactus2:position x="1000" y="3310"/>
+				<kactus2:position x="1000" y="820"/>
+				<kactus2:position x="710" y="820"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rxFull_R_slave2_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_rxFull_R_slave2_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="490" y="3340"/>
+				<kactus2:position x="120" y="3340"/>
+				<kactus2:position x="120" y="790"/>
+				<kactus2:position x="490" y="790"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rxFull_R_slave2_in_to_Top_CSC_csc_i2s_BF_rxFull_R_slave2_in" kactus2:offPage="false">
+				<kactus2:position x="710" y="3340"/>
+				<kactus2:position x="990" y="3340"/>
+				<kactus2:position x="990" y="790"/>
+				<kactus2:position x="710" y="790"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rxEmpty_R_slave2_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_rxEmpty_R_slave2_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="490" y="3370"/>
+				<kactus2:position x="130" y="3370"/>
+				<kactus2:position x="130" y="760"/>
+				<kactus2:position x="490" y="760"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rxEmpty_R_slave2_in_to_Top_CSC_csc_i2s_BF_rxEmpty_R_slave2_in" kactus2:offPage="false">
+				<kactus2:position x="710" y="3370"/>
+				<kactus2:position x="980" y="3370"/>
+				<kactus2:position x="980" y="760"/>
+				<kactus2:position x="710" y="760"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_rd_data_L_slave2_flipflop_in_to_i2s_rd_data_L_slave2_flipflop_in" kactus2:offPage="false">
+				<kactus2:position x="490" y="1060"/>
+				<kactus2:position x="140" y="1060"/>
+				<kactus2:position x="140" y="3290"/>
+				<kactus2:position x="750" y="3290"/>
+				<kactus2:position x="750" y="3280"/>
+				<kactus2:position x="710" y="3280"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_rd_data_L_slave2_flipflop_en_to_i2s_rd_data_L_slave2_flipflop_en" kactus2:offPage="false">
+				<kactus2:position x="710" y="1090"/>
+				<kactus2:position x="970" y="1090"/>
+				<kactus2:position x="970" y="3250"/>
+				<kactus2:position x="710" y="3250"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rd_data_L_slave2_flipflop_out_to_Top_CSC_csc_i2s_BF_rd_data_L_slave2_flipflop_out" kactus2:offPage="false">
+				<kactus2:position x="490" y="3250"/>
+				<kactus2:position x="150" y="3250"/>
+				<kactus2:position x="150" y="1090"/>
+				<kactus2:position x="490" y="1090"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_rd_data_L_slave2_out_to_i2s_rd_data_L_slave2_out" kactus2:offPage="false">
+				<kactus2:position x="710" y="1120"/>
+				<kactus2:position x="960" y="1120"/>
+				<kactus2:position x="960" y="3300"/>
+				<kactus2:position x="450" y="3300"/>
+				<kactus2:position x="450" y="3280"/>
+				<kactus2:position x="490" y="3280"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_rd_data_L_Slave_flipflop_in_to_i2s_rd_data_L_Slave_flipflop_in" kactus2:offPage="false">
+				<kactus2:position x="490" y="1120"/>
+				<kactus2:position x="160" y="1120"/>
+				<kactus2:position x="160" y="2330"/>
+				<kactus2:position x="770" y="2330"/>
+				<kactus2:position x="770" y="2320"/>
+				<kactus2:position x="710" y="2320"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_rd_data_L_Slave_flipflop_en_to_i2s_rd_data_L_Slave_flipflop_en" kactus2:offPage="false">
+				<kactus2:position x="710" y="1150"/>
+				<kactus2:position x="950" y="1150"/>
+				<kactus2:position x="950" y="2290"/>
+				<kactus2:position x="710" y="2290"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rd_data_L_Slave_flipflop_out_to_Top_CSC_csc_i2s_BF_rd_data_L_Slave_flipflop_out" kactus2:offPage="false">
+				<kactus2:position x="490" y="2290"/>
+				<kactus2:position x="170" y="2290"/>
+				<kactus2:position x="170" y="1150"/>
+				<kactus2:position x="490" y="1150"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_rd_data_L_Slave_out_to_i2s_rd_data_L_Slave_out" kactus2:offPage="false">
+				<kactus2:position x="710" y="1180"/>
+				<kactus2:position x="940" y="1180"/>
+				<kactus2:position x="940" y="2340"/>
+				<kactus2:position x="450" y="2340"/>
+				<kactus2:position x="450" y="2320"/>
+				<kactus2:position x="490" y="2320"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_enable_Slave_out_to_i2s_enable_Slave_out" kactus2:offPage="false">
+				<kactus2:position x="490" y="1480"/>
+				<kactus2:position x="180" y="1480"/>
+				<kactus2:position x="180" y="2030"/>
+				<kactus2:position x="770" y="2030"/>
+				<kactus2:position x="770" y="2020"/>
+				<kactus2:position x="710" y="2020"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_byteNr_Slave_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_byteNr_Slave_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="710" y="2080"/>
+				<kactus2:position x="930" y="2080"/>
+				<kactus2:position x="930" y="1480"/>
+				<kactus2:position x="710" y="1480"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_byteNr_Slave_in_to_Top_CSC_csc_i2s_BF_byteNr_Slave_in" kactus2:offPage="false">
+				<kactus2:position x="490" y="2050"/>
+				<kactus2:position x="190" y="2050"/>
+				<kactus2:position x="190" y="1450"/>
+				<kactus2:position x="490" y="1450"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_targetSlot_Slave_out_to_i2s_targetSlot_Slave_out" kactus2:offPage="false">
+				<kactus2:position x="710" y="1450"/>
+				<kactus2:position x="920" y="1450"/>
+				<kactus2:position x="920" y="2090"/>
+				<kactus2:position x="390" y="2090"/>
+				<kactus2:position x="390" y="2080"/>
+				<kactus2:position x="490" y="2080"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_start_Slave_out_to_i2s_start_Slave_out" kactus2:offPage="false">
+				<kactus2:position x="490" y="1420"/>
+				<kactus2:position x="200" y="1420"/>
+				<kactus2:position x="200" y="2120"/>
+				<kactus2:position x="770" y="2120"/>
+				<kactus2:position x="770" y="2110"/>
+				<kactus2:position x="710" y="2110"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_busy_Slave_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_busy_Slave_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="710" y="2050"/>
+				<kactus2:position x="910" y="2050"/>
+				<kactus2:position x="910" y="1420"/>
+				<kactus2:position x="710" y="1420"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_busy_Slave_in_to_Top_CSC_csc_i2s_BF_busy_Slave_in" kactus2:offPage="false">
+				<kactus2:position x="490" y="2020"/>
+				<kactus2:position x="210" y="2020"/>
+				<kactus2:position x="210" y="1390"/>
+				<kactus2:position x="490" y="1390"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_buf_overflow_Slave_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_buf_overflow_Slave_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="490" y="2170"/>
+				<kactus2:position x="220" y="2170"/>
+				<kactus2:position x="220" y="1380"/>
+				<kactus2:position x="800" y="1380"/>
+				<kactus2:position x="800" y="1390"/>
+				<kactus2:position x="710" y="1390"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_buf_overflow_Slave_in_to_Top_CSC_csc_i2s_BF_buf_overflow_Slave_in" kactus2:offPage="false">
+				<kactus2:position x="710" y="2170"/>
+				<kactus2:position x="900" y="2170"/>
+				<kactus2:position x="900" y="1350"/>
+				<kactus2:position x="370" y="1350"/>
+				<kactus2:position x="370" y="1360"/>
+				<kactus2:position x="490" y="1360"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_frame_error_Slave_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_frame_error_Slave_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="490" y="2200"/>
+				<kactus2:position x="230" y="2200"/>
+				<kactus2:position x="230" y="1340"/>
+				<kactus2:position x="800" y="1340"/>
+				<kactus2:position x="800" y="1360"/>
+				<kactus2:position x="710" y="1360"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_frame_error_Slave_in_to_Top_CSC_csc_i2s_BF_frame_error_Slave_in" kactus2:offPage="false">
+				<kactus2:position x="710" y="2200"/>
+				<kactus2:position x="890" y="2200"/>
+				<kactus2:position x="890" y="1320"/>
+				<kactus2:position x="370" y="1320"/>
+				<kactus2:position x="370" y="1330"/>
+				<kactus2:position x="490" y="1330"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rxFull_L_Slave_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_rxFull_L_Slave_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="490" y="2230"/>
+				<kactus2:position x="240" y="2230"/>
+				<kactus2:position x="240" y="1310"/>
+				<kactus2:position x="800" y="1310"/>
+				<kactus2:position x="800" y="1330"/>
+				<kactus2:position x="710" y="1330"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rxFull_L_Slave_in_to_Top_CSC_csc_i2s_BF_rxFull_L_Slave_in" kactus2:offPage="false">
+				<kactus2:position x="710" y="2230"/>
+				<kactus2:position x="880" y="2230"/>
+				<kactus2:position x="880" y="1290"/>
+				<kactus2:position x="370" y="1290"/>
+				<kactus2:position x="370" y="1300"/>
+				<kactus2:position x="490" y="1300"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rxEmpty_L_Slave_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_rxEmpty_L_Slave_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="490" y="2260"/>
+				<kactus2:position x="250" y="2260"/>
+				<kactus2:position x="250" y="1280"/>
+				<kactus2:position x="800" y="1280"/>
+				<kactus2:position x="800" y="1300"/>
+				<kactus2:position x="710" y="1300"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rxEmpty_L_Slave_in_to_Top_CSC_csc_i2s_BF_rxEmpty_L_Slave_in" kactus2:offPage="false">
+				<kactus2:position x="710" y="2260"/>
+				<kactus2:position x="870" y="2260"/>
+				<kactus2:position x="870" y="1260"/>
+				<kactus2:position x="370" y="1260"/>
+				<kactus2:position x="370" y="1270"/>
+				<kactus2:position x="490" y="1270"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_data_avail_Slave_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_data_avail_Slave_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="490" y="2350"/>
+				<kactus2:position x="260" y="2350"/>
+				<kactus2:position x="260" y="1250"/>
+				<kactus2:position x="800" y="1250"/>
+				<kactus2:position x="800" y="1270"/>
+				<kactus2:position x="710" y="1270"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_data_avail_Slave_in_to_Top_CSC_csc_i2s_BF_data_avail_Slave_in" kactus2:offPage="false">
+				<kactus2:position x="710" y="2350"/>
+				<kactus2:position x="860" y="2350"/>
+				<kactus2:position x="860" y="1230"/>
+				<kactus2:position x="370" y="1230"/>
+				<kactus2:position x="370" y="1240"/>
+				<kactus2:position x="490" y="1240"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rxFull_R_Slave_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_rxFull_R_Slave_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="490" y="2380"/>
+				<kactus2:position x="270" y="2380"/>
+				<kactus2:position x="270" y="1220"/>
+				<kactus2:position x="800" y="1220"/>
+				<kactus2:position x="800" y="1240"/>
+				<kactus2:position x="710" y="1240"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rxFull_R_Slave_in_to_Top_CSC_csc_i2s_BF_rxFull_R_Slave_in" kactus2:offPage="false">
+				<kactus2:position x="710" y="2380"/>
+				<kactus2:position x="850" y="2380"/>
+				<kactus2:position x="850" y="1200"/>
+				<kactus2:position x="370" y="1200"/>
+				<kactus2:position x="370" y="1210"/>
+				<kactus2:position x="490" y="1210"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rxEmpty_R_Slave_peripheral_wr_en_to_Top_CSC_csc_i2s_BF_rxEmpty_R_Slave_peripheral_wr_en" kactus2:offPage="false">
+				<kactus2:position x="490" y="2410"/>
+				<kactus2:position x="280" y="2410"/>
+				<kactus2:position x="280" y="1190"/>
+				<kactus2:position x="800" y="1190"/>
+				<kactus2:position x="800" y="1210"/>
+				<kactus2:position x="710" y="1210"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rxEmpty_R_Slave_in_to_Top_CSC_csc_i2s_BF_rxEmpty_R_Slave_in" kactus2:offPage="false">
+				<kactus2:position x="710" y="2410"/>
+				<kactus2:position x="840" y="2410"/>
+				<kactus2:position x="840" y="1170"/>
+				<kactus2:position x="370" y="1170"/>
+				<kactus2:position x="370" y="1180"/>
+				<kactus2:position x="490" y="1180"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_rd_data_R_Slave1_flipflop_in_to_i2s_rd_data_R_Slave1_flipflop_in" kactus2:offPage="false">
+				<kactus2:position x="710" y="1510"/>
+				<kactus2:position x="830" y="1510"/>
+				<kactus2:position x="830" y="2950"/>
+				<kactus2:position x="710" y="2950"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_rd_data_R_Slave1_flipflop_en_to_i2s_rd_data_R_Slave1_flipflop_en" kactus2:offPage="false">
+				<kactus2:position x="490" y="1510"/>
+				<kactus2:position x="290" y="1510"/>
+				<kactus2:position x="290" y="2930"/>
+				<kactus2:position x="750" y="2930"/>
+				<kactus2:position x="750" y="2920"/>
+				<kactus2:position x="710" y="2920"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rd_data_R_Slave1_flipflop_out_to_Top_CSC_csc_i2s_BF_rd_data_R_Slave1_flipflop_out" kactus2:offPage="false">
+				<kactus2:position x="490" y="2920"/>
+				<kactus2:position x="300" y="2920"/>
+				<kactus2:position x="300" y="1530"/>
+				<kactus2:position x="800" y="1530"/>
+				<kactus2:position x="800" y="1540"/>
+				<kactus2:position x="710" y="1540"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_rd_data_R_Slave1_out_to_i2s_rd_data_R_Slave1_out" kactus2:offPage="false">
+				<kactus2:position x="490" y="1540"/>
+				<kactus2:position x="310" y="1540"/>
+				<kactus2:position x="310" y="2950"/>
+				<kactus2:position x="490" y="2950"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_rd_data_R_slave2_flipflop_in_to_i2s_rd_data_R_slave2_flipflop_in" kactus2:offPage="false">
+				<kactus2:position x="710" y="1570"/>
+				<kactus2:position x="820" y="1570"/>
+				<kactus2:position x="820" y="3430"/>
+				<kactus2:position x="710" y="3430"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_rd_data_R_slave2_flipflop_en_to_i2s_rd_data_R_slave2_flipflop_en" kactus2:offPage="false">
+				<kactus2:position x="490" y="1570"/>
+				<kactus2:position x="320" y="1570"/>
+				<kactus2:position x="320" y="3410"/>
+				<kactus2:position x="750" y="3410"/>
+				<kactus2:position x="750" y="3400"/>
+				<kactus2:position x="710" y="3400"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rd_data_R_slave2_flipflop_out_to_Top_CSC_csc_i2s_BF_rd_data_R_slave2_flipflop_out" kactus2:offPage="false">
+				<kactus2:position x="490" y="3400"/>
+				<kactus2:position x="330" y="3400"/>
+				<kactus2:position x="330" y="1590"/>
+				<kactus2:position x="800" y="1590"/>
+				<kactus2:position x="800" y="1600"/>
+				<kactus2:position x="710" y="1600"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_rd_data_R_slave2_out_to_i2s_rd_data_R_slave2_out" kactus2:offPage="false">
+				<kactus2:position x="490" y="1600"/>
+				<kactus2:position x="340" y="1600"/>
+				<kactus2:position x="340" y="3430"/>
+				<kactus2:position x="490" y="3430"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_rd_data_R_Slave_flipflop_in_to_i2s_rd_data_R_Slave_flipflop_in" kactus2:offPage="false">
+				<kactus2:position x="710" y="1630"/>
+				<kactus2:position x="810" y="1630"/>
+				<kactus2:position x="810" y="2470"/>
+				<kactus2:position x="710" y="2470"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_rd_data_R_Slave_flipflop_en_to_i2s_rd_data_R_Slave_flipflop_en" kactus2:offPage="false">
+				<kactus2:position x="490" y="1630"/>
+				<kactus2:position x="350" y="1630"/>
+				<kactus2:position x="350" y="2450"/>
+				<kactus2:position x="770" y="2450"/>
+				<kactus2:position x="770" y="2440"/>
+				<kactus2:position x="710" y="2440"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rd_data_R_Slave_flipflop_out_to_Top_CSC_csc_i2s_BF_rd_data_R_Slave_flipflop_out" kactus2:offPage="false">
+				<kactus2:position x="490" y="2440"/>
+				<kactus2:position x="360" y="2440"/>
+				<kactus2:position x="360" y="1650"/>
+				<kactus2:position x="800" y="1650"/>
+				<kactus2:position x="800" y="1660"/>
+				<kactus2:position x="710" y="1660"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_csc_i2s_BF_rd_data_R_Slave_out_to_i2s_rd_data_R_Slave_out" kactus2:offPage="false">
+				<kactus2:position x="490" y="1660"/>
+				<kactus2:position x="370" y="1660"/>
+				<kactus2:position x="370" y="2470"/>
+				<kactus2:position x="490" y="2470"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_SCK_Slave1_to_SCK_Slave1" kactus2:offPage="false">
+				<kactus2:position x="60" y="910"/>
+				<kactus2:position x="380" y="910"/>
+				<kactus2:position x="380" y="2620"/>
+				<kactus2:position x="490" y="2620"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_SCK_SystemMaster_to_SCK_SystemMaster" kactus2:offPage="false">
+				<kactus2:position x="60" y="870"/>
+				<kactus2:position x="390" y="870"/>
+				<kactus2:position x="390" y="1900"/>
+				<kactus2:position x="490" y="1900"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_SCK_Slave_to_SCK_Slave" kactus2:offPage="false">
+				<kactus2:position x="60" y="830"/>
+				<kactus2:position x="400" y="830"/>
+				<kactus2:position x="400" y="2110"/>
+				<kactus2:position x="490" y="2110"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_data_avail_rx2_IntAck_to_data_avail_rx2_IntAck" kactus2:offPage="false">
+				<kactus2:position x="60" y="790"/>
+				<kactus2:position x="790" y="790"/>
+				<kactus2:position x="790" y="2620"/>
+				<kactus2:position x="710" y="2620"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_serial_input_Slave1_to_serial_input_Slave1" kactus2:offPage="false">
+				<kactus2:position x="60" y="750"/>
+				<kactus2:position x="410" y="750"/>
+				<kactus2:position x="410" y="2650"/>
+				<kactus2:position x="490" y="2650"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_serial_input_slave2_to_serial_input_slave2" kactus2:offPage="false">
+				<kactus2:position x="60" y="710"/>
+				<kactus2:position x="420" y="710"/>
+				<kactus2:position x="420" y="3100"/>
+				<kactus2:position x="490" y="3100"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_data_avail_rx2_IntOut_to_data_avail_rx2_IntOut" kactus2:offPage="false">
+				<kactus2:position x="60" y="670"/>
+				<kactus2:position x="430" y="670"/>
+				<kactus2:position x="430" y="2590"/>
+				<kactus2:position x="490" y="2590"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_WS_Slave_to_WS_Slave" kactus2:offPage="false">
+				<kactus2:position x="60" y="630"/>
+				<kactus2:position x="780" y="630"/>
+				<kactus2:position x="780" y="2140"/>
+				<kactus2:position x="710" y="2140"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_WS_SystemMaster_to_WS_SystemMaster" kactus2:offPage="false">
+				<kactus2:position x="60" y="590"/>
+				<kactus2:position x="770" y="590"/>
+				<kactus2:position x="770" y="1930"/>
+				<kactus2:position x="710" y="1930"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_SCK_slave2_to_SCK_slave2" kactus2:offPage="false">
+				<kactus2:position x="60" y="550"/>
+				<kactus2:position x="440" y="550"/>
+				<kactus2:position x="440" y="3070"/>
+				<kactus2:position x="490" y="3070"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_WS_slave2_to_WS_slave2" kactus2:offPage="false">
+				<kactus2:position x="60" y="510"/>
+				<kactus2:position x="760" y="510"/>
+				<kactus2:position x="760" y="3100"/>
+				<kactus2:position x="710" y="3100"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_WS_Slave1_to_WS_Slave1" kactus2:offPage="false">
+				<kactus2:position x="60" y="470"/>
+				<kactus2:position x="750" y="470"/>
+				<kactus2:position x="750" y="2650"/>
+				<kactus2:position x="710" y="2650"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_serial_input_Slave_to_serial_input_Slave" kactus2:offPage="false">
+				<kactus2:position x="60" y="430"/>
+				<kactus2:position x="450" y="430"/>
+				<kactus2:position x="450" y="2140"/>
+				<kactus2:position x="490" y="2140"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_default_interface_rd_en_to_default_interface_rd_en" kactus2:offPage="false">
+				<kactus2:position x="60" y="390"/>
+				<kactus2:position x="450" y="390"/>
+				<kactus2:position x="450" y="160"/>
+				<kactus2:position x="490" y="160"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_default_interface_data_in_to_default_interface_data_in" kactus2:offPage="false">
+				<kactus2:position x="60" y="350"/>
+				<kactus2:position x="780" y="350"/>
+				<kactus2:position x="780" y="100"/>
+				<kactus2:position x="710" y="100"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_default_interface_error_to_default_interface_error" kactus2:offPage="false">
+				<kactus2:position x="60" y="310"/>
+				<kactus2:position x="440" y="310"/>
+				<kactus2:position x="440" y="130"/>
+				<kactus2:position x="490" y="130"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_default_interface_addr_to_default_interface_addr" kactus2:offPage="false">
+				<kactus2:position x="60" y="270"/>
+				<kactus2:position x="770" y="270"/>
+				<kactus2:position x="770" y="130"/>
+				<kactus2:position x="710" y="130"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_default_interface_ready_to_default_interface_ready" kactus2:offPage="false">
+				<kactus2:position x="60" y="230"/>
+				<kactus2:position x="760" y="230"/>
+				<kactus2:position x="760" y="190"/>
+				<kactus2:position x="710" y="190"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_default_interface_data_out_to_default_interface_data_out" kactus2:offPage="false">
+				<kactus2:position x="60" y="190"/>
+				<kactus2:position x="750" y="190"/>
+				<kactus2:position x="750" y="160"/>
+				<kactus2:position x="710" y="160"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_default_interface_wr_en_to_default_interface_wr_en" kactus2:offPage="false">
+				<kactus2:position x="60" y="150"/>
+				<kactus2:position x="450" y="150"/>
+				<kactus2:position x="450" y="100"/>
+				<kactus2:position x="490" y="100"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_clk_to_clk" kactus2:offPage="false">
+				<kactus2:position x="60" y="110"/>
+				<kactus2:position x="740" y="110"/>
+				<kactus2:position x="740" y="3460"/>
+				<kactus2:position x="710" y="3460"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_clk_to_clk" kactus2:offPage="false">
+				<kactus2:position x="60" y="110"/>
+				<kactus2:position x="740" y="110"/>
+				<kactus2:position x="740" y="1690"/>
+				<kactus2:position x="710" y="1690"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="Top_CSC_rst_to_rst" kactus2:offPage="false">
+				<kactus2:position x="60" y="70"/>
+				<kactus2:position x="460" y="70"/>
+				<kactus2:position x="460" y="1690"/>
+				<kactus2:position x="490" y="1690"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="i2s_rst_to_rst" kactus2:offPage="false">
+				<kactus2:position x="60" y="70"/>
+				<kactus2:position x="460" y="70"/>
+				<kactus2:position x="460" y="3460"/>
+				<kactus2:position x="490" y="3460"/>
+			</kactus2:route>
+		</kactus2:routes>
+	</ipxact:vendorExtensions>
+</ipxact:design>
