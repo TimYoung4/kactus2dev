@@ -203,6 +203,13 @@ public:
      */
     void renameComponentReferences(std::string const& currentName, std::string const& newName);
 
+    /*! yangjun
+     *  Get the names of the available hierarchical interconnections.
+     *
+     *    @return Names of the available hierarchical interconnections.
+     */
+    std::vector<std::string> getHierarchicalConnNames() const;
+
     //! No copying. No assignment.
     InterconnectionInterface(const InterconnectionInterface& other) = delete;
     InterconnectionInterface& operator=(const InterconnectionInterface& other) = delete;

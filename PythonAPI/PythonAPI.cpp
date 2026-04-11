@@ -67,6 +67,7 @@
 
 #include <IPXACTmodels/DesignConfiguration/DesignConfiguration.h>
 
+//yangjun
 #include <IPXACTmodels/AbstractionDefinition/AbstractionDefinition.h>
 
 //-----------------------------------------------------------------------------
@@ -346,11 +347,12 @@ bool PythonAPI::vlnvExistsInLibrary(std::string const& vendor, std::string const
         QString::fromStdString(version)));
 }
 
+//yangjun
 //-----------------------------------------------------------------------------
 // Function: PythonAPI::createBusDefinition()
 //-----------------------------------------------------------------------------
 bool PythonAPI::createBusDefinition(std::string const& vendor, std::string const& library, std::string const& name,
-    std::string const& version, StdRev revision /*= StdRev::Std22*/)
+    std::string const& version, std::string const& sysgroup /*= "None"*/, StdRev revision /*= StdRev::Std22*/)
 {
     if (vendor.empty() || library.empty() || name.empty() || version.empty())
     {
@@ -375,6 +377,12 @@ bool PythonAPI::createBusDefinition(std::string const& vendor, std::string const
 
     QSharedPointer<BusDefinition> busdef = QSharedPointer<BusDefinition>(new BusDefinition(newBusDefinitionVLNV, docRevision));
 
+    if (sysgroup != "None")
+    {
+        QStringList sysgroup_list{QString::fromStdString(sysgroup)};
+        busdef->setSystemGroupNames(sysgroup_list);
+    }
+
     QString directory = KactusAPI::getDefaultLibraryPath();
     QString vlnvDir = "/" + newBusDefinitionVLNV.getVendor() + "/" + newBusDefinitionVLNV.getLibrary() + "/" +
         newBusDefinitionVLNV.getName() + "/" + newBusDefinitionVLNV.getVersion();
@@ -390,6 +398,7 @@ bool PythonAPI::createBusDefinition(std::string const& vendor, std::string const
     return true;
 }
 
+//yangjun
 //-----------------------------------------------------------------------------
 // Function: PythonAPI::createAbstractionDefinition()
 //-----------------------------------------------------------------------------
@@ -443,6 +452,7 @@ bool PythonAPI::createAbstractionDefinition(std::string const& vendor, std::stri
     return true;
 }
 
+//yangjun
 //-----------------------------------------------------------------------------
 // Function: PythonAPI::openAbstractionDefinition()
 //-----------------------------------------------------------------------------
@@ -474,6 +484,7 @@ bool PythonAPI::openAbstractionDefinition(std::string const& vlnvString)
     }
 }
 
+//yangjun
 //-----------------------------------------------------------------------------
 // Function: PythonAPI::saveAbstractionDefinition()
 //-----------------------------------------------------------------------------
@@ -511,6 +522,7 @@ void PythonAPI::saveAbstractionDefinition()
     }
 }
 
+//yangjun
 //-----------------------------------------------------------------------------
 // Function: PythonAPI::closeOpenAbstractionDefinition()
 //-----------------------------------------------------------------------------
@@ -1330,6 +1342,7 @@ bool PythonAPI::addComponentInstance(std::string const& vlnvString, std::string 
     return instanceInterface_->setComponentReference(instanceName, newVendor, newLibrary, newName, newVersion);
 }
 
+//yangjun
 //-----------------------------------------------------------------------------
 // Function: PythonAPI::listComponentsInDesign()
 //-----------------------------------------------------------------------------
@@ -1344,6 +1357,7 @@ std::vector<std::string> PythonAPI::listComponentsInDesign() const
     return instanceInterface_->getItemNames();
 }
 
+//yangjun
 //-----------------------------------------------------------------------------
 // Function: PythonAPI::getInstanceComponentVLNV()
 //-----------------------------------------------------------------------------
@@ -1779,4 +1793,22 @@ bool PythonAPI::removeHierarchicalAdHocConnection(std::string const& instanceNam
 bool PythonAPI::renameAdHocConnection(std::string const& currentName, std::string const& newName)
 {
     return adhocConnectionInterface_->setName(currentName, newName);
+}
+
+//yangjun
+//-----------------------------------------------------------------------------
+// Function: PythonAPI::getConnectionInterface()
+//-----------------------------------------------------------------------------
+InterconnectionInterface* PythonAPI::getConnectionInterface() const
+{
+    return connectionInterface_;
+}
+
+//yangjun
+//-----------------------------------------------------------------------------
+// Function: PythonAPI::getAdHocConnectionInterface()
+//-----------------------------------------------------------------------------
+AdHocConnectionInterface* PythonAPI::getAdHocConnectionInterface() const
+{
+    return adhocConnectionInterface_;
 }

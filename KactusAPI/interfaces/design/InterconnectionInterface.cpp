@@ -413,3 +413,21 @@ void InterconnectionInterface::renameComponentReferences(std::string const& curr
         }
     }
 }
+
+//yangjun
+//-----------------------------------------------------------------------------
+// Function: InterconnectionInterface::getHierarchicalConnNames()
+//-----------------------------------------------------------------------------
+std::vector<std::string> InterconnectionInterface::getHierarchicalConnNames() const
+{
+    std::vector<std::string> connectionNames;
+    for (auto const& connection : *interconnections_)
+    {   
+        if (connection->getHierInterfaces()->count() > 0)
+        {
+            connectionNames.push_back(connection->name().toStdString());
+        }
+    }
+
+    return connectionNames;
+}

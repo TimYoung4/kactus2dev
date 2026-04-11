@@ -315,6 +315,32 @@ void AdHocConnectionInterface::addHierarchicalAdHocConnection(std::string const&
     connections_->append(newConnection);
 }
 
+//yangjun
+//-----------------------------------------------------------------------------
+// Function: AdHocConnectionInterface::addHierarchical2HierarchicalAdHocConnection()
+//-----------------------------------------------------------------------------
+void AdHocConnectionInterface::addHierarchical2HierarchicalAdHocConnection(std::string const& startTopPort,
+    std::string const& endTopPort, std::string const& connectionName /* = "" */)
+{
+    QString startTopPortQ = QString::fromStdString(startTopPort);
+    QString endTopPortQ = QString::fromStdString(endTopPort);
+
+    QString newConnectionName = QString::fromStdString(connectionName);
+    if (newConnectionName.isEmpty())
+    {
+        newConnectionName = startTopPortQ + QStringLiteral("_to_") + endTopPortQ;
+    }
+
+    QSharedPointer<PortReference> startTopReference(new PortReference(startTopPortQ));
+    QSharedPointer<PortReference> endTopReference(new PortReference(endTopPortQ));
+
+    QSharedPointer<AdHocConnection> newConnection(new AdHocConnection(newConnectionName));
+    newConnection->getExternalPortReferences()->append(startTopReference);
+    newConnection->getExternalPortReferences()->append(endTopReference);
+
+    connections_->append(newConnection);
+}
+
 //-----------------------------------------------------------------------------
 // Function: AdHocConnectionInterface::removeAdHocConnection()
 //-----------------------------------------------------------------------------
@@ -397,3 +423,55 @@ void AdHocConnectionInterface::renameComponentReferences(std::string const& curr
         }
     }
 }
+
+//yangjun
+//-----------------------------------------------------------------------------
+// Function: AdHocConnectionInterface::getAllAdHocConnectionRefs()
+//-----------------------------------------------------------------------------
+std::vector<std::string> AdHocConnectionInterface::getAllAdHocConnectionRefs(std::string const& connectionName) const
+{
+    std::vector<std::string> RefNames;
+
+    QSharedPointer<AdHocConnection> AdHocConn = getAdHocConnection(connectionName);
+
+    QSharedPointer<QList<QSharedPointer<PortReference> > > internalPortReferences = AdHocConn->getInternalPortReferences();
+    for (auto const& portref : *internalPortReferences.data())
+    {
+        RefNames.push_back(portref->getComponentRef().toStdString());
+        RefNames.push_back(portref->getPortRef().toStdString());
+    }
+
+    QSharedPointer<QList<QSharedPointer<PortReference> > > externalPortReferences = AdHocConn->getExternalPortReferences();
+    for (auto const& portref : *externalPortReferences)
+    {
+        RefNames.push_back(portref->getPortRef().toStdString());
+    }
+
+    return RefNames;
+}
+
+// //yangjun
+// //-----------------------------------------------------------------------------
+// // Function: AdHocConnectionInterface::getHierarchicalAdHocConnectionRefs()
+// //-----------------------------------------------------------------------------
+// std::vector<std::string> AdHocConnectionInterface::getHierarchicalAdHocConnectionRefs(std::string const& connectionName) const
+// {
+//     std::vector<std::string> RefNames;
+
+//     QSharedPointer<AdHocConnection> AdHocConn = getAdHocConnection(connectionName);
+
+//     QSharedPointer<QList<QSharedPointer<PortReference> > > internalPortReferences = AdHocConn->getInternalPortReferences();
+//     for (auto const& portref : *internalPortReferences.data())
+//     {
+//         RefNames.push_back(portref->getComponentRef().toStdString());
+//         RefNames.push_back(portref->getPortRef().toStdString());
+//     }
+
+//     // QSharedPointer<QList<QSharedPointer<PortReference> > > externalPortReferences = AdHocConn->getExternalPortReferences();
+//     // for (auto const& portref : *externalPortReferences)
+//     // {
+//     //     RefNames.push_back(portref->getPortRef().toStdString());
+//     // }
+
+//     return RefNames;
+// }

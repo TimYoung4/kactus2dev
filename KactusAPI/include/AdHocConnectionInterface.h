@@ -168,6 +168,16 @@ public:
      */
     void addHierarchicalAdHocConnection(std::string const& instanceName, std::string const& instancePort,
         std::string const& topPort, std::string const& connectionName = "");
+    
+    /*! yangjun
+     *  Add a new hierarchical2hierarchical ad hoc connection. 
+     *
+     *    @param [in] startTopPort        Name of the first top component port.
+     *    @param [in] endTopPort          Name of the second top component port.
+     *    @param [in] connectionName      Name of the new ad hoc connection.
+     */
+    void addHierarchical2HierarchicalAdHocConnection(std::string const& startTopPort,
+        std::string const& endTopPort, std::string const& connectionName = "");
 
     /*!
      *  Remove the selected ad hoc connection.
@@ -203,6 +213,24 @@ public:
      *    @param [in] newName         New name for the component instance.
      */
     void renameComponentReferences(std::string const& currentName, std::string const& newName);
+    
+    /*! yangjun
+     *  Get all the reference information of the selected ad hoc connection.
+     *
+     *    @param [in] connectionName     Name of the selected ad hoc connection.
+     *
+     *    @return A list that contains the ComponentRef and PortRef of each internalPortReference.
+     */
+    std::vector<std::string> getAllAdHocConnectionRefs(std::string const& connectionName) const;
+    
+    // /*! yangjun
+    //  *  Get all the reference information of the selected hierarchical ad hoc connection.
+    //  *
+    //  *    @param [in] connectionName     Name of the selected ad hoc connection.
+    //  *
+    //  *    @return A list that contains the ComponentRef and PortRef of internalPortReference, and PortRef of externalPortReference.
+    //  */
+    // std::vector<std::string> getHierarchicalAdHocConnectionRefs(std::string const& connectionName) const;
 
     //! No copying. No assignment.
     AdHocConnectionInterface(const AdHocConnectionInterface& other) = delete;

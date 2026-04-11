@@ -35,6 +35,8 @@
 #include <KactusAPI/include/ParametersInterface.h>
 
 #include <IPXACTmodels/Component/validators/PortValidator.h>
+
+//yangjun
 #include <IPXACTmodels/BusDefinition/BusDefinition.h>
 #include <IPXACTmodels/AbstractionDefinition/AbstractionDefinition.h>
 
@@ -61,6 +63,7 @@ class MemoryMapValidator;
 
 class Design;
 
+//yangjun
 class AbstractionDefinition;
 
 
@@ -258,7 +261,7 @@ public:
     bool vlnvExistsInLibrary(std::string const& vendor, std::string const& library, std::string const& name,
         std::string const& version) const;
 
-    /*!
+    /*! yangjun
      *  Create a new busDefinition with the selected VLNV. Defaults to IP-XACT 2022.
      *
      *    @param [in] vendor      Vendor of the selected VLNV.
@@ -266,13 +269,14 @@ public:
      *    @param [in] name        Name of the selected VLNV.
      *    @param [in] version     Version of the selected VLNV.
      *    @param [in] revision    IP-XACT standard revision to use.
+     *    @param [in] sysgroup    Name of the new system group Name, if needed.
      *
      *    @return True, if the busDefinition was created successfully, false otherwise.
      */
     bool createBusDefinition(std::string const& vendor, std::string const& library, std::string const& name,
-        std::string const& version, StdRev revision = StdRev::Std22);
+        std::string const& version, std::string const& sysgroup = "None", StdRev revision = StdRev::Std22);
 
-    /*!
+    /*! yangjun
      *  Create a new abstractDefinition with the selected VLNV. Defaults to IP-XACT 2022.
      *
      *    @param [in] vendor      Vendor of the selected VLNV.
@@ -287,7 +291,7 @@ public:
     bool createAbstractionDefinition(std::string const& vendor, std::string const& library, std::string const& name,
         std::string const& version, std::string const& busDefinitionVLNV, StdRev revision = StdRev::Std22);
 
-    /*!
+    /*! yangjun
      *  Set the selected component as active component.
      *
      *    @param [in] absdefVLNV   VLNV of the selected abstraction definition.
@@ -296,12 +300,12 @@ public:
      */
     bool openAbstractionDefinition(std::string const& vlnvString);
 
-    /*!
+    /*! yangjun
     *  Save the active abstraction definition to the library.
     */
     void saveAbstractionDefinition();
 
-    /*!
+    /*! yangjun
     *  Close the active abstraction definition.
     */
     void closeOpenAbstractionDefinition();
@@ -475,14 +479,14 @@ public:
      */
     bool addComponentInstance(std::string const& vlnvString, std::string const& instanceName);
 
-    /*!
+    /*! yangjun
      *  List the component instances in the active design.
      *
      *    @return List of the component instance names in the active design.
      */
     std::vector<std::string> listComponentsInDesign() const;
 
-    /*!
+    /*! yangjun
     *  Get the component VLNV referenced by a component instance in the active design.
     *
     *    @param [in] instanceName Name of the component instance.
@@ -647,6 +651,20 @@ public:
      *    @return True, if successful, false otherwise.
      */
     bool renameAdHocConnection(std::string const& currentName, std::string const& newName);
+
+    /*! yangjun
+     *  Get the interface for accessing the interconnections of the active design.
+     *
+     *    @return Interface for accessing the interconnections of the active design.
+     */
+    InterconnectionInterface* getConnectionInterface() const;
+
+    /*! yangjun
+     *  Get the interface for accessing the ad hoc connections of the active design.
+     *
+     *    @return Interface for accessing the ad hoc connections of the active design.
+     */
+    AdHocConnectionInterface* getAdHocConnectionInterface() const;
 
 private:
 
@@ -865,6 +883,7 @@ private:
     //! Currently active design.
     QSharedPointer<Design> activeDesign_{ nullptr };
 
+    // yangjun
     //! Currently active abstraction definition.
     QSharedPointer<AbstractionDefinition> activeAbsDef_{ nullptr };
 
@@ -913,7 +932,6 @@ private:
     //! Interface for accessing component instances.
     ComponentInstanceInterface* instanceInterface_{ new ComponentInstanceInterface(connectionInterface_, 
         adhocConnectionInterface_) };
-    
 };
 
 #endif // !PYTHON_API_H
