@@ -172,6 +172,13 @@ public:
      */
     BusInterfaceInterface* getBusInterface();
 
+    /*! yangjun
+     * Set the paths where Kactus2 plugins are stored and load them.
+     *
+     *    @param [in] pluginPaths  The paths containing the plugin DLLs/SOs.
+     */
+    void setPluginPaths(std::vector<std::string> const& pluginPaths);
+
     /*!
      * Gets the paths where IP-XACT files are stored.
      *

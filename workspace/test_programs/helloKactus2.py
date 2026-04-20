@@ -133,3 +133,19 @@ def addPortMap(kac, bus_if_name, logical_port_name, physical_port_name):
     # print(pm_if.connectPorts(logical_port_name, physical_port_name))
     print(pm_if.itemCount(), pm_if.getItemNames())
     kac.saveComponent()
+
+def test4(api):
+    kac = api.PythonAPI()
+    kac.addLibraryPath("/home/ty/kactus2dev/workspace/ipxactexamplelib-master")
+    kac.setDefaultLibraryPath("/home/ty/kactus2dev/workspace/ipxactexamplelib-master")
+    kac.setupLibrary("/home/ty/kactus2dev/workspace/ipxactexamplelib-master")
+    kac.setPluginPaths(["/home/ty/kactus2dev/build/executable/Plugins"])
+
+    vendor = "test"
+    lib = "from_verilog"
+    name = "and_gate"
+    ver = "1.0"
+
+    vlnv = f"{vendor}:{lib}:{name}:{ver}"
+    success = kac.importFile("/home/ty/kactus2dev/workspace/test_programs/verilogs/and_gate.v", vlnv, True)
+    print("Import success:", success) 

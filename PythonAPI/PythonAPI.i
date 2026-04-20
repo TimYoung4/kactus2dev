@@ -44,6 +44,7 @@
 //yangjun
 #include "../KactusAPI/include/InterconnectionInterface.h"
 #include "../KactusAPI/include/AdHocConnectionInterface.h"
+#include "../KactusAPI/include/PluginManager.h"
 %}
 
 
@@ -82,6 +83,7 @@ namespace std {
 //yangjun
 %include "../KactusAPI/include/InterconnectionInterface.h"
 %include "../KactusAPI/include/AdHocConnectionInterface.h"
+%include "../KactusAPI/include/PluginManager.h"
 
 // Workaround fix for calling AddressBlockInterface/SubspaceMapInterface::addBlock(std::string const&) from python
 %extend AddressBlockInterface {

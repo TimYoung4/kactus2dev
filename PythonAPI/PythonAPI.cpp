@@ -12,6 +12,10 @@
 #include "PythonAPI.h"
 
 
+// yangjun: for initial setup (espacially for plugin loading)
+#include <QCoreApplication>
+#include <QSettings>
+
 #include <KactusAPI/KactusAPI.h>
 
 #include <KactusAPI/include/IPlugin.h>
@@ -69,15 +73,66 @@
 
 //yangjun
 #include <IPXACTmodels/AbstractionDefinition/AbstractionDefinition.h>
+#include <KactusAPI/include/PluginManager.h>
 
 //-----------------------------------------------------------------------------
 // Function: PythonAPI::PythonAPI()
 //-----------------------------------------------------------------------------
 PythonAPI::PythonAPI()
 {
+    // yangjun: step 1, 2, 3: make sure the application is properly initialized for KactusAPI to work, even in pure Python environment without GUI
+    // 1. make sure there is a QCoreApplication instance, otherwise KactusAPI's use of QSettings will fail to find the correct configuration file.
+    if (!QCoreApplication::instance())
+    {
+        static int argc = 1;
+        static char name[] = "Kactus2PythonAPI";
+        static char* argv[] = { name, nullptr };
+        new QCoreApplication(argc, argv);
+    }
+
+    // 2. set application details for QSettings, so that it finds the correct configuration file.
+    QCoreApplication::setOrganizationDomain("tut.fi");
+    QCoreApplication::setOrganizationName("TUT");
+    QCoreApplication::setApplicationName("Kactus2");
+
+    // 3. In case the configuration file doesn't exist yet, set some default values for KactusAPI to work properly.
+    QSettings settings;
+    // 使用 contains 判断，避免覆盖用户在 GUI 里自定义的奇怪设置
+    if (!settings.contains("FileTypes/verilogSource/Extensions"))
+    {
+        settings.setValue("FileTypes/verilogSource/Extensions", "v;vh");
+    }
+    if (!settings.contains("FileTypes/systemVerilogSource/Extensions"))
+    {
+        settings.setValue("FileTypes/systemVerilogSource/Extensions", "sv;svh");
+    }
+    if (!settings.contains("FileTypes/vhdlSource/Extensions"))
+    {
+        settings.setValue("FileTypes/vhdlSource/Extensions", "vhd;vhdl");
+    }
+    settings.sync();
+
     constructMemoryValidators();
     constructMemoryInterface();
     constructFileSetInterface();
+}
+
+//yangjun
+//-----------------------------------------------------------------------------
+// Function: PythonAPI::setPluginPaths()
+//-----------------------------------------------------------------------------
+void PythonAPI::setPluginPaths(std::vector<std::string> const& pluginPaths)
+{
+    QStringList qPluginPaths;
+    for (auto const& path : pluginPaths)
+    {
+        qPluginPaths.append(QString::fromStdString(path));
+    }
+
+    PluginManager::getInstance().setPluginPaths(qPluginPaths);
+    
+    int pluginCount = PluginManager::getInstance().getAllPlugins().count();
+    messager_->showMessage(QString("Loaded %1 plugins.").arg(pluginCount));
 }
 
 //-----------------------------------------------------------------------------
