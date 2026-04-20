@@ -238,6 +238,14 @@ protected:
      */
     void addPortToSideWithLessPorts(ConnectionEndpoint* port);
 
+    /*! yangjun
+     *  Adds an interface/port item to the component side based on its logical direction.
+     *  (IN goes to Left, OUT goes to Right. Others fallback to side with less ports).
+     *
+     *    @param [in] port   The interface item to add.
+     */
+    void addPortToSideByDirection(ConnectionEndpoint* port);
+
     /*!
      *  Adds a bus interface on the left side of the component item.
      *

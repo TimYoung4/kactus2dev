@@ -115,7 +115,7 @@ void HWComponentItem::updateComponent()
 }
 
 //-----------------------------------------------------------------------------
-// Function: HWComponentItem::setPortAdHocVisible()
+// Function: HWComponentItem::onAdHocVisibilityChanged()
 //-----------------------------------------------------------------------------
 void HWComponentItem::onAdHocVisibilityChanged(QString const& portName, bool visible)
 {
@@ -133,7 +133,7 @@ void HWComponentItem::onAdHocVisibilityChanged(QString const& portName, bool vis
         if (!port)
         {
             port = new ActivePortItem(adhocPort, this);
-            addPortToSideWithLessPorts(port);
+            addPortToSideByDirection(port); // yangjun: instead of adding adhoc port to side with less ports, nowthe adding based on the port direction.
         }
         
         getComponentInstance()->updateAdHocPortPosition(portName, port->pos());
@@ -539,7 +539,7 @@ void HWComponentItem::positionAdHocPortTerminals()
         {
             auto adhocItem (new ActivePortItem(adhocPort, this));
 
-            addPortToSideWithLessPorts(adhocItem);
+            addPortToSideByDirection(adhocItem); // yangjun: instead of adding adhoc port to side with less ports, nowthe adding based on the port direction.
         }
     }
 }
@@ -559,7 +559,7 @@ AdHocItem* HWComponentItem::createAdhocItem(QString const& portName)
     if (!portItem)
     {
         portItem = new ActivePortItem(adhocPort, this);
-        addPortToSideWithLessPorts(portItem);
+        addPortToSideByDirection(portItem); // yangjun: instead of adding adhoc port to side with less ports, nowthe adding based on the port direction.
 
         updateSize();
     }

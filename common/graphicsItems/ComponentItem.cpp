@@ -21,6 +21,10 @@
 
 #include <IPXACTmodels/Design/ComponentInstance.h>
 
+//yangjun
+#include <IPXACTmodels/Component/Port.h>
+#include <IPXACTmodels/common/DirectionTypes.h>
+
 #include <QFont>
 #include <QPen>
 #include <QTextDocument>
@@ -374,6 +378,50 @@ void ComponentItem::addPortToSideWithLessPorts(ConnectionEndpoint* port)
 
         addPortToRight(port);
     }
+}
+
+//yangjun
+//-----------------------------------------------------------------------------
+// Function: ComponentItem::addPortToSideByDirection()
+//-----------------------------------------------------------------------------
+void ComponentItem::addPortToSideByDirection(ConnectionEndpoint* port)
+{
+    // Place the port at the bottom of the side based on its logical direction (IN goes to Left, OUT goes to Right. Others fallback to side with less ports).
+    QSharedPointer<Port> adhocPort = port->getPort();
+    if (adhocPort)
+    {
+        DirectionTypes::Direction dir = adhocPort->getDirection();
+        
+        if (dir == DirectionTypes::IN)
+        {
+            if (!leftPorts_.empty())
+            {
+                port->setPos(QPointF(0, leftPorts_.last()->pos().y() + GridSize * 3) + rect().topLeft());
+            }
+            else
+            {
+                port->setPos(QPointF(0, GridSize * 4) + rect().topLeft());
+            }
+            addPortToLeft(port);
+            return;
+        }
+        else if (dir == DirectionTypes::OUT)
+        {
+            if (!rightPorts_.empty())
+            {
+                port->setPos(QPointF(rect().width(), rightPorts_.last()->pos().y() + GridSize * 3) + rect().topLeft());
+            }
+            else
+            {
+                port->setPos(QPointF(rect().width(), GridSize * 4) + rect().topLeft());
+            }
+            addPortToRight(port);
+            return;
+        }
+    }
+
+    // in case of INOUT or unknown direction, fallback to side with less ports
+    addPortToSideWithLessPorts(port);
 }
 
 //-----------------------------------------------------------------------------
