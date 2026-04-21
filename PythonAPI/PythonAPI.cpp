@@ -12,7 +12,7 @@
 #include "PythonAPI.h"
 
 
-// yangjun: for initial setup (espacially for plugin loading)
+//yangjun: for initial setup
 #include <QCoreApplication>
 #include <QSettings>
 
@@ -97,7 +97,6 @@ PythonAPI::PythonAPI()
 
     // 3. In case the configuration file doesn't exist yet, set some default values for KactusAPI to work properly.
     QSettings settings;
-    // 使用 contains 判断，避免覆盖用户在 GUI 里自定义的奇怪设置
     if (!settings.contains("FileTypes/verilogSource/Extensions"))
     {
         settings.setValue("FileTypes/verilogSource/Extensions", "v;vh");
@@ -281,7 +280,7 @@ void PythonAPI::setDefaultLibraryPath(std::string const& path) const
 }
 
 //-----------------------------------------------------------------------------
-// Function: PythonAPI::setDefaultLibraryPath()
+// Function: PythonAPI::importFile()
 //-----------------------------------------------------------------------------
 int PythonAPI::importFile(std::string const& path, std::string const& vlnv, bool overwrite /*= false*/) const
 {
@@ -1800,6 +1799,35 @@ bool PythonAPI::createHierarchicalAdHocConnection(std::string const& instanceNam
     }
 
     adhocConnectionInterface_->addHierarchicalAdHocConnection(instanceName, instancePort, topPort);
+    return true;
+}
+
+//yangjun
+//-----------------------------------------------------------------------------
+// Function: PythonAPI::createHierarchical2HierarchicalAdHocConnection()
+//-----------------------------------------------------------------------------
+void PythonAPI::createHierarchical2HierarchicalAdHocConnection(std::string const& startTopPort,
+    std::string const& endTopPort, std::string const& connectionName /* = "" */)
+{
+    adhocConnectionInterface_->createHierarchical2HierarchicalAdHocConnection(startTopPort, endTopPort);
+}
+
+//yangjun
+//-----------------------------------------------------------------------------
+// Function: PythonAPI::createTiedAdHocConnection()
+//-----------------------------------------------------------------------------
+bool PythonAPI::createTiedAdHocConnection(std::string const& instanceName,
+    std::string const& instancePort, std::string const& tiedValue, std::string const& connectionName /* = "" */)
+{
+    QString instanceNameQ = QString::fromStdString(instanceName);
+
+    if (!instanceExists(instanceNameQ))
+    {
+        messager_->showMessage(QString("Could not create connection"));
+        return false;
+    }
+
+    adhocConnectionInterface_->createTiedAdHocConnection(instanceName, instancePort, tiedValue);
     return true;
 }
 

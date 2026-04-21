@@ -214,6 +214,41 @@ bool AdHocConnectionInterface::setName(std::string const& currentName, std::stri
     }
 }
 
+// yangjun
+//-----------------------------------------------------------------------------
+// Function: AdHocConnectionInterface::getTiedValue()
+//-----------------------------------------------------------------------------
+std::string AdHocConnectionInterface::getTiedValue(std::string const& itemName) const
+{
+    if (QSharedPointer<AdHocConnection> editedConnection = getAdHocConnection(itemName); 
+        editedConnection)
+    {
+        return editedConnection->getTiedValue().toStdString();
+    }
+
+    return std::string();
+}
+
+// yangjun
+//-----------------------------------------------------------------------------
+// Function: AdHocConnectionInterface::setTiedValue()
+//-----------------------------------------------------------------------------
+bool AdHocConnectionInterface::setTiedValue(std::string const& itemName, std::string const& tiedValue)
+{
+    QSharedPointer<AdHocConnection> editedConnection = getAdHocConnection(itemName);
+    if (editedConnection)
+    {
+        QString tiedValueQ = QString::fromStdString(tiedValue);
+        editedConnection->setTiedValue(tiedValueQ);
+
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 //-----------------------------------------------------------------------------
 // Function: AdHocConnectionInterface::getDescription()
 //-----------------------------------------------------------------------------
@@ -317,9 +352,9 @@ void AdHocConnectionInterface::addHierarchicalAdHocConnection(std::string const&
 
 //yangjun
 //-----------------------------------------------------------------------------
-// Function: AdHocConnectionInterface::addHierarchical2HierarchicalAdHocConnection()
+// Function: AdHocConnectionInterface::createHierarchical2HierarchicalAdHocConnection()
 //-----------------------------------------------------------------------------
-void AdHocConnectionInterface::addHierarchical2HierarchicalAdHocConnection(std::string const& startTopPort,
+void AdHocConnectionInterface::createHierarchical2HierarchicalAdHocConnection(std::string const& startTopPort,
     std::string const& endTopPort, std::string const& connectionName /* = "" */)
 {
     QString startTopPortQ = QString::fromStdString(startTopPort);
@@ -337,6 +372,32 @@ void AdHocConnectionInterface::addHierarchical2HierarchicalAdHocConnection(std::
     QSharedPointer<AdHocConnection> newConnection(new AdHocConnection(newConnectionName));
     newConnection->getExternalPortReferences()->append(startTopReference);
     newConnection->getExternalPortReferences()->append(endTopReference);
+
+    connections_->append(newConnection);
+}
+
+//yangjun
+//-----------------------------------------------------------------------------
+// Function: AdHocConnectionInterface::createTiedAdHocConnection()
+//-----------------------------------------------------------------------------
+void AdHocConnectionInterface::createTiedAdHocConnection(std::string const& instanceName,
+    std::string const& instancePort, std::string const& tiedValue, std::string const& connectionName /* = "" */)
+{
+    QString instanceQ = QString::fromStdString(instanceName);
+    QString instancePortQ = QString::fromStdString(instancePort);
+    QString tiedValueQ = QString::fromStdString(tiedValue);
+
+    QString newConnectionName = QString::fromStdString(connectionName);
+    if (newConnectionName.isEmpty())
+    {
+        newConnectionName = instanceQ + QStringLiteral("_") + instancePortQ + QStringLiteral("_to_tiedValue");
+    }
+
+    QSharedPointer<PortReference> instanceReference(new PortReference(instancePortQ, instanceQ));
+
+    QSharedPointer<AdHocConnection> newConnection(new AdHocConnection(newConnectionName));
+    newConnection->getInternalPortReferences()->append(instanceReference);
+    newConnection->setTiedValue(tiedValueQ);
 
     connections_->append(newConnection);
 }
@@ -445,6 +506,11 @@ std::vector<std::string> AdHocConnectionInterface::getAllAdHocConnectionRefs(std
     for (auto const& portref : *externalPortReferences)
     {
         RefNames.push_back(portref->getPortRef().toStdString());
+    }
+
+    if (!getTiedValue(connectionName).empty())
+    {
+        RefNames.push_back(AdHocConn->getTiedValue().toStdString());
     }
 
     return RefNames;

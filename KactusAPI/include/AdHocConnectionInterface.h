@@ -110,6 +110,25 @@ public:
      */
     virtual bool setName(std::string const& currentName, std::string const& newName) override final;
 
+    /*! yangjun
+     *  Get the tied value of the selected ad hoc connection.
+     *
+     *    @param [in] itemName    Name of the selected ad hoc connection.
+     *
+     *    @return Tied value of the selected ad hoc connection.
+     */
+    std::string getTiedValue(std::string const& itemName) const;
+
+    /*! yangjun
+     *  Set a new tied value for the selected ad hoc connection.
+     *
+     *    @param [in] itemName        Name of the selected ad hoc connection.
+     *    @param [in] tiedValue       New tied value.
+     *
+     *    @return True, if successful, false otherwise.
+     */
+    bool setTiedValue(std::string const& itemName, std::string const& tiedValue);
+
     /*!
      *  Get the description of the selected ad hoc connection.
      *
@@ -170,14 +189,25 @@ public:
         std::string const& topPort, std::string const& connectionName = "");
     
     /*! yangjun
-     *  Add a new hierarchical2hierarchical ad hoc connection. 
+     *  Add a new hierarchical2hierarchical ad hoc connection.
      *
      *    @param [in] startTopPort        Name of the first top component port.
      *    @param [in] endTopPort          Name of the second top component port.
      *    @param [in] connectionName      Name of the new ad hoc connection.
      */
-    void addHierarchical2HierarchicalAdHocConnection(std::string const& startTopPort,
+    void createHierarchical2HierarchicalAdHocConnection(std::string const& startTopPort,
         std::string const& endTopPort, std::string const& connectionName = "");
+
+    /*! yangjun
+     *  Add a new ad hoc connection with tied value.
+     *
+     *    @param [in] instanceName        Name of the component instance containing the selected port.
+     *    @param [in] instancePort        Name of the selected port.
+     *    @param [in] tiedValue           New tied value.
+     *    @param [in] connectionName      Name of the new ad hoc connection.
+     */
+    void createTiedAdHocConnection(std::string const& instanceName,
+        std::string const& instancePort, std::string const& tiedValue, std::string const& connectionName = "");
 
     /*!
      *  Remove the selected ad hoc connection.

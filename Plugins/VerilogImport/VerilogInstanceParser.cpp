@@ -177,11 +177,16 @@ void VerilogInstanceParser::highlightInstance(QString const& input, QString cons
             int instanceNameBeginIndex =
                 instanceIntroductionMatch.capturedStart() + matchedIntroduction.lastIndexOf(instanceName);
             int instanceNameEndIndex = instanceNameBeginIndex + instanceName.length();
-
-            highlighter_->applyHighlight(
-                instanceModuleBeginIndex, instanceModuleEndIndex, KactusColors::Importer::INSTANCECOLOR);
-            highlighter_->applyHighlight(
-                instanceNameBeginIndex, instanceNameEndIndex, KactusColors::Importer::INSTANCECOLOR);
+            
+            //yangjun: added an if statement in case of Headless(pure pythonAPI), when highlighter_ == nullptr
+            if (highlighter_)
+            {
+                highlighter_->applyHighlight(
+                    instanceModuleBeginIndex, instanceModuleEndIndex, ImportColors::INSTANCECOLOR);
+                highlighter_->applyHighlight(
+                    instanceNameBeginIndex, instanceNameEndIndex, ImportColors::INSTANCECOLOR);
+            }
+            
         }
     }
 }

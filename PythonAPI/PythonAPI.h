@@ -624,6 +624,27 @@ public:
     bool createHierarchicalAdHocConnection(std::string const& instanceName, std::string const& instancePort,
         std::string const& topPort);
 
+    /*! yangjun
+     *  Add a new hierarchical2hierarchical ad hoc connection. 
+     *
+     *    @param [in] startTopPort        Name of the first top component port.
+     *    @param [in] endTopPort          Name of the second top component port.
+     *    @param [in] connectionName      Name of the new ad hoc connection.
+     */
+    void createHierarchical2HierarchicalAdHocConnection(std::string const& startTopPort,
+        std::string const& endTopPort, std::string const& connectionName = "");
+
+    /*! yangjun
+     *  Add a new ad hoc connection with tied value. 
+     *
+     *    @param [in] instanceName        Name of the component instance containing the selected port.
+     *    @param [in] instancePort        Name of the selected port.
+     *    @param [in] tiedValue           New tied value.
+     *    @param [in] connectionName      Name of the new ad hoc connection.
+     */
+    bool createTiedAdHocConnection(std::string const& instanceName,
+        std::string const& instancePort, std::string const& tiedValue, std::string const& connectionName = "");
+
     /*!
      *  Remove an ad hoc connection between two ports.
      *
