@@ -59,6 +59,22 @@ void GraphicsColumnLayout::addItem(QGraphicsItem* item)
     }
 }
 
+//yangjun
+//-----------------------------------------------------------------------------
+// Function: GraphicsColumnLayout::addItemAtEnd()
+//-----------------------------------------------------------------------------
+void GraphicsColumnLayout::addItemAtEnd(QGraphicsItem* item)
+{
+    for (int i = columns_.size() - 1; i >= 0; --i)
+    {
+        if (columns_.at(i)->isItemAllowed(item))
+        {
+            columns_.at(i)->addItem(item);
+            break;
+        }
+    }
+}
+
 //-----------------------------------------------------------------------------
 //  Function: GraphicsColumnLayout::addColumn()
 //-----------------------------------------------------------------------------

@@ -2432,7 +2432,15 @@ void HWDesignDiagram::createHierachicalAdHocPorts(QSharedPointer<Design> design)
         }
         else
         {
-            getLayout()->addItem(adHocIf);
+            //yangjun: added statement to add ad-hoc interface with OUT direction to the end of the layout (IO Column on the right side).
+            if (adHocPort && adHocPort->getDirection() == DirectionTypes::OUT)
+            {
+                getLayout()->addItemAtEnd(adHocIf);
+            }
+            else
+            {
+                getLayout()->addItem(adHocIf);
+            }
         }
     }
 
@@ -2447,7 +2455,15 @@ void HWDesignDiagram::createHierachicalAdHocPorts(QSharedPointer<Design> design)
 
             auto adhocInterface(new HierarchicalPortItem(getEditedComponent(), adhocPort, positionPlaceHolder, nullptr));
 
-            getLayout()->addItem(adhocInterface);
+            //yangjun: added statement to add ad-hoc interface with OUT direction to the end of the layout (IO Column on the right side).
+            if (adhocPort && adhocPort->getDirection() == DirectionTypes::OUT)
+            {
+                getLayout()->addItemAtEnd(adhocInterface);
+            }
+            else
+            {
+                getLayout()->addItem(adhocInterface);
+            }
         }
     }
 }

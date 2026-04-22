@@ -49,6 +49,13 @@ public:
      */
     void addItem(QGraphicsItem* item);
 
+    /*! yangjun
+     *  Adds an item to the end of the layout.
+     *
+     *    @param [in] item The item to add.
+     */
+    void addItemAtEnd(QGraphicsItem* item);
+
     /*!
      *  Adds a column to the layout.
      *
