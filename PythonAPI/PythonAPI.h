@@ -276,12 +276,12 @@ public:
      *    @param [in] name        Name of the selected VLNV.
      *    @param [in] version     Version of the selected VLNV.
      *    @param [in] revision    IP-XACT standard revision to use.
-     *    @param [in] sysgroup    Name of the new system group Name, if needed.
+     *    @param [in] sysgroup    List of the new system group Name, if needed.
      *
      *    @return True, if the busDefinition was created successfully, false otherwise.
      */
     bool createBusDefinition(std::string const& vendor, std::string const& library, std::string const& name,
-        std::string const& version, std::string const& sysgroup = "None", StdRev revision = StdRev::Std22);
+    std::string const& version, std::vector<std::string> const& sysgroup = {}, StdRev revision = StdRev::Std22);
 
     /*! yangjun
      *  Create a new abstractDefinition with the selected VLNV. Defaults to IP-XACT 2022.

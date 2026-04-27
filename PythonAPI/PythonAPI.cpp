@@ -406,7 +406,7 @@ bool PythonAPI::vlnvExistsInLibrary(std::string const& vendor, std::string const
 // Function: PythonAPI::createBusDefinition()
 //-----------------------------------------------------------------------------
 bool PythonAPI::createBusDefinition(std::string const& vendor, std::string const& library, std::string const& name,
-    std::string const& version, std::string const& sysgroup /*= "None"*/, StdRev revision /*= StdRev::Std22*/)
+    std::string const& version, std::vector<std::string> const& sysgroup /*= {}*/, StdRev revision /*= StdRev::Std22*/)
 {
     if (vendor.empty() || library.empty() || name.empty() || version.empty())
     {
@@ -431,9 +431,13 @@ bool PythonAPI::createBusDefinition(std::string const& vendor, std::string const
 
     QSharedPointer<BusDefinition> busdef = QSharedPointer<BusDefinition>(new BusDefinition(newBusDefinitionVLNV, docRevision));
 
-    if (sysgroup != "None")
+    if (!sysgroup.empty())
     {
-        QStringList sysgroup_list{QString::fromStdString(sysgroup)};
+        QStringList sysgroup_list;
+        for (const std::string& group : sysgroup)
+        {
+            sysgroup_list.append(QString::fromStdString(group));
+        }
         busdef->setSystemGroupNames(sysgroup_list);
     }
 
