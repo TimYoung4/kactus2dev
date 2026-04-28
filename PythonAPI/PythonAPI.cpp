@@ -209,6 +209,15 @@ std::vector<std::string> PythonAPI::getActiveLibraryPaths() const
     return paths;
 }
 
+//yangjun
+//-----------------------------------------------------------------------------
+// Function: PythonAPI::getLogicalPortsInterface()
+//-----------------------------------------------------------------------------
+PortAbstractionInterface* PythonAPI::getLogicalPortsInterface() const
+{
+    return logicalPortsInterface_;
+}
+
 //-----------------------------------------------------------------------------
 // Function: PythonAPI::getPortsInterface()
 //-----------------------------------------------------------------------------
@@ -524,8 +533,7 @@ bool PythonAPI::openAbstractionDefinition(std::string const& vlnvString)
         if (absdef)
         {
             activeAbsDef_ = absdef;
-            PortAbstractionInterface* logicalPortIf = busInterface_->getAbstractionTypeInterface()->getPortMapInterface()->getLogicalPortInterface();
-            logicalPortIf -> setAbsDef(activeAbsDef_);
+            logicalPortsInterface_ -> setAbsDef(activeAbsDef_);
             messager_->showMessage(QString("Abstraction definition %1 is open").arg(absdefVLNV));
             return true;
         }
@@ -553,14 +561,9 @@ void PythonAPI::saveAbstractionDefinition()
         // Save the attributes of each logical port
         messager_->showMessage(QString("Saving attributes of logical ports ..."));
 
-        if (busInterface_ && busInterface_->getAbstractionTypeInterface() &&
-            busInterface_->getAbstractionTypeInterface()->getPortMapInterface() &&
-            busInterface_->getAbstractionTypeInterface()->getPortMapInterface()->getLogicalPortInterface())
+        if (logicalPortsInterface_)
         {
-            busInterface_->getAbstractionTypeInterface()
-                ->getPortMapInterface()
-                ->getLogicalPortInterface()
-                ->save();
+            logicalPortsInterface_->save();
         }
         else
         {

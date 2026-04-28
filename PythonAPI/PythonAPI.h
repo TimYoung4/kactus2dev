@@ -39,6 +39,7 @@
 //yangjun
 #include <IPXACTmodels/BusDefinition/BusDefinition.h>
 #include <IPXACTmodels/AbstractionDefinition/AbstractionDefinition.h>
+#include <KactusAPI/include/PortAbstractionInterface.h>
 
 class MessageMediator;
 
@@ -136,6 +137,13 @@ public:
      *    @param [in] path     The path to remove.
      */
     void removeLibraryPath(std::string const& path);
+
+    /*!
+     *  Get the interface for accessing the abstraction definition logical ports.
+     *
+     *    @return Interface for accessing the abstraction definition logical ports.
+     */
+    PortAbstractionInterface* getLogicalPortsInterface() const;
 
     /*!
      *  Get the interface for accessing the component ports.
@@ -925,6 +933,10 @@ private:
 
     //! Validator for memory maps.
     QSharedPointer<MemoryMapValidator> mapValidator_{ nullptr };
+
+    //yangjun
+    //! Interface for accessing the abstraction definition logical ports. 
+    PortAbstractionInterface* logicalPortsInterface_{ new PortAbstractionInterface(expressionParser_, expressionFormatter_) };
 
     //! Interface for accessing the component ports. 
     PortsInterface* portsInterface_{ new PortsInterface(portValidator_, expressionParser_, expressionFormatter_) };
