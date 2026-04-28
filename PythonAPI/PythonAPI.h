@@ -145,7 +145,7 @@ public:
      */
     PortAbstractionInterface* getLogicalPortsInterface() const;
 
-    /*!
+    /*! yangjun
      *  Get the interface for accessing the component ports.
      *
      *    @return Interface for accessing the component ports.
