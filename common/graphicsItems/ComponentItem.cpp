@@ -24,6 +24,8 @@
 //yangjun
 #include <IPXACTmodels/Component/Port.h>
 #include <IPXACTmodels/common/DirectionTypes.h>
+#include <IPXACTmodels/Component/BusInterface.h>
+#include <IPXACTmodels/generaldeclarations.h>
 
 #include <QFont>
 #include <QPen>
@@ -382,9 +384,9 @@ void ComponentItem::addPortToSideWithLessPorts(ConnectionEndpoint* port)
 
 //yangjun
 //-----------------------------------------------------------------------------
-// Function: ComponentItem::addPortToSideByDirection()
+// Function: ComponentItem::addPortToSideByDirectionOrMode()
 //-----------------------------------------------------------------------------
-void ComponentItem::addPortToSideByDirection(ConnectionEndpoint* port)
+void ComponentItem::addPortToSideByDirectionOrMode(ConnectionEndpoint* port)
 {
     // Place the port at the bottom of the side based on its logical direction (IN goes to Left, OUT goes to Right. Others fallback to side with less ports).
     QSharedPointer<Port> adhocPort = port->getPort();
@@ -420,7 +422,37 @@ void ComponentItem::addPortToSideByDirection(ConnectionEndpoint* port)
         }
     }
 
-    // in case of INOUT or unknown direction, fallback to side with less ports
+    // place the bus interface port at the bottom of the side based on its interface mode (Target / mirroredMaster on the left side, Initiator / MirroredTarget on the right side. Others fallback to side with less ports).
+    QSharedPointer<BusInterface> busIf = port->getBusInterface();
+    if (busIf)
+    {
+        General::InterfaceMode mode = busIf->getInterfaceMode();
+        
+        if (mode == General::TARGET || mode == General::SLAVE || 
+            mode == General::MIRRORED_INITIATOR || mode == General::MIRRORED_MASTER)
+        {
+            if (!leftPorts_.empty())
+                port->setPos(QPointF(0, leftPorts_.last()->pos().y() + GridSize * 3) + rect().topLeft());
+            else
+                port->setPos(QPointF(0, GridSize * 4) + rect().topLeft());
+            
+            addPortToLeft(port);
+            return;
+        }
+        else if (mode == General::INITIATOR || mode == General::MASTER || 
+                 mode == General::MIRRORED_TARGET || mode == General::MIRRORED_SLAVE)
+        {
+            if (!rightPorts_.empty())
+                port->setPos(QPointF(rect().width(), rightPorts_.last()->pos().y() + GridSize * 3) + rect().topLeft());
+            else
+                port->setPos(QPointF(rect().width(), GridSize * 4) + rect().topLeft());
+            
+            addPortToRight(port);
+            return;
+        }
+    }
+
+    // in case of adhoc ports with direction INOUT or unknown direction, or bus interface with mode SYSTEM or MIRRORED_SYSTEM or MONITOR, fallback to side with less ports
     addPortToSideWithLessPorts(port);
 }
 

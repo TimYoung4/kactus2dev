@@ -133,7 +133,7 @@ void HWComponentItem::onAdHocVisibilityChanged(QString const& portName, bool vis
         if (!port)
         {
             port = new ActivePortItem(adhocPort, this);
-            addPortToSideByDirection(port); // yangjun: instead of adding adhoc port to side with less ports, nowthe adding based on the port direction.
+            addPortToSideByDirectionOrMode(port); // yangjun: instead of adding adhoc port to side with less ports, nowthe adding based on the port direction.
         }
         
         getComponentInstance()->updateAdHocPortPosition(portName, port->pos());
@@ -489,7 +489,7 @@ void HWComponentItem::positionBusInterfaceTerminals()
         }
         else
         {
-            addPortToSideWithLessPorts(port);
+            addPortToSideByDirectionOrMode(port); // yangjun: instead of adding bus interface port to side with less interfaces, now the adding based on the interface mode.
         }
     }
 
@@ -539,7 +539,7 @@ void HWComponentItem::positionAdHocPortTerminals()
         {
             auto adhocItem (new ActivePortItem(adhocPort, this));
 
-            addPortToSideByDirection(adhocItem); // yangjun: instead of adding adhoc port to side with less ports, nowthe adding based on the port direction.
+            addPortToSideByDirectionOrMode(adhocItem); // yangjun: instead of adding adhoc port to side with less ports, now the adding based on the port direction.
         }
     }
 }
@@ -559,7 +559,7 @@ AdHocItem* HWComponentItem::createAdhocItem(QString const& portName)
     if (!portItem)
     {
         portItem = new ActivePortItem(adhocPort, this);
-        addPortToSideByDirection(portItem); // yangjun: instead of adding adhoc port to side with less ports, nowthe adding based on the port direction.
+        addPortToSideByDirectionOrMode(portItem); // yangjun: instead of adding adhoc port to side with less ports, nowthe adding based on the port direction.
 
         updateSize();
     }
