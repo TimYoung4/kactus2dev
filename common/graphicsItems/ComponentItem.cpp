@@ -429,7 +429,7 @@ void ComponentItem::addPortToSideByDirectionOrMode(ConnectionEndpoint* port)
         General::InterfaceMode mode = busIf->getInterfaceMode();
         
         if (mode == General::TARGET || mode == General::SLAVE || 
-            mode == General::MIRRORED_INITIATOR || mode == General::MIRRORED_MASTER)
+            mode == General::MIRRORED_INITIATOR || mode == General::MIRRORED_MASTER || mode == General::MONITOR || mode == General::SYSTEM)
         {
             if (!leftPorts_.empty())
                 port->setPos(QPointF(0, leftPorts_.last()->pos().y() + GridSize * 3) + rect().topLeft());
@@ -440,7 +440,7 @@ void ComponentItem::addPortToSideByDirectionOrMode(ConnectionEndpoint* port)
             return;
         }
         else if (mode == General::INITIATOR || mode == General::MASTER || 
-                 mode == General::MIRRORED_TARGET || mode == General::MIRRORED_SLAVE)
+                 mode == General::MIRRORED_TARGET || mode == General::MIRRORED_SLAVE || mode == General::MIRRORED_SYSTEM)
         {
             if (!rightPorts_.empty())
                 port->setPos(QPointF(rect().width(), rightPorts_.last()->pos().y() + GridSize * 3) + rect().topLeft());

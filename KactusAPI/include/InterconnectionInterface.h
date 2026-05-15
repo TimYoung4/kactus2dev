@@ -168,6 +168,16 @@ public:
     void addHierarchicalInterconnection(std::string const& instanceName, std::string const& instanceBus,
         std::string const& topBus, std::string const& connectionName = "");
 
+    /*! yangjun
+     *  Add a new hierarchical2hierarchical bus interface connection.
+     *
+     *    @param [in] startTopBus         Name of the selected first top component bus interface.
+     *    @param [in] endTopBus           Name of the selected second top component bus interface.
+     *    @param [in] connectionName      Name of the new interface connection.
+     */
+    void addHierarchical2HierarchicalInterconnection(std::string const& startTopBus,
+        std::string const& endTopBus, std::string const& connectionName = "");
+
     /*!
      *  Remove the selected interconnection.
      *
@@ -209,6 +219,15 @@ public:
      *    @return Names of the available hierarchical interconnections.
      */
     std::vector<std::string> getHierarchicalConnNames() const;
+
+    /*! yangjun
+     *  Get all the reference information of the selected interconnection.
+     *
+     *    @param [in] connectionName  Name of the selected interconnection.
+     *
+     *    @return A list that contains the ComponentRef and BusRef of each activeInterface or hierarchicalInterface.
+     */
+    std::vector<std::string> getAllInterConnectionRefs(std::string const& connectionName) const;
 
     //! No copying. No assignment.
     InterconnectionInterface(const InterconnectionInterface& other) = delete;

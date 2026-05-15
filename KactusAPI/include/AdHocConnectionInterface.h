@@ -195,7 +195,7 @@ public:
      *    @param [in] endTopPort          Name of the second top component port.
      *    @param [in] connectionName      Name of the new ad hoc connection.
      */
-    void createHierarchical2HierarchicalAdHocConnection(std::string const& startTopPort,
+    void addHierarchical2HierarchicalAdHocConnection(std::string const& startTopPort,
         std::string const& endTopPort, std::string const& connectionName = "");
 
     /*! yangjun
@@ -206,7 +206,7 @@ public:
      *    @param [in] tiedValue           New tied value.
      *    @param [in] connectionName      Name of the new ad hoc connection.
      */
-    void createTiedAdHocConnection(std::string const& instanceName,
+    void addTiedAdHocConnection(std::string const& instanceName,
         std::string const& instancePort, std::string const& tiedValue, std::string const& connectionName = "");
 
     /*!

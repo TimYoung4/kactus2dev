@@ -316,6 +316,35 @@ void InterconnectionInterface::addHierarchicalInterconnection(std::string const&
     interconnections_->append(newConnection);
 }
 
+//yangjun
+//-----------------------------------------------------------------------------
+// Function: InterconnectionInterface::addHierarchical2HierarchicalInterconnection()
+//-----------------------------------------------------------------------------
+void InterconnectionInterface::addHierarchical2HierarchicalInterconnection(std::string const& startTopBus,
+    std::string const& endTopBus, std::string const& connectionName /* = "" */)
+{
+    QString startTopBusQ = QString::fromStdString(startTopBus);
+    QString endTopBusQ = QString::fromStdString(endTopBus);
+
+    QSharedPointer<Interconnection> newConnection(new Interconnection());
+
+    QString newConnectionName = QString::fromStdString(connectionName);
+    if (newConnectionName.isEmpty())
+    {
+        newConnectionName = startTopBusQ + QStringLiteral("_to_") + endTopBusQ;
+    }
+
+    newConnection->setName(newConnectionName);
+
+    QSharedPointer<HierInterface> startTopReference(new HierInterface(startTopBusQ));
+    QSharedPointer<HierInterface> endTopReference(new HierInterface(endTopBusQ));
+
+    newConnection->getHierInterfaces()->append(startTopReference);
+    newConnection->getHierInterfaces()->append(endTopReference);
+
+    interconnections_->append(newConnection);
+}
+
 //-----------------------------------------------------------------------------
 // Function: InterconnectionInterface::removeInterconnection()
 //-----------------------------------------------------------------------------
@@ -430,4 +459,37 @@ std::vector<std::string> InterconnectionInterface::getHierarchicalConnNames() co
     }
 
     return connectionNames;
+}
+
+//yangjun
+//-----------------------------------------------------------------------------
+// Function: InterconnectionInterface::getAllInterConnectionRefs()
+//-----------------------------------------------------------------------------
+std::vector<std::string> InterconnectionInterface::getAllInterConnectionRefs(std::string const& connectionName) const
+{
+    std::vector<std::string> RefNames;
+
+    QSharedPointer<Interconnection> InterConn = getInterconnection(connectionName);
+
+    QSharedPointer<ActiveInterface> startInterface = InterConn->getStartInterface();
+    if (startInterface)
+    {
+        RefNames.push_back(startInterface->getComponentReference().toStdString());
+        RefNames.push_back(startInterface->getBusReference().toStdString());
+    }
+
+    QSharedPointer<QList<QSharedPointer<ActiveInterface> > > activeInterfaces = InterConn->getActiveInterfaces();
+    for (auto const& interf : *activeInterfaces)
+    {
+        RefNames.push_back(interf->getComponentReference().toStdString());
+        RefNames.push_back(interf->getBusReference().toStdString());
+    }
+
+    QSharedPointer<QList<QSharedPointer<HierInterface> > > hierInterfaces = InterConn->getHierInterfaces();
+    for (auto const& portref : *hierInterfaces)
+    {
+        RefNames.push_back(portref->getBusReference().toStdString());
+    }
+
+    return RefNames;
 }

@@ -35,7 +35,7 @@
 #include <KactusAPI/include/FileSetInterface.h>
 #include <KactusAPI/include/FileInterface.h>
 #include <KactusAPI/include/FileBuilderInterface.h>
-#include <KactusAPI/include/PortAbstractionInterface.h>
+
 #include <KactusAPI/include/AbstractionTypeInterface.h>
 #include <KactusAPI/include/PortMapInterface.h>
 #include <KactusAPI/include/LibraryHandler.h>
@@ -1528,6 +1528,16 @@ bool PythonAPI::createHierarchicalConnection(std::string const& instanceName, st
     return true;
 }
 
+//yangjun
+//-----------------------------------------------------------------------------
+// Function: PythonAPI::createHierarchical2HierarchicalConnection()
+//-----------------------------------------------------------------------------
+void PythonAPI::createHierarchical2HierarchicalConnection(std::string const& startTopBus,
+    std::string const& endTopBus, std::string const& connectionName /* = "" */)
+{
+    connectionInterface_->addHierarchical2HierarchicalInterconnection(startTopBus, endTopBus, connectionName);
+}
+
 //-----------------------------------------------------------------------------
 // Function: PythonAPI::connectionExistenceCheck()
 //-----------------------------------------------------------------------------
@@ -1816,7 +1826,7 @@ bool PythonAPI::createHierarchicalAdHocConnection(std::string const& instanceNam
 void PythonAPI::createHierarchical2HierarchicalAdHocConnection(std::string const& startTopPort,
     std::string const& endTopPort, std::string const& connectionName /* = "" */)
 {
-    adhocConnectionInterface_->createHierarchical2HierarchicalAdHocConnection(startTopPort, endTopPort);
+    adhocConnectionInterface_->addHierarchical2HierarchicalAdHocConnection(startTopPort, endTopPort, connectionName);
 }
 
 //yangjun
@@ -1834,7 +1844,7 @@ bool PythonAPI::createTiedAdHocConnection(std::string const& instanceName,
         return false;
     }
 
-    adhocConnectionInterface_->createTiedAdHocConnection(instanceName, instancePort, tiedValue);
+    adhocConnectionInterface_->addTiedAdHocConnection(instanceName, instancePort, tiedValue);
     return true;
 }
 

@@ -572,6 +572,16 @@ public:
     bool createHierarchicalConnection(std::string const& instanceName, std::string const& instanceBus,
         std::string const& topBus);
 
+    /*! yangjun
+     *  Add a new hierarchical2hierarchical bus interface connection. 
+     *
+     *    @param [in] startTopBus         Name of the selected first top component bus interface.
+     *    @param [in] endTopBus           Name of the selected second top component bus interface.
+     *    @param [in] connectionName      Name of the new interface connection.
+    */
+        void createHierarchical2HierarchicalConnection(std::string const& startTopBus,
+    std::string const& endTopBus, std::string const& connectionName = "");
+
     /*!
      *  Remove an interconnection between two bus interfaces.
      *

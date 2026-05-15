@@ -352,9 +352,9 @@ void AdHocConnectionInterface::addHierarchicalAdHocConnection(std::string const&
 
 //yangjun
 //-----------------------------------------------------------------------------
-// Function: AdHocConnectionInterface::createHierarchical2HierarchicalAdHocConnection()
+// Function: AdHocConnectionInterface:addHierarchical2HierarchicalAdHocConnection()
 //-----------------------------------------------------------------------------
-void AdHocConnectionInterface::createHierarchical2HierarchicalAdHocConnection(std::string const& startTopPort,
+void AdHocConnectionInterface::addHierarchical2HierarchicalAdHocConnection(std::string const& startTopPort,
     std::string const& endTopPort, std::string const& connectionName /* = "" */)
 {
     QString startTopPortQ = QString::fromStdString(startTopPort);
@@ -378,9 +378,9 @@ void AdHocConnectionInterface::createHierarchical2HierarchicalAdHocConnection(st
 
 //yangjun
 //-----------------------------------------------------------------------------
-// Function: AdHocConnectionInterface::createTiedAdHocConnection()
+// Function: AdHocConnectionInterface::addTiedAdHocConnection()
 //-----------------------------------------------------------------------------
-void AdHocConnectionInterface::createTiedAdHocConnection(std::string const& instanceName,
+void AdHocConnectionInterface::addTiedAdHocConnection(std::string const& instanceName,
     std::string const& instancePort, std::string const& tiedValue, std::string const& connectionName /* = "" */)
 {
     QString instanceQ = QString::fromStdString(instanceName);
