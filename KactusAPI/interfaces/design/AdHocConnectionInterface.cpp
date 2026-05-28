@@ -402,6 +402,31 @@ void AdHocConnectionInterface::addTiedAdHocConnection(std::string const& instanc
     connections_->append(newConnection);
 }
 
+//yangjun
+//-----------------------------------------------------------------------------
+// Function: AdHocConnectionInterface::addTiedHierarchicalAdHocConnection()
+//-----------------------------------------------------------------------------
+void AdHocConnectionInterface::addTiedHierarchicalAdHocConnection(std::string const& topPort,
+    std::string const& tiedValue, std::string const& connectionName /* = "" */)
+{
+    QString topPortQ = QString::fromStdString(topPort);
+    QString tiedValueQ = QString::fromStdString(tiedValue);
+
+    QString newConnectionName = QString::fromStdString(connectionName);
+    if (newConnectionName.isEmpty())
+    {
+        newConnectionName = topPortQ + QStringLiteral("_to_tiedValue");
+    }
+
+    QSharedPointer<PortReference> topPortReference(new PortReference(topPortQ));
+
+    QSharedPointer<AdHocConnection> newConnection(new AdHocConnection(newConnectionName));
+    newConnection->getExternalPortReferences()->append(topPortReference);
+    newConnection->setTiedValue(tiedValueQ);
+
+    connections_->append(newConnection);
+}
+
 //-----------------------------------------------------------------------------
 // Function: AdHocConnectionInterface::removeAdHocConnection()
 //-----------------------------------------------------------------------------

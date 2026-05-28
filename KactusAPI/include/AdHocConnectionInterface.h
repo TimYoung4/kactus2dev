@@ -209,6 +209,16 @@ public:
     void addTiedAdHocConnection(std::string const& instanceName,
         std::string const& instancePort, std::string const& tiedValue, std::string const& connectionName = "");
 
+    /*! yangjun
+    *  Add a new hierarchical ad hoc connection with tied value.
+    *
+    *    @param [in] topPort             Name of the top component port.
+    *    @param [in] tiedValue           New tied value.
+    *    @param [in] connectionName      Name of the new ad hoc connection.
+    */
+    void addTiedHierarchicalAdHocConnection(std::string const& topPort,
+        std::string const& tiedValue, std::string const& connectionName = "");
+
     /*!
      *  Remove the selected ad hoc connection.
      *

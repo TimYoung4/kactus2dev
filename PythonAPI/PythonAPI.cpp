@@ -1528,16 +1528,6 @@ bool PythonAPI::createHierarchicalConnection(std::string const& instanceName, st
     return true;
 }
 
-//yangjun
-//-----------------------------------------------------------------------------
-// Function: PythonAPI::createHierarchical2HierarchicalConnection()
-//-----------------------------------------------------------------------------
-void PythonAPI::createHierarchical2HierarchicalConnection(std::string const& startTopBus,
-    std::string const& endTopBus, std::string const& connectionName /* = "" */)
-{
-    connectionInterface_->addHierarchical2HierarchicalInterconnection(startTopBus, endTopBus, connectionName);
-}
-
 //-----------------------------------------------------------------------------
 // Function: PythonAPI::connectionExistenceCheck()
 //-----------------------------------------------------------------------------
@@ -1846,6 +1836,16 @@ bool PythonAPI::createTiedAdHocConnection(std::string const& instanceName,
 
     adhocConnectionInterface_->addTiedAdHocConnection(instanceName, instancePort, tiedValue);
     return true;
+}
+
+//yangjun
+//-----------------------------------------------------------------------------
+// Function: PythonAPI::createTiedHierarchicalAdHocConnection()
+//-----------------------------------------------------------------------------
+void PythonAPI::createTiedHierarchicalAdHocConnection(std::string const& topPort,
+    std::string const& tiedValue, std::string const& connectionName /* = "" */)
+{
+    adhocConnectionInterface_->addTiedHierarchicalAdHocConnection(topPort, tiedValue, connectionName);
 }
 
 //-----------------------------------------------------------------------------
