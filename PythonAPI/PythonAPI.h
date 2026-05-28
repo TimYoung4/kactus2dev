@@ -660,7 +660,7 @@ public:
     *    @param [in] tiedValue           New tied value.
     *    @param [in] connectionName      Name of the new ad hoc connection.
     */
-    void createHierarchicalTiedAdHocConnection(std::string const& topPort,
+    void createTiedHierarchicalAdHocConnection(std::string const& topPort,
         std::string const& tiedValue, std::string const& connectionName = "");
 
     /*!
