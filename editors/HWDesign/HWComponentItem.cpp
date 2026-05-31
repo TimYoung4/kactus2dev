@@ -133,7 +133,17 @@ void HWComponentItem::onAdHocVisibilityChanged(QString const& portName, bool vis
         if (!port)
         {
             port = new ActivePortItem(adhocPort, this);
-            addPortToSideByDirectionOrMode(port); // yangjun: instead of adding adhoc port to side with less ports, nowthe adding based on the port direction.
+            auto portPos = getComponentInstance()->getAdHocPortPositions();
+
+            if (portPos.contains(portName))
+            {
+                port->setPos(portPos.value(portName));
+                addPortToSideByPosition(port);
+            }
+            else
+            {
+                addPortToSideByDirectionOrMode(port); // yangjun: instead of adding adhoc port to side with less ports, nowthe adding based on the port direction.
+            }
         }
         
         getComponentInstance()->updateAdHocPortPosition(portName, port->pos());
