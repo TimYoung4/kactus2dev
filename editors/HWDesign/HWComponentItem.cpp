@@ -135,6 +135,7 @@ void HWComponentItem::onAdHocVisibilityChanged(QString const& portName, bool vis
             port = new ActivePortItem(adhocPort, this);
             auto portPos = getComponentInstance()->getAdHocPortPositions();
 
+            // yangjun: Check if instance specific position has been specified.
             if (portPos.contains(portName))
             {
                 port->setPos(portPos.value(portName));
