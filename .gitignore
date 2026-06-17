@@ -25,3 +25,5 @@ moc_*
 *.obj
 *.tlog
 *.o
+
+build/

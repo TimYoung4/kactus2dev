@@ -182,9 +182,9 @@ void VerilogInstanceParser::highlightInstance(QString const& input, QString cons
             if (highlighter_)
             {
                 highlighter_->applyHighlight(
-                    instanceModuleBeginIndex, instanceModuleEndIndex, ImportColors::INSTANCECOLOR);
+                instanceModuleBeginIndex, instanceModuleEndIndex, KactusColors::Importer::INSTANCECOLOR);
                 highlighter_->applyHighlight(
-                    instanceNameBeginIndex, instanceNameEndIndex, ImportColors::INSTANCECOLOR);
+                instanceNameBeginIndex, instanceNameEndIndex, KactusColors::Importer::INSTANCECOLOR);
             }
             
         }
