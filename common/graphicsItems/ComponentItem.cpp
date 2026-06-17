@@ -388,7 +388,9 @@ void ComponentItem::addPortToSideWithLessPorts(ConnectionEndpoint* port)
 //-----------------------------------------------------------------------------
 void ComponentItem::addPortToSideByDirectionOrMode(ConnectionEndpoint* port)
 {
-    // Place the port at the bottom of the side based on its logical direction (IN goes to Left, OUT goes to Right. Others fallback to side with less ports).
+    // yangjun
+    // Place ad hoc ports by logical direction: IN goes left, OUT goes right.
+    // Other directions fall back to the side with fewer ports.
     QSharedPointer<Port> adhocPort = port->getPort();
     if (adhocPort)
     {
@@ -422,7 +424,11 @@ void ComponentItem::addPortToSideByDirectionOrMode(ConnectionEndpoint* port)
         }
     }
 
-    // place the bus interface port at the bottom of the side based on its interface mode (Target / mirroredMaster on the left side, Initiator / MirroredTarget on the right side. Others fallback to side with less ports).
+    // yangjun
+    // Place bus interfaces by interface mode.
+    // Target, Slave, MirroredInitiator, MirroredMaster, Monitor, and System go left;
+    // Initiator, Master, MirroredTarget, MirroredSlave, and MirroredSystem go right.
+    // Any other mode falls back to the side with fewer ports.
     QSharedPointer<BusInterface> busIf = port->getBusInterface();
     if (busIf)
     {
@@ -452,7 +458,9 @@ void ComponentItem::addPortToSideByDirectionOrMode(ConnectionEndpoint* port)
         }
     }
 
-    // in case of adhoc ports with direction INOUT or unknown direction, or bus interface with mode SYSTEM or MIRRORED_SYSTEM or MONITOR, fallback to side with less ports
+    // yangjun
+    // In case of ad hoc ports with direction INOUT or unknown direction, or
+    // bus interfaces with an unhandled mode, fall back to the side with fewer ports.
     addPortToSideWithLessPorts(port);
 }
 

@@ -719,7 +719,14 @@ private:
      */
     ConnectionEndpoint* findOrCreateHierarchicalInterface(QString const& busRef);
 
-    /*!
+    // /*!
+    //  *  Creates the hierarchical bus interface items in the diagram.
+    //  *
+    //  *    @param [in] design   The design containing the bus interfaces.
+    //  */
+    // void createHierachicalBusInterfaces(QSharedPointer<Design> design);
+
+    /*! 
      *  Creates the hierarchical ad-hoc port items in the diagram.
      *
      *    @param [in] design   The design containing the ad-hoc ports.

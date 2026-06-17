@@ -540,29 +540,3 @@ std::vector<std::string> AdHocConnectionInterface::getAllAdHocConnectionRefs(std
 
     return RefNames;
 }
-
-// //yangjun
-// //-----------------------------------------------------------------------------
-// // Function: AdHocConnectionInterface::getHierarchicalAdHocConnectionRefs()
-// //-----------------------------------------------------------------------------
-// std::vector<std::string> AdHocConnectionInterface::getHierarchicalAdHocConnectionRefs(std::string const& connectionName) const
-// {
-//     std::vector<std::string> RefNames;
-
-//     QSharedPointer<AdHocConnection> AdHocConn = getAdHocConnection(connectionName);
-
-//     QSharedPointer<QList<QSharedPointer<PortReference> > > internalPortReferences = AdHocConn->getInternalPortReferences();
-//     for (auto const& portref : *internalPortReferences.data())
-//     {
-//         RefNames.push_back(portref->getComponentRef().toStdString());
-//         RefNames.push_back(portref->getPortRef().toStdString());
-//     }
-
-//     // QSharedPointer<QList<QSharedPointer<PortReference> > > externalPortReferences = AdHocConn->getExternalPortReferences();
-//     // for (auto const& portref : *externalPortReferences)
-//     // {
-//     //     RefNames.push_back(portref->getPortRef().toStdString());
-//     // }
-
-//     return RefNames;
-// }

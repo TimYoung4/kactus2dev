@@ -159,27 +159,7 @@ void HWDesignDiagram::loadDesign(QSharedPointer<Design> design)
 
     // Clear undo/redo stack to prevent undoing the column adds.
     getEditProvider()->clear();
-
-    // Create diagram interfaces for the top-level bus interfaces.
-    for (QSharedPointer<BusInterface> busIf : *getEditedComponent()->getBusInterfaces())
-    {
-        QSharedPointer<InterfaceGraphicsData> dataGroup =
-            findOrCreateInterfaceExtensionGroup(design, busIf->name());
-
-        // If the mode of the bus interface is not set, then it is considered as draft port (e.g. warning sign is not displayed)
-        auto topInterface =
-            new HierarchicalBusInterfaceItem(getEditedComponent(), busIf, dataGroup, getLibraryInterface(),0, 
-                busIf->getInterfaceMode() == General::InterfaceMode::INTERFACE_MODE_COUNT);
-        GraphicsColumn* targetColumn = getLayout()->findColumnAt(topInterface->scenePos());
-        if (targetColumn && targetColumn->isItemAllowed(topInterface))
-        {
-            targetColumn->addItem(topInterface);
-        }
-        else
-        {
-            getLayout()->addItem(topInterface);
-        }        
-    }
+    createHierachicalBusInterfaces(design);
 
     for (QSharedPointer<ComponentInstance> instance : *design->getComponentInstances())
     {
@@ -2388,6 +2368,90 @@ ConnectionEndpoint* HWDesignDiagram::findOrCreateHierarchicalInterface(QString c
 
     return nullptr;
 }
+
+// // to be continued... 
+// //yangjun 
+// //-----------------------------------------------------------------------------
+// // Function: HWDesignDiagram::createHierachicalBusInterfaces()
+// //-----------------------------------------------------------------------------
+// void HWDesignDiagram::createHierachicalBusInterfaces(QSharedPointer<Design> design)
+// {
+//     GraphicsColumn* leftIoColumn = nullptr;
+//     GraphicsColumn* rightIoColumn = nullptr;
+
+//     for (GraphicsColumn* column : getLayout()->getColumns())
+//     {
+//         if (column->getContentType() == ColumnTypes::IO)
+//         {
+//             if (leftIoColumn == nullptr)
+//             {
+//                 leftIoColumn = column;
+//             }
+
+//             rightIoColumn = column;
+//         }
+//     }
+
+//     auto addPortToSideByDirectionOrMode = [&](HierarchicalBusInterfaceItem* port,
+//         General::InterfaceMode mode)
+//     {
+//         GraphicsColumn* targetColumn = nullptr;
+
+//         if (mode == General::TARGET || mode == General::SLAVE ||
+//             mode == General::MIRRORED_INITIATOR || mode == General::MIRRORED_MASTER ||
+//             mode == General::MONITOR || mode == General::SYSTEM)
+//         {
+//             targetColumn = leftIoColumn != nullptr ? leftIoColumn : rightIoColumn;
+//         }
+//         else if (mode == General::INITIATOR || mode == General::MASTER ||
+//                  mode == General::MIRRORED_TARGET || mode == General::MIRRORED_SLAVE ||
+//                  mode == General::MIRRORED_SYSTEM)
+//         {
+//             targetColumn = rightIoColumn != nullptr ? rightIoColumn : leftIoColumn;
+//         }
+//         else
+//         {
+//             targetColumn = leftIoColumn != nullptr ? leftIoColumn : rightIoColumn;
+//         }
+
+//         if (targetColumn != nullptr)
+//         {
+//             targetColumn->addItem(port);
+//         }
+//         else
+//         {
+//             getLayout()->addItem(port);
+//         }
+//     };
+
+//     // Create diagram interfaces for the top-level bus interfaces.
+//     for (QSharedPointer<BusInterface> busIf : *getEditedComponent()->getBusInterfaces())
+//     {
+//         QSharedPointer<InterfaceGraphicsData> dataGroup =
+//             findOrCreateInterfaceExtensionGroup(design, busIf->name());
+
+//         auto topInterface =
+//             new HierarchicalBusInterfaceItem(getEditedComponent(), busIf, dataGroup, getLibraryInterface(),0, 
+//                 busIf->getInterfaceMode() == General::InterfaceMode::INTERFACE_MODE_COUNT);
+
+//         if (dataGroup->hasPosition())
+//         {
+//             GraphicsColumn* targetColumn = getLayout()->findColumnAt(topInterface->scenePos());
+//             if (targetColumn != nullptr)
+//             {
+//                 targetColumn->addItem(topInterface);
+//             }
+//             else
+//             {
+//                 getLayout()->addItem(topInterface);
+//             }
+//         }
+//         else
+//         {
+//             addPortToSideByDirectionOrMode(topInterface, busIf->getInterfaceMode());
+//         }
+//     }
+// }
 
 //-----------------------------------------------------------------------------
 // Function: HWDesignDiagram::createHierachicalAdHocPorts()
